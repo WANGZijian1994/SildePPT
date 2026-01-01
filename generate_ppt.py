@@ -171,8 +171,10 @@ def update_slide_text(pptx_file, output_file, slide_number, replacements):
                 for run in paragraph.runs:
                     # 进行替换
                     for old_text, new_text in replacements.items():
+                        #print(f"Before {run.text} → {run.text.replace(old_text, new_text)}")
                         if old_text in run.text:
                             run.text = run.text.replace(old_text, new_text)
+                        #print(f"After {run.text}")
     
     # 保存
     prs.save(output_file)
@@ -420,7 +422,7 @@ def duplicate_slide(pptx_file, output_file, slide_number):
     return True
 
 
-def set_pptx_page_texts(pptx_file, output_file, slide_number, new_texts):
+def set_pptx_page_texts(pptx_file, output_file, slide_number, new_texts, change_index=None, change_text=None):
     """
     修改指定页的文字内容
     
@@ -451,25 +453,63 @@ def set_pptx_page_texts(pptx_file, output_file, slide_number, new_texts):
     for shape in slide.shapes:
         if shape.has_text_frame:
             for paragraph in shape.text_frame.paragraphs:
-                for run in paragraph.runs:
-                    # Overwrite text
-                    print(f"{run.text} → ", end="\n")
-                    run.text = new_texts.pop(0) if new_texts else ""
+                if change_index is not None:
+                    print(f"{paragraph.runs[change_index].text} → {change_text}")
+                    #paragraph.runs[change_index].text = change_text 
+                '''
+                else:
+                    for run in paragraph.runs:
+                        # Overwrite text
+                        #print(f"{run.text} → ", end="\n")
+                        #run.text = new_texts.pop(0) if new_texts else ""
+                '''
     
     # 保存
-    prs.save(output_file)
-    print(f"已修改第 {slide_number} 页，文件已保存: {output_file}")
+    #prs.save(output_file)
+    #print(f"已修改第 {slide_number} 页，文件已保存: {output_file}")
     return True
 
 if __name__ == "__main__":
     # 示例1：读取PPT信息
-    filename = ""
-    pptx_file = f"D:\\副业赚钱\\教会事务\\PPT\\{filename}.pptx"
-    output_file = f"D:\\副业赚钱\\教会事务\\PPT\\{filename}_modified.pptx"
-    info = read_pptx(pptx_file)
+    filename = "template"
+    pptx_file = f"C:\\Users\\eglis\\Desktop\\PPT\\SildePPT\\{filename}.pptx"
+    output_file = f"C:\\Users\\eglis\\Desktop\\PPT\\SildePPT\\{filename}_modified.pptx"
+    info = read_pptx(output_file)
+    
+    # 1 时间
+    page_to_modify = 1
+    date = "04/01/2026"
+    old_date = "28/12/2025"
+    #update_slide_text(output_file, output_file, page_to_modify, {old_date: date})
+
+    # 2 领会
+    '''
+20　神能照着运行在我们心里的大力充充足足地成就一切，超过我们所求所想的。 21但愿他在教会中，并在基督耶稣里，得着荣耀，直到世世代代，永永远远。阿们！
+    '''
+    page_to_modify = 2
+    old_name = "徐霞"
+    new_name = "周国莲"
+    #update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
+    set_pptx_page_texts(output_file, output_file, page_to_modify, [
+        ], change_index=1, change_text=new_name) 
+
+    # 3 敬拜
+    page_to_modify = 3
+    old_name = "于福芬"
+    new_name = "徐霞"
+    #update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})  
+
+    '''
+    page_to_delete = [4,4,4,11]
+    print(f"删除music页")
+    for page in page_to_delete:
+        delete_slide(pptx_file, output_file, page)
+    '''
+
+    
+    '''
     titles = []
     texts = []
-    page_to_modify = 11
     assert len(titles) == len(texts)
     for i in len(titles):
         duplicate_slide(output_file, output_file, page_to_modify)
@@ -478,14 +518,11 @@ if __name__ == "__main__":
             titles[i],
             texts[i]
         ])
-    '''
-    if info:
-        print_pptx_page(info, page_to_modify)
-    '''
     # 示例2：修改单页内容
     #update_slide_text(output_file, output_file, 4, {"主 我敬拜祢": "感谢神"})
     #delete_slide(output_file, output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify)
+    '''
     
     '''
     set_pptx_page_texts(output_file, output_file, page_to_modify, [
