@@ -467,14 +467,24 @@ if __name__ == "__main__":
     pptx_file = f"D:\\副业赚钱\\教会事务\\PPT\\{filename}.pptx"
     output_file = f"D:\\副业赚钱\\教会事务\\PPT\\{filename}_modified.pptx"
     info = read_pptx(pptx_file)
+    titles = []
+    texts = []
     page_to_modify = 11
+    assert len(titles) == len(texts)
+    for i in len(titles):
+        duplicate_slide(output_file, output_file, page_to_modify)
+        page_to_modify += 1
+        set_pptx_page_texts(output_file, output_file, page_to_modify, [
+            titles[i],
+            texts[i]
+        ])
     '''
     if info:
         print_pptx_page(info, page_to_modify)
     '''
     # 示例2：修改单页内容
     #update_slide_text(output_file, output_file, 4, {"主 我敬拜祢": "感谢神"})
-    delete_slide(output_file, output_file, page_to_modify)
+    #delete_slide(output_file, output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify)
     
     '''
