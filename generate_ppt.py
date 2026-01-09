@@ -422,7 +422,7 @@ def duplicate_slide(pptx_file, output_file, slide_number):
     return True
 
 
-def set_pptx_page_texts(pptx_file, output_file, slide_number, new_texts, change_index=None, change_text=None):
+def set_pptx_page_texts(pptx_file, output_file, slide_number, replacements):
     """
     修改指定页的文字内容
     
@@ -453,45 +453,107 @@ def set_pptx_page_texts(pptx_file, output_file, slide_number, new_texts, change_
     for shape in slide.shapes:
         if shape.has_text_frame:
             for paragraph in shape.text_frame.paragraphs:
-                if change_index is not None:
-                    print(f"{paragraph.runs[change_index].text} → {change_text}")
-                    #paragraph.runs[change_index].text = change_text 
-                '''
-                else:
                     for run in paragraph.runs:
-                        # Overwrite text
-                        #print(f"{run.text} → ", end="\n")
-                        #run.text = new_texts.pop(0) if new_texts else ""
-                '''
+                        print(f"{run.text} → ", end="\n")
+                        for origin_text, change_text in replacements.items():
+                            if origin_text in run.text:
+                                run.text = run.text.replace(origin_text, change_text)
     
     # 保存
-    #prs.save(output_file)
-    #print(f"已修改第 {slide_number} 页，文件已保存: {output_file}")
+    prs.save(output_file)
+    print(f"已修改第 {slide_number} 页，文件已保存: {output_file}")
     return True
+
+
+def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_number, replacements):
+    """
+    修改指定页的文字内容
+    
+    Args:
+        pptx_file: 原PPTX文件路径
+        output_file: 输出PPTX文件路径
+        slide_number: 页码（从1开始）
+        indexed_replacements: 字典，格式 {索引: '新文字'}
+    
+    Returns:
+        bool: 是否成功
+    """
+    if not os.path.exists(pptx_file):
+        print(f"错误：找不到文件 {pptx_file}")
+        return False
+    
+    prs = Presentation(pptx_file)
+    
+    # 检查页码是否有效
+    if slide_number < 1 or slide_number > len(prs.slides):
+        print(f"错误：页码 {slide_number} 超出范围（共 {len(prs.slides)} 页）")
+        return False
+    
+    # 获取指定页（索引从0开始）
+    slide = prs.slides[slide_number - 1]
+    
+    for shape_index, run_replacements in replacements.items():
+        if not slide.shapes.__getitem__(shape_index).has_text_frame:
+            print(f"错误：形状索引 {shape_index} 不包含文本框")
+            return False
+        shape = slide.shapes[shape_index]
+        for paragraph_index in run_replacements.keys():
+            paragraph = shape.text_frame.paragraphs[paragraph_index] 
+            new_texts_index = run_replacements[paragraph_index]
+            print(f"Shape {shape_index} paragraph {paragraph_index}")
+            for run_index, new_text in new_texts_index.items():
+                print(f" original text {paragraph.runs[run_index].text} new text: {new_text}")
+                if run_index < len(paragraph.runs):
+                    paragraph.runs[run_index].text = new_text
+                else:
+                    paragraph.runs[run_index].text = None
+            
+      
+    '''
+    for i in range(len(slide.shapes)):
+        shape = slide.shapes[i]
+        print(f"Shape index: {i}")
+        if slide.shapes[i].has_text_frame:
+            for j in range(len(slide.shapes[i].text_frame.paragraphs)):
+                paragraph = slide.shapes[i].text_frame.paragraphs[j]
+                print(f"  Paragraph index: {j}")
+                for k in range(len(paragraph.runs)):
+                    run = paragraph.runs[k]
+                    print(f"     text index : {k} : {run.text}", end="|\n")
+    '''
+    
+    # 保存
+    prs.save(output_file)
+    print(f"已修改第 {slide_number} 页，文件已保存: {output_file}")
+    return True
+
 
 if __name__ == "__main__":
     # 示例1：读取PPT信息
     filename = "template"
-    pptx_file = f"C:\\Users\\eglis\\Desktop\\PPT\\SildePPT\\{filename}.pptx"
-    output_file = f"C:\\Users\\eglis\\Desktop\\PPT\\SildePPT\\{filename}_modified.pptx"
+
+    repository = os.path.dirname(os.path.abspath(__file__))
+    print(f"当前路径: {repository}")
+
+    pptx_file = f"{repository}\\{filename}.pptx"
+    output_file = f"{repository}\\{filename}_modified.pptx"
     info = read_pptx(output_file)
     
     # 1 时间
     page_to_modify = 1
-    date = "04/01/2026"
-    old_date = "28/12/2025"
-    #update_slide_text(output_file, output_file, page_to_modify, {old_date: date})
+    date = "11/01/2026"
+    old_date = "04/01/2026"
+    #set_pptx_page_texts(output_file, output_file, page_to_modify, old_date, date) 
 
     # 2 领会
     '''
-20　神能照着运行在我们心里的大力充充足足地成就一切，超过我们所求所想的。 21但愿他在教会中，并在基督耶稣里，得着荣耀，直到世世代代，永永远远。阿们！
+诗篇：95：1来啊！我们要向耶和华歌唱,向拯救我们的磐石欢呼。
     '''
     page_to_modify = 2
-    old_name = "徐霞"
-    new_name = "周国莲"
-    #update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
-    set_pptx_page_texts(output_file, output_file, page_to_modify, [
-        ], change_index=1, change_text=new_name) 
+    replacements = {0: {0: {2: "诗篇", 4: "95:1"}}, 1: {0: {2: "吴兴隆弟兄"}}, 2: {0: {0: "来啊！我们要向耶和华歌唱，向拯救我们的磐石欢呼。", 1: "", 2: ""}}}
+    # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
+    #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
@@ -499,12 +561,11 @@ if __name__ == "__main__":
     new_name = "徐霞"
     #update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})  
 
-    '''
-    page_to_delete = [4,4,4,11]
+    # 4 musics
+    page_to_delete = [5,5,5]
     print(f"删除music页")
     for page in page_to_delete:
         delete_slide(pptx_file, output_file, page)
-    '''
 
     
     '''
