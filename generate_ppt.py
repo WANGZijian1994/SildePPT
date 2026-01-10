@@ -370,6 +370,45 @@ def duplicate_slides(pptx_file, output_file, slide_numbers):
     return True
 
 
+def show_structure_one_page(pptx_file, slide_number):
+    """
+    修改指定页的文字内容
+    
+    Args:
+        pptx_file: 原PPTX文件路径
+        output_file: 输出PPTX文件路径
+        slide_number: 页码（从1开始）
+        indexed_replacements: 字典，格式 {索引: '新文字'}
+    
+    Returns:
+        bool: 是否成功
+    """
+    if not os.path.exists(pptx_file):
+        print(f"错误：找不到文件 {pptx_file}")
+        return False
+    
+    prs = Presentation(pptx_file)
+    
+    # 检查页码是否有效
+    if slide_number < 1 or slide_number > len(prs.slides):
+        print(f"错误：页码 {slide_number} 超出范围（共 {len(prs.slides)} 页）")
+        return False
+    
+    # 获取指定页（索引从0开始）
+    slide = prs.slides[slide_number - 1]  
+    
+    for i in range(len(slide.shapes)):
+        shape = slide.shapes[i]
+        print(f"Shape index: {i}")
+        if slide.shapes[i].has_text_frame:
+            for j in range(len(slide.shapes[i].text_frame.paragraphs)):
+                paragraph = slide.shapes[i].text_frame.paragraphs[j]
+                print(f"  Paragraph index: {j}")
+                for k in range(len(paragraph.runs)):
+                    run = paragraph.runs[k]
+                    print(f"     text index : {k} : {run.text}", end="|\n")
+
+
 def duplicate_slide(pptx_file, output_file, slide_number):
     """
     复制指定页并插入到该页后面
@@ -422,6 +461,130 @@ def duplicate_slide(pptx_file, output_file, slide_number):
     return True
 
 
+def swap_slides(pptx_file, output_file, slide_num1, slide_num2):
+    """
+    交换两个幻灯片的位置
+    
+    Args:
+        pptx_file: 原PPTX文件路径
+        output_file: 输出PPTX文件路径
+        slide_num1: 第一个页码（从1开始）
+        slide_num2: 第二个页码（从1开始）
+    
+    Returns:
+        bool: 是否成功
+    """
+    if not os.path.exists(pptx_file):
+        print(f"错误：找不到文件 {pptx_file}")
+        return False
+    
+    prs = Presentation(pptx_file)
+    
+    # 检查页码是否有效
+    if slide_num1 < 1 or slide_num1 > len(prs.slides):
+        print(f"错误：页码 {slide_num1} 超出范围（共 {len(prs.slides)} 页）")
+        return False
+    if slide_num2 < 1 or slide_num2 > len(prs.slides):
+        print(f"错误：页码 {slide_num2} 超出范围（共 {len(prs.slides)} 页）")
+        return False
+    
+    if slide_num1 == slide_num2:
+        print("错误：两个页码不能相同")
+        return False
+    
+    # 转换为0开始的索引
+    idx1 = slide_num1 - 1
+    idx2 = slide_num2 - 1
+    
+    # 获取XML中的slides列表
+    xml_slides = prs.slides._sldIdLst
+    slides = list(xml_slides)
+    
+    # 交换位置
+    slides[idx1], slides[idx2] = slides[idx2], slides[idx1]
+    
+    # 清空并重新添加
+    for slide in list(xml_slides):
+        xml_slides.remove(slide)
+    
+    for slide in slides:
+        xml_slides.append(slide)
+    
+    # 保存
+    prs.save(output_file)
+    print(f"已交换第 {slide_num1} 页和第 {slide_num2} 页，文件已保存: {output_file}")
+    return True
+
+
+def insert_fullscreen_video_slide(pptx_file, output_file, video_path, insert_position=None):
+    """
+    插入一个新的全屏视频幻灯片
+    
+    Args:
+        pptx_file: 原PPTX文件路径
+        output_file: 输出PPTX文件路径
+        video_path: 视频文件路径
+        insert_position: 插入位置（从1开始），如果为None则在末尾添加
+    
+    Returns:
+        bool: 是否成功
+    """
+    from pptx.util import Inches
+    
+    if not os.path.exists(pptx_file):
+        print(f"错误：找不到文件 {pptx_file}")
+        return False
+    
+    if not os.path.exists(video_path):
+        print(f"错误：找不到视频文件 {video_path}")
+        return False
+    
+    prs = Presentation(pptx_file)
+    
+    # 获取幻灯片尺寸
+    slide_width = prs.slide_width
+    slide_height = prs.slide_height
+    
+    # 添加一个空白幻灯片（使用空白布局）
+    blank_slide_layout = prs.slide_layouts[6]  # 6通常是空白布局
+    new_slide = prs.slides.add_slide(blank_slide_layout)
+    
+    # 添加全屏视频
+    # 视频位置：左上角(0,0)，尺寸：填满整个幻灯片
+    left = Inches(0)
+    top = Inches(0)
+    width = slide_width
+    height = slide_height
+    
+    # 插入视频
+    movie = new_slide.shapes.add_movie(
+        video_path,
+        left, top, width, height,
+        poster_frame_image=None,  # 不使用海报帧，使用视频第一帧
+        mime_type='video/mp4'
+    )
+    
+    # 如果指定了插入位置，则移动到该位置
+    if insert_position is not None:
+        if insert_position < 1 or insert_position > len(prs.slides):
+            print(f"错误：插入位置 {insert_position} 超出范围（共 {len(prs.slides)} 页）")
+            return False
+        
+        # 获取XML中的slides列表
+        xml_slides = prs.slides._sldIdLst
+        slides = list(xml_slides)
+        
+        # 移动新添加的幻灯片（最后一个）到指定位置
+        xml_slides.remove(slides[-1])
+        xml_slides.insert(insert_position - 1, slides[-1])
+    
+    # 保存
+    prs.save(output_file)
+    position_str = f"第 {insert_position} 页" if insert_position else "末尾"
+    print(f"已在 {position_str} 插入全屏视频幻灯片，文件已保存: {output_file}")
+    return True
+
+
 def set_pptx_page_texts(pptx_file, output_file, slide_number, replacements):
     """
     修改指定页的文字内容
@@ -454,9 +617,9 @@ def set_pptx_page_texts(pptx_file, output_file, slide_number, replacements):
         if shape.has_text_frame:
             for paragraph in shape.text_frame.paragraphs:
                     for run in paragraph.runs:
-                        print(f"{run.text} → ", end="\n")
                         for origin_text, change_text in replacements.items():
                             if origin_text in run.text:
+                                print(f"{run.text} → {change_text}", end="\n")
                                 run.text = run.text.replace(origin_text, change_text)
     
     # 保存
@@ -502,30 +665,31 @@ def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_num
             new_texts_index = run_replacements[paragraph_index]
             print(f"Shape {shape_index} paragraph {paragraph_index}")
             for run_index, new_text in new_texts_index.items():
-                print(f" original text {paragraph.runs[run_index].text} new text: {new_text}")
                 if run_index < len(paragraph.runs):
+                    print(f" original text {paragraph.runs[run_index].text} new text: {new_text}")
                     paragraph.runs[run_index].text = new_text
                 else:
-                    paragraph.runs[run_index].text = None
-            
-      
-    '''
-    for i in range(len(slide.shapes)):
-        shape = slide.shapes[i]
-        print(f"Shape index: {i}")
-        if slide.shapes[i].has_text_frame:
-            for j in range(len(slide.shapes[i].text_frame.paragraphs)):
-                paragraph = slide.shapes[i].text_frame.paragraphs[j]
-                print(f"  Paragraph index: {j}")
-                for k in range(len(paragraph.runs)):
-                    run = paragraph.runs[k]
-                    print(f"     text index : {k} : {run.text}", end="|\n")
-    '''
+                    print(f" append new text on {run_index}: {new_text}")
+                    new_run = paragraph.add_run()
+                    new_run.text = new_text
+                    
+                    # 复制最后一个run的样式
+                    if len(paragraph.runs) > 1:
+                        last_run = paragraph.runs[-2]  # -1是刚创建的，-2是之前最后一个
+                        new_run.font.name = last_run.font.name
+                        new_run.font.size = last_run.font.size
+                        new_run.font.bold = last_run.font.bold
+                        new_run.font.italic = last_run.font.italic
+                        new_run.font.underline = last_run.font.underline
+                        if last_run.font.color.type:
+                            new_run.font.color.rgb = last_run.font.color.rgb
+    
     
     # 保存
     prs.save(output_file)
     print(f"已修改第 {slide_number} 页，文件已保存: {output_file}")
     return True
+
 
 
 if __name__ == "__main__":
@@ -539,11 +703,12 @@ if __name__ == "__main__":
     output_file = f"{repository}\\{filename}_modified.pptx"
     info = read_pptx(output_file)
     
+    
     # 1 时间
     page_to_modify = 1
     date = "11/01/2026"
     old_date = "04/01/2026"
-    #set_pptx_page_texts(output_file, output_file, page_to_modify, old_date, date) 
+    #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
 
     # 2 领会
     '''
@@ -561,51 +726,164 @@ if __name__ == "__main__":
     new_name = "徐霞"
     #update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})  
 
-    # 4 musics
-    page_to_delete = [5,5,5]
-    print(f"删除music页")
-    for page in page_to_delete:
-        delete_slide(pptx_file, output_file, page)
+    # 4 music video
 
     
+    # 在第5页插入全屏视频
+
+    # 主日证道
+    page_to_modify = 6
+    #show_structure_one_page(output_file, page_to_modify)
+    replacements = {3: {0: {0: "你的根在哪里？"}, 1: {0: "路加福音  ", 1: "8:1-21"}, 2: {1: "周国莲姐妹", 4: "吴兴隆弟兄回应"}}}
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+
+    # ========== 经文页面（新方法）==========
+    # 使用新函数设置经文页面
+    
+    # 第1页经文：路加福音 8:1-5（5行）
+    page_to_modify = 44
+    #show_structure_one_page(output_file, page_to_modify)
+    replacements = {
+            1: {0: {1: "路加福音", 2: " 8: 9:13"}},
+            2: {
+                0: {0: "9", 1: "门徒问耶稣说：“这比喻是什么意思呢？”"},
+                1: {0: "10", 1: "他说：“神国的奥秘只叫你们知道；至于别人，就用比喻，叫他们看也看不见，听也听不明。"},
+                2: {0: "11", 1: "这比喻乃是这样：种子就是神的道。"},
+                3: {0: "12", 1: "那些在路旁的，就是人听了道，随后魔鬼来，从他们心里把道夺去，恐怕他们信了得救。"},
+                4: {0: "13", 1: "那些在磐石上的，就是人听道，欢喜领受，但心中没有根，不过暂时相信，及至遇见试炼就退后了。"}
+            }
+        }
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+
+    replacements_batch_3 = [
+        {
+            1: {0: {1: "路加福音", 2: " 8: ", 3: "1", 4: "-", 5: "3"}},
+            2: {
+                0: {0: "1", 1: "过不多时，耶稣周游各城各乡传道，宣讲神国的福音。和他同去的有十二个门徒，"},
+                1: {0: "2", 1: "还有几个得治好、离了恶鬼、治好疾病的妇女，内中有称为抹大拉的马利亚（曾有七个鬼从她身上赶出来），"},
+                2: {0: "3", 1: "还有希律的管家苦撒的妻子约亚拿，并苏撒拿，和好些其他的妇女，都是用自己的财物供给耶稣和门徒。"}
+            }
+        },
+        {
+            1: {0: {1: "路加福音", 2: " 8: ", 3: "4", 4: "-", 5: "6"}},
+            2: {
+                0: {0: "4", 1: "当许多人聚集、各城里的人一同来见耶稣的时候，耶稣就用比喻说："},
+                1: {0: "5", 1: "“有一个撒种的出去撒种。撒的时候，有落在路旁的，被人践踏，天上的飞鸟又来吃尽了。"},
+                2: {0: "6", 1: "有落在磐石上的，一出来就枯干了，因为得不着滋润。"}
+            }
+        },
+        {
+            1: {0: {1: "路加福音", 2: " 8: ", 3: "7", 4: "-", 5: "9"}},
+            2: {
+                0: {0: "7", 1: "有落在荆棘里的，荆棘一同生长，把它挤住了。"},
+                1: {0: "8", 1: "又有落在好土里的，生长起来，结实百倍。”耶稣说了这些话，就大声说：“有耳可听的，就应当听！”"},
+                2: {0: "9", 1: "门徒问耶稣说：“这比喻是什么意思呢？”"}
+            }
+        },
+        {
+            1: {0: {1: "路加福音", 2: " 8: ", 3: "10", 4: "-", 5: "12"}},
+            2: {
+                0: {0: "10", 1: "他说：“神国的奥秘只叫你们知道；至于别人，就用比喻，叫他们看也看不见，听也听不明。"},
+                1: {0: "11", 1: "这比喻乃是这样：种子就是神的道。"},
+                2: {0: "12", 1: "那些在路旁的，就是人听了道，随后魔鬼来，从他们心里把道夺去，恐怕他们信了得救。"}
+            }
+        },
+        {
+            1: {0: {1: "路加福音", 2: " 8: ", 3: "13", 4: "-", 5: "15"}},
+            2: {
+                0: {0: "13", 1: "那些在磐石上的，就是人听道，欢喜领受，但心中没有根，不过暂时相信，及至遇见试炼就退后了。"},
+                1: {0: "14", 1: "那落在荆棘里的，就是人听了道，走开以后，被今生的思虑、钱财、宴乐挤住了，便结不出成熟的子粒来。"},
+                2: {0: "15", 1: "那落在好土里的，就是人听了道，持守在善良正直的心里，并且忍耐着结实。"}
+            }
+        },
+        {
+            1: {0: {1: "路加福音", 2: " 8: ", 3: "16", 4: "-", 5: "18"}},
+            2: {
+                0: {0: "16", 1: "没有人点灯用器皿盖上，或放在床底下，乃是放在灯台上，叫进来的人看见亮光。"},
+                1: {0: "17", 1: "因为掩藏的事没有不显出来的，隐瞒的事没有不露出来被人知道的。"},
+                2: {0: "18", 1: "所以，你们应当小心怎样听；因为凡有的，还要加给他；凡没有的，连他自以为有的，也要夺去。”"}
+            }
+        },
+        {
+            1: {0: {1: "路加福音", 2: " 8: ", 3: "19", 4: "-", 5: "21"}},
+            2: {
+                0: {0: "19", 1: "耶稣的母亲和他弟兄来了，因为人多，不得照样见他。"},
+                1: {0: "20", 1: "有人告诉他说：“你母亲和你弟兄站在外面，想要见你。”"},
+                2: {0: "21", 1: "耶稣回答说：“听了神之道而遵行的人就是我的母亲，我的弟兄了。”"}
+            }
+        },
+    ]
+
+    replacements_batch_4 = [
+        {
+            1: {0: {1: "路加福音", 2: " 8: 1:4"}},
+            2: {
+                0: {0: "1", 1: "过不多时，耶稣周游各城各乡传道，宣讲神国的福音。和他同去的有十二个门徒，"},
+                1: {0: "2", 1: "还有几个得治好、离了恶鬼、治好疾病的妇女，内中有称为抹大拉的马利亚（曾有七个鬼从她身上赶出来），"},
+                2: {0: "3", 1: "还有希律的管家苦撒的妻子约亚拿，并苏撒拿，和好些其他的妇女，都是用自己的财物供给耶稣和门徒。"},
+                3: {0: "4", 1: "当许多人聚集、各城里的人一同来见耶稣的时候，耶稣就用比喻说："},
+            }
+        },
+        {
+            1: {0: {1: "路加福音", 2: " 8: 5:8"}},
+            2: {
+                0: {0: "5", 1: "“有一个撒种的出去撒种。撒的时候，有落在路旁的，被人践踏，天上的飞鸟又来吃尽了。"},
+                1: {0: "6", 1: "有落在磐石上的，一出来就枯干了，因为得不着滋润。"},
+                2: {0: "7", 1: "有落在荆棘里的，荆棘一同生长，把它挤住了。"},
+                3: {0: "8", 1: "又有落在好土里的，生长起来，结实百倍。”耶稣说了这些话，就大声说：“有耳可听的，就应当听！”"},
+            }
+        },
+        {
+            1: {0: {1: "路加福音", 2: " 8: 9:13"}},
+            2: {
+                0: {0: "9", 1: "门徒问耶稣说：“这比喻是什么意思呢？”"},
+                1: {0: "10", 1: "他说：“神国的奥秘只叫你们知道；至于别人，就用比喻，叫他们看也看不见，听也听不明。"},
+                2: {0: "11", 1: "这比喻乃是这样：种子就是神的道。"},
+                3: {0: "12", 1: "那些在路旁的，就是人听了道，随后魔鬼来，从他们心里把道夺去，恐怕他们信了得救。"},
+                4: {0: "13", 1: "那些在磐石上的，就是人听道，欢喜领受，但心中没有根，不过暂时相信，及至遇见试炼就退后了。"}
+            }
+        },
+        {
+            1: {0: {1: "路加福音", 2: " 8: 14:17"}},
+            2: {
+                0: {0: "14", 1: "那落在荆棘里的，就是人听了道，走开以后，被今生的思虑、钱财、宴乐挤住了，便结不出成熟的子粒来。"},
+                1: {0: "15", 1: "那落在好土里的，就是人听了道，持守在善良正直的心里，并且忍耐着结实。"},
+                2: {0: "16", 1: "没有人点灯用器皿盖上，或放在床底下，乃是放在灯台上，叫进来的人看见亮光。"},
+                3: {0: "17", 1: "因为掩藏的事没有不显出来的，隐瞒的事没有不露出来被人知道的。"},
+                4: {0: "", 1: ""}
+            },
+        },
+        {
+            1: {0: {1: "路加福音", 2: " 8: 18:21"}},
+            2: {
+                0: {0: "18", 1: "所以，你们应当小心怎样听；因为凡有的，还要加给他；凡没有的，连他自以为有的，也要夺去。”"},
+                1: {0: "19", 1: "耶稣的母亲和他弟兄来了，因为人多，不得照样见他。"},
+                2: {0: "20", 1: "有人告诉他说：“你母亲和你弟兄站在外面，想要见你。”"},
+                3: {0: "21", 1: "耶稣回答说：“听了神之道而遵行的人就是我的母亲，我的弟兄了。”"},
+                4: {0: "", 1: ""}
+            }
+        }
+    ]
     '''
-    titles = []
-    texts = []
-    assert len(titles) == len(texts)
-    for i in len(titles):
+    for replacements in replacements_batch:
         duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
-        set_pptx_page_texts(output_file, output_file, page_to_modify, [
-            titles[i],
-            texts[i]
-        ])
-    # 示例2：修改单页内容
-    #update_slide_text(output_file, output_file, 4, {"主 我敬拜祢": "感谢神"})
-    #delete_slide(output_file, output_file, page_to_modify)
-    #duplicate_slide(output_file, output_file, page_to_modify)
+        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    '''
+    '''
+    for replacements in replacements_batch_4:
+        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+        duplicate_slide(output_file, output_file, page_to_modify)
+        page_to_modify += 1
     '''
     
-    '''
-    set_pptx_page_texts(output_file, output_file, page_to_modify, [
-        #f"{page_to_modify}", 
-        "感谢神",
-        "感谢神赐喜乐忧愁",
-        "感谢神属天平安",
-        "感谢神赐明天盼望",
-        "要感谢直到永远"])
-    '''
+    # 交换第9页和第44页
+    #swap_slides(output_file, output_file, 9, 44)
     
-    # 示例3：批量修改多页
-    # slide_replacements = {
-    #     1: {'2025': '2026'},
-    #     2: {'标题': '新标题'},
-    #     3: {'内容': '新内容'}
-    # }
-    # update_multiple_slides("原文件.pptx", "修改后.pptx", slide_replacements)
-    
-    # 示例2：修改PPT文字
-    # replacements = {
-    #     "2025": "2026",
-    #     "旧标题": "新标题"
-    # }
-    # update_pptx_text("原文件.pptx", "修改后.pptx", replacements)
+    # 插入全屏视频示例
+    # 注意：需要将video_file变量改为实际的视频文件路径
+    video_file = f"{repository}\\musics\\4.mp4"  # 修改为实际视频文件路径
+    insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=15)  # 在第5页插入
+    # 或者在末尾添加：
+    #insert_fullscreen_video_slide(output_file, output_file, video_file)
+
