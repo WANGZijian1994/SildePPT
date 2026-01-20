@@ -1,5 +1,6 @@
 from pptx import Presentation
 import os
+import get_bibles
 
 def read_pptx(pptx_file):
     """
@@ -697,193 +698,80 @@ if __name__ == "__main__":
     filename = "template"
 
     repository = os.path.dirname(os.path.abspath(__file__))
+    repository_music = os.path.join(os.path.dirname(repository), 'Template', 'musics')
     print(f"当前路径: {repository}")
 
     pptx_file = f"{repository}\\{filename}.pptx"
-    output_file = f"{repository}\\{filename}_modified.pptx"
+    output_file = f"{repository}\\{filename}.pptx"
     info = read_pptx(output_file)
     
     
     # 1 时间
     page_to_modify = 1
-    date = "11/01/2026"
-    old_date = "04/01/2026"
+    date = "25/01/2026"
+    old_date = "18/01/2026"
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
 
     # 2 领会
-    '''
-诗篇：95：1来啊！我们要向耶和华歌唱,向拯救我们的磐石欢呼。
-    '''
     page_to_modify = 2
-    replacements = {0: {0: {2: "诗篇", 4: "95:1"}}, 1: {0: {2: "吴兴隆弟兄"}}, 2: {0: {0: "来啊！我们要向耶和华歌唱，向拯救我们的磐石欢呼。", 1: "", 2: ""}}}
+    replacements = {0: {0: {2: "路加福音", 4: "9:27"}}, 1: {0: {2: "于福芬姐妹"}}, 2: {0: {0: "我实在告诉你们，站在这里的，有人在没尝死味以前，必看见神的国。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
-    old_name = "于福芬"
-    new_name = "徐霞"
-    #update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})  
+    replacements = {2: {0: {0: "徐霞姐妹, 周国莲姐妹", 1: ""}}}
+    #show_structure_one_page(output_file, page_to_modify)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
-    # 4 music video
-
-    
-    # 在第5页插入全屏视频
 
     # 主日证道
-    page_to_modify = 6
+    page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {3: {0: {0: "你的根在哪里？"}, 1: {0: "路加福音  ", 1: "8:1-21"}, 2: {1: "周国莲姐妹", 4: "吴兴隆弟兄回应"}}}
+    replacements = {3: {0: {0: "耶稣是谁？我们是谁？"}, 1: {0: "路加福音  ", 1: "9:1-27"}, 2: {1: "吴兴隆弟兄", 4: "于福芬姐妹回应"}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
+    # musics
+    pages_music = [4, 5, 6]
+    #delete_slides(output_file, output_file, pages_music)
+
+    '''
+    for i in range(1, 4):
+        video_file = f"{repository_music}\\{i}.mp4"  # 修改为实际视频文件路径
+        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=3 + i)  
+    '''
     # ========== 经文页面（新方法）==========
     # 使用新函数设置经文页面
     
     # 第1页经文：路加福音 8:1-5（5行）
-    page_to_modify = 44
+    delete_slides(output_file, output_file, [16])
+    page_to_modify = 10
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {
-            1: {0: {1: "路加福音", 2: " 8: 9:13"}},
+    texts = [
+        ["路加福音", 9, 1, 5, get_bibles.get_bible_verses("路加福音", 9, 1, 5)],
+        ["路加福音", 9, 6, 10, get_bibles.get_bible_verses("路加福音", 9, 6, 10)],
+        ["路加福音", 9, 11, 15, get_bibles.get_bible_verses("路加福音", 9, 11, 15)],
+        ["路加福音", 9, 16, 19, get_bibles.get_bible_verses("路加福音", 9, 16, 19)],
+        ["路加福音", 9, 20, 23, get_bibles.get_bible_verses("路加福音", 9, 20, 23)],
+        ["路加福音", 9, 24, 27, get_bibles.get_bible_verses("路加福音", 9, 24, 27)]
+    ]
+    count = 0
+    for text in texts:
+        count += 1
+        i = text[2]
+        bibles = text[4]
+        replacements = {
+            1: {0: {1: text[0], 2: f" {text[1]}: {text[2]}-{text[3]}"}},
             2: {
-                0: {0: "9", 1: "门徒问耶稣说：“这比喻是什么意思呢？”"},
-                1: {0: "10", 1: "他说：“神国的奥秘只叫你们知道；至于别人，就用比喻，叫他们看也看不见，听也听不明。"},
-                2: {0: "11", 1: "这比喻乃是这样：种子就是神的道。"},
-                3: {0: "12", 1: "那些在路旁的，就是人听了道，随后魔鬼来，从他们心里把道夺去，恐怕他们信了得救。"},
-                4: {0: "13", 1: "那些在磐石上的，就是人听道，欢喜领受，但心中没有根，不过暂时相信，及至遇见试炼就退后了。"}
+                0: {0: str(i), 1: bibles[0] if len(bibles) > 0 else ""},
+                1: {0: str(i + 1), 1: bibles[1] if len(bibles) > 1 else ""},
+                2: {0: str(i + 2), 1: bibles[2] if len(bibles) > 2 else ""},
+                3: {0: str(i + 3) if len(bibles) > 3 else "", 1: bibles[3] if len(bibles) > 3 else ""},
+                4: {0: str(i + 4) if len(bibles) > 4 else "", 1: bibles[4] if len(bibles) > 4 else ""}
             }
         }
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
-
-    replacements_batch_3 = [
-        {
-            1: {0: {1: "路加福音", 2: " 8: ", 3: "1", 4: "-", 5: "3"}},
-            2: {
-                0: {0: "1", 1: "过不多时，耶稣周游各城各乡传道，宣讲神国的福音。和他同去的有十二个门徒，"},
-                1: {0: "2", 1: "还有几个得治好、离了恶鬼、治好疾病的妇女，内中有称为抹大拉的马利亚（曾有七个鬼从她身上赶出来），"},
-                2: {0: "3", 1: "还有希律的管家苦撒的妻子约亚拿，并苏撒拿，和好些其他的妇女，都是用自己的财物供给耶稣和门徒。"}
-            }
-        },
-        {
-            1: {0: {1: "路加福音", 2: " 8: ", 3: "4", 4: "-", 5: "6"}},
-            2: {
-                0: {0: "4", 1: "当许多人聚集、各城里的人一同来见耶稣的时候，耶稣就用比喻说："},
-                1: {0: "5", 1: "“有一个撒种的出去撒种。撒的时候，有落在路旁的，被人践踏，天上的飞鸟又来吃尽了。"},
-                2: {0: "6", 1: "有落在磐石上的，一出来就枯干了，因为得不着滋润。"}
-            }
-        },
-        {
-            1: {0: {1: "路加福音", 2: " 8: ", 3: "7", 4: "-", 5: "9"}},
-            2: {
-                0: {0: "7", 1: "有落在荆棘里的，荆棘一同生长，把它挤住了。"},
-                1: {0: "8", 1: "又有落在好土里的，生长起来，结实百倍。”耶稣说了这些话，就大声说：“有耳可听的，就应当听！”"},
-                2: {0: "9", 1: "门徒问耶稣说：“这比喻是什么意思呢？”"}
-            }
-        },
-        {
-            1: {0: {1: "路加福音", 2: " 8: ", 3: "10", 4: "-", 5: "12"}},
-            2: {
-                0: {0: "10", 1: "他说：“神国的奥秘只叫你们知道；至于别人，就用比喻，叫他们看也看不见，听也听不明。"},
-                1: {0: "11", 1: "这比喻乃是这样：种子就是神的道。"},
-                2: {0: "12", 1: "那些在路旁的，就是人听了道，随后魔鬼来，从他们心里把道夺去，恐怕他们信了得救。"}
-            }
-        },
-        {
-            1: {0: {1: "路加福音", 2: " 8: ", 3: "13", 4: "-", 5: "15"}},
-            2: {
-                0: {0: "13", 1: "那些在磐石上的，就是人听道，欢喜领受，但心中没有根，不过暂时相信，及至遇见试炼就退后了。"},
-                1: {0: "14", 1: "那落在荆棘里的，就是人听了道，走开以后，被今生的思虑、钱财、宴乐挤住了，便结不出成熟的子粒来。"},
-                2: {0: "15", 1: "那落在好土里的，就是人听了道，持守在善良正直的心里，并且忍耐着结实。"}
-            }
-        },
-        {
-            1: {0: {1: "路加福音", 2: " 8: ", 3: "16", 4: "-", 5: "18"}},
-            2: {
-                0: {0: "16", 1: "没有人点灯用器皿盖上，或放在床底下，乃是放在灯台上，叫进来的人看见亮光。"},
-                1: {0: "17", 1: "因为掩藏的事没有不显出来的，隐瞒的事没有不露出来被人知道的。"},
-                2: {0: "18", 1: "所以，你们应当小心怎样听；因为凡有的，还要加给他；凡没有的，连他自以为有的，也要夺去。”"}
-            }
-        },
-        {
-            1: {0: {1: "路加福音", 2: " 8: ", 3: "19", 4: "-", 5: "21"}},
-            2: {
-                0: {0: "19", 1: "耶稣的母亲和他弟兄来了，因为人多，不得照样见他。"},
-                1: {0: "20", 1: "有人告诉他说：“你母亲和你弟兄站在外面，想要见你。”"},
-                2: {0: "21", 1: "耶稣回答说：“听了神之道而遵行的人就是我的母亲，我的弟兄了。”"}
-            }
-        },
-    ]
-
-    replacements_batch_4 = [
-        {
-            1: {0: {1: "路加福音", 2: " 8: 1:4"}},
-            2: {
-                0: {0: "1", 1: "过不多时，耶稣周游各城各乡传道，宣讲神国的福音。和他同去的有十二个门徒，"},
-                1: {0: "2", 1: "还有几个得治好、离了恶鬼、治好疾病的妇女，内中有称为抹大拉的马利亚（曾有七个鬼从她身上赶出来），"},
-                2: {0: "3", 1: "还有希律的管家苦撒的妻子约亚拿，并苏撒拿，和好些其他的妇女，都是用自己的财物供给耶稣和门徒。"},
-                3: {0: "4", 1: "当许多人聚集、各城里的人一同来见耶稣的时候，耶稣就用比喻说："},
-            }
-        },
-        {
-            1: {0: {1: "路加福音", 2: " 8: 5:8"}},
-            2: {
-                0: {0: "5", 1: "“有一个撒种的出去撒种。撒的时候，有落在路旁的，被人践踏，天上的飞鸟又来吃尽了。"},
-                1: {0: "6", 1: "有落在磐石上的，一出来就枯干了，因为得不着滋润。"},
-                2: {0: "7", 1: "有落在荆棘里的，荆棘一同生长，把它挤住了。"},
-                3: {0: "8", 1: "又有落在好土里的，生长起来，结实百倍。”耶稣说了这些话，就大声说：“有耳可听的，就应当听！”"},
-            }
-        },
-        {
-            1: {0: {1: "路加福音", 2: " 8: 9:13"}},
-            2: {
-                0: {0: "9", 1: "门徒问耶稣说：“这比喻是什么意思呢？”"},
-                1: {0: "10", 1: "他说：“神国的奥秘只叫你们知道；至于别人，就用比喻，叫他们看也看不见，听也听不明。"},
-                2: {0: "11", 1: "这比喻乃是这样：种子就是神的道。"},
-                3: {0: "12", 1: "那些在路旁的，就是人听了道，随后魔鬼来，从他们心里把道夺去，恐怕他们信了得救。"},
-                4: {0: "13", 1: "那些在磐石上的，就是人听道，欢喜领受，但心中没有根，不过暂时相信，及至遇见试炼就退后了。"}
-            }
-        },
-        {
-            1: {0: {1: "路加福音", 2: " 8: 14:17"}},
-            2: {
-                0: {0: "14", 1: "那落在荆棘里的，就是人听了道，走开以后，被今生的思虑、钱财、宴乐挤住了，便结不出成熟的子粒来。"},
-                1: {0: "15", 1: "那落在好土里的，就是人听了道，持守在善良正直的心里，并且忍耐着结实。"},
-                2: {0: "16", 1: "没有人点灯用器皿盖上，或放在床底下，乃是放在灯台上，叫进来的人看见亮光。"},
-                3: {0: "17", 1: "因为掩藏的事没有不显出来的，隐瞒的事没有不露出来被人知道的。"},
-                4: {0: "", 1: ""}
-            },
-        },
-        {
-            1: {0: {1: "路加福音", 2: " 8: 18:21"}},
-            2: {
-                0: {0: "18", 1: "所以，你们应当小心怎样听；因为凡有的，还要加给他；凡没有的，连他自以为有的，也要夺去。”"},
-                1: {0: "19", 1: "耶稣的母亲和他弟兄来了，因为人多，不得照样见他。"},
-                2: {0: "20", 1: "有人告诉他说：“你母亲和你弟兄站在外面，想要见你。”"},
-                3: {0: "21", 1: "耶稣回答说：“听了神之道而遵行的人就是我的母亲，我的弟兄了。”"},
-                4: {0: "", 1: ""}
-            }
-        }
-    ]
-    '''
-    for replacements in replacements_batch:
-        duplicate_slide(output_file, output_file, page_to_modify)
+        #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+        #if count < len(texts):
+        #    duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
-        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
-    '''
-    '''
-    for replacements in replacements_batch_4:
-        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
-        duplicate_slide(output_file, output_file, page_to_modify)
-        page_to_modify += 1
-    '''
-    
-    # 交换第9页和第44页
-    #swap_slides(output_file, output_file, 9, 44)
-    
-    # 插入全屏视频示例
-    # 注意：需要将video_file变量改为实际的视频文件路径
-    video_file = f"{repository}\\musics\\4.mp4"  # 修改为实际视频文件路径
-    insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=15)  # 在第5页插入
-    # 或者在末尾添加：
-    #insert_fullscreen_video_slide(output_file, output_file, video_file)
-
