@@ -4,7 +4,7 @@ from zhconv import convert
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
 
-def get_bible_verses(book_name, chapter, start_verse, end_verse):
+def get_bible_verses(book_name, chapter, start_verse, end_verse, French=False):
     """
     获取指定章节和范围的简体中文经文
     :param book_name: 圣经卷名 (中文或英文标识，如 "路加福音" 或 "Luke")
@@ -18,6 +18,8 @@ def get_bible_verses(book_name, chapter, start_verse, end_verse):
     # 对中文书名进行 URL 编码
     encoded_book = quote(book_name)
     url = f"https://bible-api.com/{encoded_book}+{chapter}:{start_verse}-{end_verse}?translation=cuv"
+    if French:
+        url = f"https://bible-api.com/{encoded_book}+{chapter}:{start_verse}-{end_verse}?translation=lsf"  # 法语版本
     
     try:
         response = requests.get(url)

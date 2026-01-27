@@ -1,6 +1,8 @@
 from pptx import Presentation
 import os
 import get_bibles
+import copy
+from pptx.util import Pt
 
 def read_pptx(pptx_file):
     """
@@ -307,10 +309,6 @@ def delete_slides(pptx_file, output_file, slide_numbers):
     prs.save(output_file)
     print(f"所有删除完成，文件已保存: {output_file}")
     return True
-
-
-
-
 
 
 def duplicate_slides(pptx_file, output_file, slide_numbers):
@@ -669,21 +667,16 @@ def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_num
                 if run_index < len(paragraph.runs):
                     print(f" original text {paragraph.runs[run_index].text} new text: {new_text}")
                     paragraph.runs[run_index].text = new_text
+                    paragraph.runs[run_index].font.bold = True
+                    paragraph.runs[run_index].font.size = Pt(33)
                 else:
                     print(f" append new text on {run_index}: {new_text}")
                     new_run = paragraph.add_run()
-                    new_run.text = new_text
-                    
-                    # 复制最后一个run的样式
-                    if len(paragraph.runs) > 1:
-                        last_run = paragraph.runs[-2]  # -1是刚创建的，-2是之前最后一个
-                        new_run.font.name = last_run.font.name
-                        new_run.font.size = last_run.font.size
-                        new_run.font.bold = last_run.font.bold
-                        new_run.font.italic = last_run.font.italic
-                        new_run.font.underline = last_run.font.underline
-                        if last_run.font.color.type:
-                            new_run.font.color.rgb = last_run.font.color.rgb
+                    new_run.text = " " + new_text
+                    # 新增行时，字体加粗、字号30pt，字体固定为STXingkai
+                    new_run.font.bold = True
+                    new_run.font.size = Pt(20)
+                    new_run.font.name = "STXingkai"
     
     
     # 保存
@@ -691,18 +684,18 @@ def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_num
     print(f"已修改第 {slide_number} 页，文件已保存: {output_file}")
     return True
 
-
-
 if __name__ == "__main__":
     # 示例1：读取PPT信息
     filename = "template"
 
+    template_repo = f'D:\\副业赚钱\\教会事务\\Template\\{filename}.pptx'
     repository = os.path.dirname(os.path.abspath(__file__))
     repository_music = os.path.join(os.path.dirname(repository), 'Template', 'musics')
     print(f"当前路径: {repository}")
 
     pptx_file = f"{repository}\\{filename}.pptx"
     output_file = f"{repository}\\{filename}.pptx"
+
     info = read_pptx(output_file)
     
     
@@ -733,28 +726,29 @@ if __name__ == "__main__":
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # musics
-    pages_music = [4, 5, 6]
+    pages_music = [16]  # 假设音乐幻灯片是第4到第8页
     #delete_slides(output_file, output_file, pages_music)
 
-    '''
-    for i in range(1, 4):
-        video_file = f"{repository_music}\\{i}.mp4"  # 修改为实际视频文件路径
-        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=3 + i)  
-    '''
+    
+    for i in range(0, len(pages_music)):
+        video_file = f"{repository_music}\\{4}.mp4"  # 修改为实际视频文件路径
+        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+  
     # ========== 经文页面（新方法）==========
     # 使用新函数设置经文页面
     
     # 第1页经文：路加福音 8:1-5（5行）
-    delete_slides(output_file, output_file, [16])
-    page_to_modify = 10
+    
+    #delete_slides(output_file, output_file, [14])  # 删除多余的经文页，保留第一页经文页
+    #duplicate_slide(output_file, output_file, 12)  # 复制第一页经文页作为模板
+    page_to_modify = 13
     #show_structure_one_page(output_file, page_to_modify)
     texts = [
-        ["路加福音", 9, 1, 5, get_bibles.get_bible_verses("路加福音", 9, 1, 5)],
-        ["路加福音", 9, 6, 10, get_bibles.get_bible_verses("路加福音", 9, 6, 10)],
-        ["路加福音", 9, 11, 15, get_bibles.get_bible_verses("路加福音", 9, 11, 15)],
-        ["路加福音", 9, 16, 19, get_bibles.get_bible_verses("路加福音", 9, 16, 19)],
-        ["路加福音", 9, 20, 23, get_bibles.get_bible_verses("路加福音", 9, 20, 23)],
-        ["路加福音", 9, 24, 27, get_bibles.get_bible_verses("路加福音", 9, 24, 27)]
+        #["路加福音", 9, 1, 6, get_bibles.get_bible_verses("路加福音", 9, 1, 6)],
+        #["路加福音", 9, 7, 11, get_bibles.get_bible_verses("路加福音", 9, 7, 11)],
+        ["路加福音", 9, 12, 17, get_bibles.get_bible_verses("路加福音", 9, 12, 17)],
+        #["路加福音", 9, 18, 22, get_bibles.get_bible_verses("路加福音", 9, 18, 22)],
+        #["路加福音", 9, 23, 27, get_bibles.get_bible_verses("路加福音", 9, 23, 27)]
     ]
     count = 0
     for text in texts:
@@ -768,10 +762,18 @@ if __name__ == "__main__":
                 1: {0: str(i + 1), 1: bibles[1] if len(bibles) > 1 else ""},
                 2: {0: str(i + 2), 1: bibles[2] if len(bibles) > 2 else ""},
                 3: {0: str(i + 3) if len(bibles) > 3 else "", 1: bibles[3] if len(bibles) > 3 else ""},
-                4: {0: str(i + 4) if len(bibles) > 4 else "", 1: bibles[4] if len(bibles) > 4 else ""}
+                4: {0: str(i + 4) if len(bibles) > 4 else "", 1: bibles[4] if len(bibles) > 4 else ""},
+                5: {0: str(i + 5) if len(bibles) > 5 else "", 1: bibles[5] if len(bibles) > 5 else ""}
             }
         }
-        #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
-        #if count < len(texts):
-        #    duplicate_slide(output_file, output_file, page_to_modify)
+        if text[3] - text[2] >= 6:
+            for j in range(5, text[3] - text[2] + 1):
+                replacements[2][4][1] += f" \n{str(i + j)}" + (bibles[j] if len(bibles) > j else "")
+
+        '''
+        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+        if count < len(texts):
+            duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
+        '''
+    swap_slides(output_file, output_file, 12, 13)
