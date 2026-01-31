@@ -718,17 +718,18 @@ if __name__ == "__main__":
     start = 48          # 第1节
     end = 48           # 到第5节
 
-    text = "\n"+ get_bibles.get_bible_verses(book_zh, chapter_num, start, end)[0] 
-    text_fr = "\nQuiconque reçoit en mon nom ce petit enfant me reçoit moi-même; et quiconque me reçoit reçoit celui qui m'a envoyé. Car celui qui est le plus petit parmi vous tous, c'est celui-là qui est grand."
+    #text = "\n"+ get_bibles.get_bible_verses(book_zh, chapter_num, start, end)[0] 
+    text = "\n凡接待他的，就是信他名的人，他就赐他们权柄，做神的儿女。"
+    text_fr = "\nMais à tous ceux qui l'ont reçue, à ceux qui croient en son nom, elle a donné le pouvoir de devenir enfants de Dieu, lesquels sont nés"
     remplacements = {0: {3: {1: text}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
-
-    duplicate_slide(output_file, output_file, page_to_modify)
+    
+    #duplicate_slide(output_file, output_file, page_to_modify)
     page_to_modify += 1
     remplacements = {0: {3: {1: text_fr}, 4: {1: "", 2: ""}}}
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
-
+    
     # 3 诗歌
     music = f"{repository_music}\\4.mp4"
     #insert_fullscreen_video_slide(output_file, output_file, music, insert_position=3)
