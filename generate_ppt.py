@@ -627,7 +627,7 @@ def set_pptx_page_texts(pptx_file, output_file, slide_number, replacements):
     return True
 
 
-def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_number, replacements):
+def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_number, replacements, size=False, resize=33, color=None):
     """
     修改指定页的文字内容
     
@@ -668,7 +668,10 @@ def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_num
                     print(f" original text {paragraph.runs[run_index].text} new text: {new_text}")
                     paragraph.runs[run_index].text = new_text
                     paragraph.runs[run_index].font.bold = True
-                    paragraph.runs[run_index].font.size = Pt(33)
+                    if size:
+                        paragraph.runs[run_index].font.size = Pt(resize)
+                    if color:
+                        paragraph.runs[run_index].font.color.rgb = color
                 else:
                     print(f" append new text on {run_index}: {new_text}")
                     new_run = paragraph.add_run()
@@ -701,37 +704,38 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "25/01/2026"
-    old_date = "18/01/2026"
+    date = "01/02/2026"
+    old_date = "25/01/2026"
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
 
     # 2 领会
     page_to_modify = 2
-    replacements = {0: {0: {2: "路加福音", 4: "9:27"}}, 1: {0: {2: "于福芬姐妹"}}, 2: {0: {0: "我实在告诉你们，站在这里的，有人在没尝死味以前，必看见神的国。", 1: "", 2: ""}}}
+    replacements = {0: {0: {2: "路加福音", 4: "9:48"}}, 1: {0: {2: "徐霞姐妹"}}, 2: {0: {0: "凡为我名接待这小孩子的，就是接待我；凡接待我的，就是接待那差我来的。你们中间最小的，他便为大。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
-    replacements = {2: {0: {0: "徐霞姐妹, 周国莲姐妹", 1: ""}}}
+    replacements = {2: {0: {0: "于福芬姐妹, 吉娜姐妹", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
 
     # 主日证道
-    page_to_modify = 9
+    page_to_modify = 8
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {3: {0: {0: "耶稣是谁？我们是谁？"}, 1: {0: "路加福音  ", 1: "9:1-27"}, 2: {1: "吴兴隆弟兄", 4: "于福芬姐妹回应"}}}
+    replacements = {3: {0: {0: "谁配进神的国？"}, 1: {0: "路加福音  ", 1: "9:28-62"}, 2: {1: "吴兴隆弟兄", 4: "徐霞姐妹回应"}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # musics
-    pages_music = [16]  # 假设音乐幻灯片是第4到第8页
-    #delete_slides(output_file, output_file, pages_music)
+    pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第8页
+    #delete_slides(output_file, output_file, [5,6])
 
     
     for i in range(0, len(pages_music)):
-        video_file = f"{repository_music}\\{4}.mp4"  # 修改为实际视频文件路径
+        index = pages_music[i] - 3
+        video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
         #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
   
     # ========== 经文页面（新方法）==========
@@ -741,14 +745,16 @@ if __name__ == "__main__":
     
     #delete_slides(output_file, output_file, [14])  # 删除多余的经文页，保留第一页经文页
     #duplicate_slide(output_file, output_file, 12)  # 复制第一页经文页作为模板
-    page_to_modify = 13
+    page_to_modify = 10
+    #delete_slides(output_file, output_file, list(range(11, 16)))
     #show_structure_one_page(output_file, page_to_modify)
     texts = [
-        #["路加福音", 9, 1, 6, get_bibles.get_bible_verses("路加福音", 9, 1, 6)],
-        #["路加福音", 9, 7, 11, get_bibles.get_bible_verses("路加福音", 9, 7, 11)],
-        ["路加福音", 9, 12, 17, get_bibles.get_bible_verses("路加福音", 9, 12, 17)],
-        #["路加福音", 9, 18, 22, get_bibles.get_bible_verses("路加福音", 9, 18, 22)],
-        #["路加福音", 9, 23, 27, get_bibles.get_bible_verses("路加福音", 9, 23, 27)]
+        ["路加福音", 9, 28, 33, get_bibles.get_bible_verses("路加福音", 9, 28, 33)],
+        ["路加福音", 9, 34, 39, get_bibles.get_bible_verses("路加福音", 9, 34, 39)],
+        ["路加福音", 9, 40, 45, get_bibles.get_bible_verses("路加福音", 9, 40, 45)],
+        ["路加福音", 9, 46, 51, get_bibles.get_bible_verses("路加福音", 9, 46, 51)],
+        ["路加福音", 9, 52, 56, get_bibles.get_bible_verses("路加福音", 9, 52, 56)],
+        ["路加福音", 9, 57, 62, get_bibles.get_bible_verses("路加福音", 9, 57, 62)]
     ]
     count = 0
     for text in texts:
@@ -763,17 +769,93 @@ if __name__ == "__main__":
                 2: {0: str(i + 2), 1: bibles[2] if len(bibles) > 2 else ""},
                 3: {0: str(i + 3) if len(bibles) > 3 else "", 1: bibles[3] if len(bibles) > 3 else ""},
                 4: {0: str(i + 4) if len(bibles) > 4 else "", 1: bibles[4] if len(bibles) > 4 else ""},
-                5: {0: str(i + 5) if len(bibles) > 5 else "", 1: bibles[5] if len(bibles) > 5 else ""}
+                5: {0: "", 1: ""}
             }
         }
-        if text[3] - text[2] >= 6:
+        if text[3] - text[2] >= 5:
             for j in range(5, text[3] - text[2] + 1):
                 replacements[2][4][1] += f" \n{str(i + j)}" + (bibles[j] if len(bibles) > j else "")
 
         '''
-        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size = True)
         if count < len(texts):
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
         '''
-    swap_slides(output_file, output_file, 12, 13)
+        
+    #swap_slides(output_file, output_file, 12, 13)
+
+    # 鼓励劝勉
+    page_to_modify = 16
+    show_structure_one_page(output_file, page_to_modify)
+
+    replacements = {1: {0: {1: "鼓励劝勉 贴前 2:4", 2: ""}}, 
+                                    2: {
+                0: {0: "", 1: ""},
+                1: {0: "", 1: ""},
+                2: {0: "但神既然验中了我们，把福音托付我们，我们就照样讲，不是要讨人喜欢，乃是要讨那察验我们心的神喜欢。", 1: ""},
+                3: {0: "", 1: ""},
+                4: {0: "", 1: ""}
+            }}
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=45)
+
+    # 圣餐
+    page_to_modify = 17
+    #duplicate_slide(output_file, output_file, page_to_modify - 1)
+    replacements = {1: {0: {1: "                   圣餐", 2: ""}}, 
+                                    2: {
+                0: {0: "", 1: ""},
+                1: {0: "", 1: ""},
+                2: {0: "耶稣说: \"我就是生命的粮，到我这里来的人必定不饿; 信我的，也必永远不渴。\"", 1: ""},
+                3: {0: "", 1: ""},
+                4: {0: "", 1: ""}
+            }}
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=55)
+
+    # 圣餐
+    '''
+11:23 我当日传给你们的，原是从主领受的，就是主耶稣被卖的那一夜，拿起饼来，
+
+11:24 祝谢了，就擘开，说：“这是我的身体，为你们舍的（注：“舍”有古卷作“擘开”）。你们应当如此行，为的是纪念我。”
+
+11:25 饭后，也照样拿起杯来，说：“这杯是用我的血所立的新约。你们每逢喝的时候，要如此行，为的是纪念我。”
+
+11:26 你们每逢吃这饼，喝这杯，是表明主的死，直等到他来。
+    '''
+    page_to_modify = 18
+    #duplicate_slide(output_file, output_file, page_to_modify - 1)
+    replacements = {1: {0: {1: "                         圣餐", 2: ""}}, 
+                                    2: {
+                0: {0: "", 1: ""},
+                1: {0: "11:23", 1: "我当日传给你们的，原是从主领受的，就是主耶稣被卖的那一夜，拿起饼来，"},
+                2: {0: "11:24", 1: "祝谢了，就擘开，说：“这是我的身体，为你们舍的（注：“舍”有古卷作“擘开”）。你们应当如此行，为的是纪念我。”"},
+                3: {0: "11:25", 1: "饭后，也照样拿起杯来，说：“这杯是用我的血所立的新约。你们每逢喝的时候，要如此行，为的是纪念我。”"},
+                4: {0: "11:26", 1: "你们每逢吃这饼，喝这杯，是表明主的死，直等到他来。"}
+            }}
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=38)
+
+
+    # comptable
+    '''
+一月份财务报表
+十二月份余额 5684.74
+一月份奉献入账总额  1300
+爱心奉献出账 1000.
+爱心宣教出账 300.
+扶贫基金 100.
+打印机➕墨水179.75
+爱宴总额 104.82
+一月份余额 5300.17
+    '''
+    page_to_modify = 19
+    #duplicate_slide(output_file, output_file, page_to_modify - 1)
+    replacements = {1: {0: {1: "信望爱基督之家1月财务报告", 2: ""}}, 
+                                    2: {
+                0: {0: "十二月份余额", 1: "5684.74欧元"},
+                1: {0: "", 1: "一月份奉献入账总额1300欧元"},
+                2: {0: "", 1: "爱心奉献出账1000欧元, 爱心宣教出账300欧元\n扶贫基金100欧元， 打印机+墨水179.75欧元, \n爱宴总额104.82欧元"},
+                3: {0: "", 1: ""},
+                4: {0: "一月份余额", 1: "5300.17欧元"}
+            }}
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=43)
+
