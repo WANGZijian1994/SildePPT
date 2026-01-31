@@ -668,7 +668,7 @@ def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_num
                     print(f" original text {paragraph.runs[run_index].text} new text: {new_text}")
                     paragraph.runs[run_index].text = new_text
                     paragraph.runs[run_index].font.bold = True
-                    paragraph.runs[run_index].font.size = Pt(38)
+                    paragraph.runs[run_index].font.size = Pt(40)
                 else:
                     print(f" append new text on {run_index}: {new_text}")
                     new_run = paragraph.add_run()
