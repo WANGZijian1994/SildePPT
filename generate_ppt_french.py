@@ -697,30 +697,28 @@ if __name__ == "__main__":
     output_file = f"{repository}\\{filename}.pptx"
 
     info = read_pptx(output_file)
-
-    #delete_slides(output_file, output_file, [2,3,4])
     
     # 1 时间
     page_to_modify = 1
-    date = "01/02/2026 \n"
+    date = "08/02/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
     # 2 经文
     page_to_modify = 2
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
 
-    book_zh = "路加福音"      # 路加福音
+    book_zh = "约翰福音"      # 路加福音
     book_fr = ""
     chapter_num = 9    # 第1章
     start = 48          # 第1节
     end = 48           # 到第5节
 
     #text = "\n"+ get_bibles.get_bible_verses(book_zh, chapter_num, start, end)[0] 
-    text = "\n凡接待他的，就是信他名的人，他就赐他们权柄，做神的儿女。"
-    text_fr = "\nMais à tous ceux qui l'ont reçue, à ceux qui croient en son nom, elle a donné le pouvoir de devenir enfants de Dieu, lesquels sont nés"
+    text = "\n太初有道，道与神同在，道就是神"
+    text_fr = "\nAu commencement était la Parole, et la Parole était avec Dieu, et la Parole était Dieu."
     remplacements = {0: {3: {1: text}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
@@ -731,8 +729,10 @@ if __name__ == "__main__":
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
     
     # 3 诗歌
-    music = f"{repository_music}\\4.mp4"
-    #insert_fullscreen_video_slide(output_file, output_file, music, insert_position=3)
+    page_to_modify = 4
+    delete_slide(output_file, output_file, page_to_modify)
+    music = f"{repository_music}\\5.mp4"
+    insert_fullscreen_video_slide(output_file, output_file, music, insert_position=page_to_modify)
 
 
     

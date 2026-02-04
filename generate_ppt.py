@@ -704,13 +704,15 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "01/02/2026"
-    old_date = "25/01/2026"
+    #show_structure_one_page(output_file, page_to_modify)
+    date = "08/02/2026"
+    old_date = "01/02/2026"
+
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
 
     # 2 领会
     page_to_modify = 2
-    replacements = {0: {0: {2: "路加福音", 4: "9:48"}}, 1: {0: {2: "徐霞姐妹"}}, 2: {0: {0: "凡为我名接待这小孩子的，就是接待我；凡接待我的，就是接待那差我来的。你们中间最小的，他便为大。", 1: "", 2: ""}}}
+    replacements = {0: {0: {2: "何西阿书", 4: "6:3"}}, 1: {0: {2: "徐霞姐妹"}}, 2: {0: {0: "我们务要认识耶和华、竭力追求认识他。他出现确如晨光、他必临到我们像甘雨、像滋润田地的春雨。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
@@ -723,13 +725,15 @@ if __name__ == "__main__":
 
 
     # 主日证道
-    page_to_modify = 8
+    page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {3: {0: {0: "谁配进神的国？"}, 1: {0: "路加福音  ", 1: "9:28-62"}, 2: {1: "吴兴隆弟兄", 4: "徐霞姐妹回应"}}}
+    replacements = {3: {0: {0: ""}, 1: {0: "  ", 1: ""}, 2: {1: "李勋荣 执事", 4: "吴兴隆弟兄回应"}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
+    delete_slides(output_file, output_file, [15, 16, 17, 18])  # 删除多余的经文页，保留第一页经文页
+
     # musics
-    pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第8页
+    pages_music = [5,6]  # 假设音乐幻灯片是第4到第8页
     #delete_slides(output_file, output_file, [5,6])
 
     
@@ -787,7 +791,7 @@ if __name__ == "__main__":
 
     # 鼓励劝勉
     page_to_modify = 16
-    show_structure_one_page(output_file, page_to_modify)
+    #show_structure_one_page(output_file, page_to_modify)
 
     replacements = {1: {0: {1: "鼓励劝勉 贴前 2:4", 2: ""}}, 
                                     2: {
@@ -857,5 +861,5 @@ if __name__ == "__main__":
                 3: {0: "", 1: ""},
                 4: {0: "一月份余额", 1: "5300.17欧元"}
             }}
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=43)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=43)
 
