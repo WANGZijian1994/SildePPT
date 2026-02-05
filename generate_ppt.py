@@ -3,6 +3,7 @@ import os
 import get_bibles
 import copy
 from pptx.util import Pt
+from pptx.dml.color import RGBColor
 
 def read_pptx(pptx_file):
     """
@@ -727,18 +728,18 @@ if __name__ == "__main__":
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {3: {0: {0: ""}, 1: {0: "  ", 1: ""}, 2: {1: "李勋荣 执事", 4: "吴兴隆弟兄回应"}}}
+    replacements = {3: {0: {0: "智慧人生 系列II"}, 1: {0: "  ", 1: "传道书4章"}, 2: {1: "李勋荣执事", 4: "徐霞姐妹回应"}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
-    delete_slides(output_file, output_file, [15, 16, 17, 18])  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, [15, 16, 17, 18])  # 删除多余的经文页，保留第一页经文页
 
     # musics
-    pages_music = [5,6]  # 假设音乐幻灯片是第4到第8页
+    pages_music = [15]  # 假设音乐幻灯片是第4到第8页
     #delete_slides(output_file, output_file, [5,6])
 
     
     for i in range(0, len(pages_music)):
-        index = pages_music[i] - 3
+        index = pages_music[i] - 11
         video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
         #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
   
@@ -747,24 +748,25 @@ if __name__ == "__main__":
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    #delete_slides(output_file, output_file, [14])  # 删除多余的经文页，保留第一页经文页
+    delete_slides(output_file, output_file, [10, 11, 15, 16, 17, 18])  # 删除多余的经文页，保留第一页经文页
     #duplicate_slide(output_file, output_file, 12)  # 复制第一页经文页作为模板
-    page_to_modify = 10
+    page_to_modify = 12
     #delete_slides(output_file, output_file, list(range(11, 16)))
     #show_structure_one_page(output_file, page_to_modify)
+    title = "传道书"
+    chapter = 4
+    index_text = get_bibles.indexes[title]
     texts = [
-        ["路加福音", 9, 28, 33, get_bibles.get_bible_verses("路加福音", 9, 28, 33)],
-        ["路加福音", 9, 34, 39, get_bibles.get_bible_verses("路加福音", 9, 34, 39)],
-        ["路加福音", 9, 40, 45, get_bibles.get_bible_verses("路加福音", 9, 40, 45)],
-        ["路加福音", 9, 46, 51, get_bibles.get_bible_verses("路加福音", 9, 46, 51)],
-        ["路加福音", 9, 52, 56, get_bibles.get_bible_verses("路加福音", 9, 52, 56)],
-        ["路加福音", 9, 57, 62, get_bibles.get_bible_verses("路加福音", 9, 57, 62)]
+        [title, chapter, 1, 6, get_bibles.get_bible_verses(index_text, chapter, 1, 6)],
+        [title, chapter, 7, 11, get_bibles.get_bible_verses(index_text, chapter, 7, 11)],
+        [title, chapter, 12, 16, get_bibles.get_bible_verses(index_text, chapter, 12, 16)],
     ]
     count = 0
     for text in texts:
         count += 1
         i = text[2]
         bibles = text[4]
+        '''
         replacements = {
             1: {0: {1: text[0], 2: f" {text[1]}: {text[2]}-{text[3]}"}},
             2: {
@@ -776,16 +778,28 @@ if __name__ == "__main__":
                 5: {0: "", 1: ""}
             }
         }
+        '''
+        replacements = {
+            3: {0: {0: "", 1: "", 2: "", 3: "", 4: f"{text[0]}", 5: "", 6: f"{text[1]}", 8: f"{text[2]}", 9: f"-{text[3]}"}},
+            4: {
+                0: {0: str(i), 2: bibles[0] if len(bibles) > 0 else ""},
+                1: {0: str(i + 1), 2: bibles[1] if len(bibles) > 1 else ""},
+                2: {0: str(i + 2), 2: bibles[2] if len(bibles) > 2 else ""},
+                3: {0: str(i + 3) if len(bibles) > 3 else "", 2: bibles[3] if len(bibles) > 3 else ""},
+                4: {0: str(i + 4) if len(bibles) > 4 else "", 2: bibles[4] if len(bibles) > 4 else ""},
+            }
+        }
         if text[3] - text[2] >= 5:
             for j in range(5, text[3] - text[2] + 1):
-                replacements[2][4][1] += f" \n{str(i + j)}" + (bibles[j] if len(bibles) > j else "")
+                replacements[4][4][2] += f" \n{str(i + j)}    " + (bibles[j] if len(bibles) > j else "")
 
         '''
-        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size = True)
+        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize=35, size = True, color=RGBColor(0, 0, 0))
         if count < len(texts):
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
         '''
+        
         
     #swap_slides(output_file, output_file, 12, 13)
 

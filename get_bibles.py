@@ -2,9 +2,15 @@ import requests
 from urllib.parse import quote
 from zhconv import convert
 
+indexes = {
+    "john": "約翰福音",
+    "传道书": "ecc",
+    "路加福音": "路加福音",
+}
+
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
 
-def get_bible_verses(book_name, chapter, start_verse, end_verse, French=False):
+def get_bible_verses(book_name, chapter, start_verse, end_verse, French=False, version='cuv'):
     """
     获取指定章节和范围的简体中文经文
     :param book_name: 圣经卷名 (中文或英文标识，如 "路加福音" 或 "Luke")
@@ -17,7 +23,7 @@ def get_bible_verses(book_name, chapter, start_verse, end_verse, French=False):
     # 格式：https://bible-api.com/book+chapter:start-end?translation=cuv
     # 对中文书名进行 URL 编码
     encoded_book = quote(book_name)
-    url = f"https://bible-api.com/{encoded_book}+{chapter}:{start_verse}-{end_verse}?translation=cuv"
+    url = f"https://bible-api.com/{encoded_book}+{chapter}:{start_verse}-{end_verse}?translation={version}"
     if French:
         url = f"https://bible-api.com/{encoded_book}+{chapter}:{start_verse}-{end_verse}?translation=lsf"  # 法语版本
     
@@ -35,11 +41,12 @@ def get_bible_verses(book_name, chapter, start_verse, end_verse, French=False):
 
 # --- 使用示例 ---
 # 常见的英文对应：路加福音 -> Luke, 创世记 -> Genesis, 马太福音 -> Matthew
+
 '''
-book = "路加福音"      # 路加福音
-chapter_num = 9    # 第1章
+book = "ecc"      # 路加福音 約翰福音 ecc 传道书
+chapter_num = 4    # 第1章
 start = 1          # 第1节
-end = 27            # 到第5节
+end = 16            # 到第5节
 
 result = get_bible_verses(book, chapter_num, start, end)
 
