@@ -3,7 +3,7 @@ from urllib.parse import quote
 from zhconv import convert
 
 indexes = {
-    "john": "約翰福音",
+    "约翰福音": "約翰福音",
     "传道书": "ecc",
     "路加福音": "路加福音",
 }
