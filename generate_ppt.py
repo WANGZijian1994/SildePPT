@@ -706,21 +706,21 @@ if __name__ == "__main__":
     # 1 时间
     page_to_modify = 1
     #show_structure_one_page(output_file, page_to_modify)
-    date = "08/02/2026"
+    date = "22/02/2026"
     old_date = "01/02/2026"
 
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
 
     # 2 领会
     page_to_modify = 2
-    replacements = {0: {0: {2: "何西阿书", 4: "6:3"}}, 1: {0: {2: "徐霞姐妹"}}, 2: {0: {0: "我们务要认识耶和华、竭力追求认识他。他出现确如晨光、他必临到我们像甘雨、像滋润田地的春雨。", 1: "", 2: ""}}}
+    replacements = {0: {0: {2: "民数记", 4: "6:24-26"}}, 1: {0: {2: "徐霞姐妹"}}, 2: {0: {0: "愿耶和华赐福给你，保护你。愿耶和华使他的脸光照你，赐恩给你。愿耶和华向你仰脸，赐你平安", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
-    replacements = {2: {0: {0: "于福芬姐妹, 吉娜姐妹", 1: ""}}}
+    replacements = {2: {0: {0: "徐霞姐妹, 于福芬姐妹", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
@@ -728,38 +728,49 @@ if __name__ == "__main__":
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {3: {0: {0: "智慧人生 系列II"}, 1: {0: "  ", 1: "传道书4章"}, 2: {1: "李勋荣执事", 4: "徐霞姐妹回应"}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "撒母耳记上"}, 1: {0: "  ", 1: "", 2: "17章1-58"}, 2: {1: "吉娜姐妹", 2: "分享", 3: "-", 4: "徐霞姐妹回应"}}}
+    #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
+    
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     #delete_slides(output_file, output_file, [15, 16, 17, 18])  # 删除多余的经文页，保留第一页经文页
 
     # musics
-    pages_music = [15]  # 假设音乐幻灯片是第4到第8页
-    #delete_slides(output_file, output_file, [5,6])
+    pages_music = [22]  # 假设音乐幻灯片是第4到第6页
+    delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
-        index = pages_music[i] - 11
+        index = pages_music[i] - 18
         video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
-        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
   
     # ========== 经文页面（新方法）==========
     # 使用新函数设置经文页面
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    delete_slides(output_file, output_file, [10, 11, 15, 16, 17, 18])  # 删除多余的经文页，保留第一页经文页
-    #duplicate_slide(output_file, output_file, 12)  # 复制第一页经文页作为模板
-    page_to_modify = 12
+    #delete_slides(output_file, output_file, list(range(22,23)))  # 删除多余的经文页，保留第一页经文页
+    #duplicate_slide(output_file, output_file, 14)  # 复制第一页经文页作为模板
+    page_to_modify = 15
     #delete_slides(output_file, output_file, list(range(11, 16)))
     #show_structure_one_page(output_file, page_to_modify)
-    title = "传道书"
-    chapter = 4
+    title = "撒母耳记上"
+    chapter = 17
     index_text = get_bibles.indexes[title]
     texts = [
-        [title, chapter, 1, 6, get_bibles.get_bible_verses(index_text, chapter, 1, 6)],
-        [title, chapter, 7, 11, get_bibles.get_bible_verses(index_text, chapter, 7, 11)],
-        [title, chapter, 12, 16, get_bibles.get_bible_verses(index_text, chapter, 12, 16)],
+        [title, chapter, 1, 5, get_bibles.get_bible_verses(index_text, chapter, 1, 5)],
+        [title, chapter, 6, 10, get_bibles.get_bible_verses(index_text, chapter, 6, 10)],
+        [title, chapter, 11, 15, get_bibles.get_bible_verses(index_text, chapter, 11, 15)],
+        [title, chapter, 16, 20, get_bibles.get_bible_verses(index_text, chapter, 16, 20)],
+        [title, chapter, 21, 25, get_bibles.get_bible_verses(index_text, chapter, 21, 25)],
+        [title, chapter, 26, 30, get_bibles.get_bible_verses(index_text, chapter, 26, 30)],
+        [title, chapter, 31, 35, get_bibles.get_bible_verses(index_text, chapter, 31, 35)],
+        [title, chapter, 36, 39, get_bibles.get_bible_verses(index_text, chapter, 36, 39)],
+        [title, chapter, 40, 44, get_bibles.get_bible_verses(index_text, chapter, 40, 44)],
+        [title, chapter, 45, 48, get_bibles.get_bible_verses(index_text, chapter, 45, 48)],
+        [title, chapter, 49, 53, get_bibles.get_bible_verses(index_text, chapter, 49, 53)],
+        [title, chapter, 54, 58, get_bibles.get_bible_verses(index_text, chapter, 54, 58)]
     ]
     count = 0
     for text in texts:
@@ -799,6 +810,7 @@ if __name__ == "__main__":
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
         '''
+        
         
         
     #swap_slides(output_file, output_file, 12, 13)

@@ -6,6 +6,7 @@ indexes = {
     "约翰福音": "約翰福音",
     "传道书": "ecc",
     "路加福音": "路加福音",
+    "撒母耳记上": "1SA",
 }
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
@@ -43,10 +44,10 @@ def get_bible_verses(book_name, chapter, start_verse, end_verse, French=False, v
 # 常见的英文对应：路加福音 -> Luke, 创世记 -> Genesis, 马太福音 -> Matthew
 
 '''
-book = "ecc"      # 路加福音 約翰福音 ecc 传道书
-chapter_num = 4    # 第1章
+book = "1SA"      # 路加福音 約翰福音 ecc 传道书
+chapter_num = 17    # 第1章
 start = 1          # 第1节
-end = 16            # 到第5节
+end = 58            # 到第5节
 
 result = get_bible_verses(book, chapter_num, start, end)
 

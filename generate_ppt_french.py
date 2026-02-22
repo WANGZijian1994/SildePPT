@@ -684,6 +684,52 @@ def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_num
     print(f"已修改第 {slide_number} 页，文件已保存: {output_file}")
     return True
 
+def append_page(output_file, page_to_modify, text):
+    """
+    在指定页后追加一页，并在新页中添加文本
+    
+    Args:
+        pptx_file: 原PPTX文件路径
+        output_file: 输出PPTX文件路径
+        slide_number: 页码（从1开始），在该页后追加新页
+        text: 要添加到新页的文本
+    
+    Returns:
+        bool: 是否成功
+    """
+    if not os.path.exists(pptx_file):
+        print(f"错误：找不到文件 {pptx_file}")
+        return False
+    
+    duplicate_slide(output_file, output_file, page_to_modify)
+    page_to_modify += 1
+    remplacements = {0: {3: {1: text}, 4: {1: "", 2: ""}}}
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    
+    return True
+
+def update_page(output_file, page_to_modify, text):
+    """
+    在指定页后追加一页，并在新页中添加文本
+    
+    Args:
+        pptx_file: 原PPTX文件路径
+        output_file: 输出PPTX文件路径
+        slide_number: 页码（从1开始），在该页后追加新页
+        text: 要添加到新页的文本
+    
+    Returns:
+        bool: 是否成功
+    """
+    if not os.path.exists(pptx_file):
+        print(f"错误：找不到文件 {pptx_file}")
+        return False
+    
+    remplacements = {0: {3: {1: text}, 4: {1: "", 2: ""}}}
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    
+    return True
+
 if __name__ == "__main__":
     # 示例1：读取PPT信息
     filename = "template_français"
@@ -700,11 +746,11 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "08/02/2026 \n"
+    date = "22/02/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
     # 2 经文
     page_to_modify = 2
@@ -717,22 +763,35 @@ if __name__ == "__main__":
     end = 48           # 到第5节
 
     #text = "\n"+ get_bibles.get_bible_verses(book_zh, chapter_num, start, end)[0] 
-    text = "\n太初有道，道与神同在，道就是神"
-    text_fr = "\nAu commencement était la Parole, et la Parole était avec Dieu, et la Parole était Dieu."
+    text = "\n约翰福音14：21 有了我命令又遵守的，这人就是爱我的，爱我的必蒙我父爱他，我也要爱他，并且要向他显现。   阿们！"
+    text_fr = "\nCelui qui a mes commandements et qui les garde, c'est celui qui m'aime; et celui qui m'aime sera aimé de mon Père, je l'aimerai, et je me ferai connaître à lui.Amen!"
     remplacements = {0: {3: {1: text}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
     
     #duplicate_slide(output_file, output_file, page_to_modify)
-    page_to_modify += 1
+    page_to_modify = 3
     remplacements = {0: {3: {1: text_fr}, 4: {1: "", 2: ""}}}
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+
+    #delete_slides(output_file, output_file, [5])
+    #duplicate_slide(output_file, output_file, page_to_modify)
+    page_to_modify = 7
+    vowels = "发音规则3，CFLR辅音在词尾发音  \nle sac 包 avec 一起 \nle chef 首长 neuf 新的 \nmal 疼痛，不好 journal 日记日报"
+    update_page(output_file, page_to_modify, vowels)
+    #append_page(output_file, page_to_modify, vowels) 
+
+    #swap_slides(output_file, output_file, 3, 5)
+
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, {0: {3: {1: vowels}, 4: {1: "", 2: ""}}})
     
     # 3 诗歌
-    page_to_modify = 4
-    delete_slide(output_file, output_file, page_to_modify)
+    page_to_modify = 22
+    #delete_slide(output_file, output_file, page_to_modify)
     music = f"{repository_music}\\5.mp4"
-    insert_fullscreen_video_slide(output_file, output_file, music, insert_position=page_to_modify)
+    #insert_fullscreen_video_slide(output_file, output_file, music, insert_position=page_to_modify)
+
+
 
 
     
