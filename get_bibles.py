@@ -7,6 +7,7 @@ indexes = {
     "传道书": "ecc",
     "路加福音": "路加福音",
     "撒母耳记上": "1SA",
+    "雅各书": "JAS"
 }
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv

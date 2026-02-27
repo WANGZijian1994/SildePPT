@@ -743,14 +743,16 @@ if __name__ == "__main__":
     output_file = f"{repository}\\{filename}.pptx"
 
     info = read_pptx(output_file)
+
+    delete_slides(output_file, output_file, list(range(4, 27)))  # 删除第2-21页
     
     # 1 时间
     page_to_modify = 1
-    date = "22/02/2026 \n"
+    date = "01/03/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
     # 2 经文
     page_to_modify = 2
@@ -763,22 +765,22 @@ if __name__ == "__main__":
     end = 48           # 到第5节
 
     #text = "\n"+ get_bibles.get_bible_verses(book_zh, chapter_num, start, end)[0] 
-    text = "\n约翰福音14：21 有了我命令又遵守的，这人就是爱我的，爱我的必蒙我父爱他，我也要爱他，并且要向他显现。   阿们！"
-    text_fr = "\nCelui qui a mes commandements et qui les garde, c'est celui qui m'aime; et celui qui m'aime sera aimé de mon Père, je l'aimerai, et je me ferai connaître à lui.Amen!"
+    text = "\n约翰福音15：7 你们若常在我里面，我的话也常在你们里面，凡你们所愿意的，祈求就给你们成就。"
+    text_fr = "\nSi vous demeurez en moi, et que mes paroles demeurent en vous, demandez ce que vous voudrez, et cela vous sera accordé."
     remplacements = {0: {3: {1: text}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
     
     #duplicate_slide(output_file, output_file, page_to_modify)
     page_to_modify = 3
     remplacements = {0: {3: {1: text_fr}, 4: {1: "", 2: ""}}}
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
     #delete_slides(output_file, output_file, [5])
     #duplicate_slide(output_file, output_file, page_to_modify)
     page_to_modify = 7
     vowels = "发音规则3，CFLR辅音在词尾发音  \nle sac 包 avec 一起 \nle chef 首长 neuf 新的 \nmal 疼痛，不好 journal 日记日报"
-    update_page(output_file, page_to_modify, vowels)
+    #update_page(output_file, page_to_modify, vowels)
     #append_page(output_file, page_to_modify, vowels) 
 
     #swap_slides(output_file, output_file, 3, 5)

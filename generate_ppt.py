@@ -706,21 +706,21 @@ if __name__ == "__main__":
     # 1 时间
     page_to_modify = 1
     #show_structure_one_page(output_file, page_to_modify)
-    date = "22/02/2026"
+    date = "01/03/2026"
     old_date = "01/02/2026"
 
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
 
     # 2 领会
     page_to_modify = 2
-    replacements = {0: {0: {2: "民数记", 4: "6:24-26"}}, 1: {0: {2: "徐霞姐妹"}}, 2: {0: {0: "愿耶和华赐福给你，保护你。愿耶和华使他的脸光照你，赐恩给你。愿耶和华向你仰脸，赐你平安", 1: "", 2: ""}}}
+    replacements = {0: {0: {2: "箴言", 4: "3:6"}}, 1: {0: {2: "徐霞姐妹"}}, 2: {0: {0: "在你一切所行的事上，都要认定他，他必指引你的路", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
-    replacements = {2: {0: {0: "徐霞姐妹, 于福芬姐妹", 1: ""}}}
+    replacements = {2: {0: {0: "吉娜姐妹, 于福芬姐妹", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
@@ -728,7 +728,7 @@ if __name__ == "__main__":
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "撒母耳记上"}, 1: {0: "  ", 1: "", 2: "17章1-58"}, 2: {1: "吉娜姐妹", 2: "分享", 3: "-", 4: "徐霞姐妹回应"}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "永活的生命之道"}, 1: {0: "  雅各书", 1: "", 2: "1章"}, 2: {1: "吴兴隆弟兄", 2: "分享", 3: "", 4: "徐霞姐妹回应"}}}
     #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
     
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
@@ -736,41 +736,34 @@ if __name__ == "__main__":
     #delete_slides(output_file, output_file, [15, 16, 17, 18])  # 删除多余的经文页，保留第一页经文页
 
     # musics
-    pages_music = [22]  # 假设音乐幻灯片是第4到第6页
-    delete_slides(output_file, output_file, pages_music)
+    pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第6页
+    #delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
-        index = pages_music[i] - 18
+        index = pages_music[i] - 3
         video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
-        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
   
     # ========== 经文页面（新方法）==========
     # 使用新函数设置经文页面
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    #delete_slides(output_file, output_file, list(range(22,23)))  # 删除多余的经文页，保留第一页经文页
-    #duplicate_slide(output_file, output_file, 14)  # 复制第一页经文页作为模板
-    page_to_modify = 15
+    #delete_slides(output_file, output_file, [10, 16, 17, 18, 19,20,21])  # 删除多余的经文页，保留第一页经文页
+    #duplicate_slide(output_file, output_file, 10)  # 复制第一页经文页作为模板
+    page_to_modify = 11
     #delete_slides(output_file, output_file, list(range(11, 16)))
     #show_structure_one_page(output_file, page_to_modify)
-    title = "撒母耳记上"
-    chapter = 17
+    title = "雅各书"
+    chapter = 1
     index_text = get_bibles.indexes[title]
     texts = [
-        [title, chapter, 1, 5, get_bibles.get_bible_verses(index_text, chapter, 1, 5)],
-        [title, chapter, 6, 10, get_bibles.get_bible_verses(index_text, chapter, 6, 10)],
-        [title, chapter, 11, 15, get_bibles.get_bible_verses(index_text, chapter, 11, 15)],
-        [title, chapter, 16, 20, get_bibles.get_bible_verses(index_text, chapter, 16, 20)],
-        [title, chapter, 21, 25, get_bibles.get_bible_verses(index_text, chapter, 21, 25)],
-        [title, chapter, 26, 30, get_bibles.get_bible_verses(index_text, chapter, 26, 30)],
-        [title, chapter, 31, 35, get_bibles.get_bible_verses(index_text, chapter, 31, 35)],
-        [title, chapter, 36, 39, get_bibles.get_bible_verses(index_text, chapter, 36, 39)],
-        [title, chapter, 40, 44, get_bibles.get_bible_verses(index_text, chapter, 40, 44)],
-        [title, chapter, 45, 48, get_bibles.get_bible_verses(index_text, chapter, 45, 48)],
-        [title, chapter, 49, 53, get_bibles.get_bible_verses(index_text, chapter, 49, 53)],
-        [title, chapter, 54, 58, get_bibles.get_bible_verses(index_text, chapter, 54, 58)]
+        [title, chapter, 1, 6, get_bibles.get_bible_verses(index_text, chapter, 1, 6)],
+        [title, chapter, 7, 11, get_bibles.get_bible_verses(index_text, chapter, 7, 11)],
+        [title, chapter, 12, 17, get_bibles.get_bible_verses(index_text, chapter, 12, 17)],
+        [title, chapter, 18, 22, get_bibles.get_bible_verses(index_text, chapter, 18, 22)],
+        [title, chapter, 23, 27, get_bibles.get_bible_verses(index_text, chapter, 23, 27)]
     ]
     count = 0
     for text in texts:
@@ -791,26 +784,30 @@ if __name__ == "__main__":
         }
         '''
         replacements = {
-            3: {0: {0: "", 1: "", 2: "", 3: "", 4: f"{text[0]}", 5: "", 6: f"{text[1]}", 8: f"{text[2]}", 9: f"-{text[3]}"}},
+            3: {0: {0: "", 1: "", 2: "", 3: "", 4: f"{text[0]}", 5: "", 6: f"{text[1]}章", 7: "", 8: f"{text[2]}", 9: f"-{text[3]}"}},
             4: {
-                0: {0: str(i), 2: bibles[0] if len(bibles) > 0 else ""},
-                1: {0: str(i + 1), 2: bibles[1] if len(bibles) > 1 else ""},
-                2: {0: str(i + 2), 2: bibles[2] if len(bibles) > 2 else ""},
-                3: {0: str(i + 3) if len(bibles) > 3 else "", 2: bibles[3] if len(bibles) > 3 else ""},
-                4: {0: str(i + 4) if len(bibles) > 4 else "", 2: bibles[4] if len(bibles) > 4 else ""},
+                0: {0: "", 1: "", 2: ""},
+                1: {0: str(i), 2: bibles[0] if len(bibles) > 0 else ""},
+                2: {0: str(i + 1), 2: bibles[1] if len(bibles) > 1 else ""},
+                3: {0: str(i + 2), 1: "   "+bibles[2] if len(bibles) > 2 else ""},
+                4: {0: str(i + 3), 1: "   "+bibles[3] if len(bibles) > 3 else ""},
+                5: {0: str(i + 4) if len(bibles) > 4 else "", 2: bibles[4] if len(bibles) > 4 else ""},
+                6: {0: str(i + 5) if len(bibles) > 5 else "", 2: bibles[5] if len(bibles) > 5 else ""},
+                7: {0: "", 1: "", 2: ""},
+                8: {0: "", 1: "", 2: ""}
             }
         }
+        '''
         if text[3] - text[2] >= 5:
             for j in range(5, text[3] - text[2] + 1):
                 replacements[4][4][2] += f" \n{str(i + j)}    " + (bibles[j] if len(bibles) > j else "")
-
+        '''
         '''
         set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize=35, size = True, color=RGBColor(0, 0, 0))
         if count < len(texts):
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
         '''
-        
         
         
     #swap_slides(output_file, output_file, 12, 13)
@@ -877,15 +874,17 @@ if __name__ == "__main__":
 爱宴总额 104.82
 一月份余额 5300.17
     '''
-    page_to_modify = 19
+
+    page_to_modify = 18
+    #show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
-    replacements = {1: {0: {1: "信望爱基督之家1月财务报告", 2: ""}}, 
+    replacements = {1: {0: {1: "信望爱基督之家2月财务报告", 2: ""}}, 
                                     2: {
-                0: {0: "十二月份余额", 1: "5684.74欧元"},
-                1: {0: "", 1: "一月份奉献入账总额1300欧元"},
-                2: {0: "", 1: "爱心奉献出账1000欧元, 爱心宣教出账300欧元\n扶贫基金100欧元， 打印机+墨水179.75欧元, \n爱宴总额104.82欧元"},
+                0: {0: "一月份余额", 1: "5309.97欧元"},
+                1: {0: "", 1: "一月份奉献入账总额+840欧元"},
+                2: {0: "", 1: "讲员费-70欧元\n扶贫基金-100欧元，  \n爱宴总额-472.18欧元"},
                 3: {0: "", 1: ""},
-                4: {0: "一月份余额", 1: "5300.17欧元"}
+                4: {0: "二月份余额", 1: "5507.79欧元"}
             }}
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=43)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=48, color=RGBColor(0, 0, 0))
 
