@@ -743,12 +743,10 @@ if __name__ == "__main__":
     output_file = f"{repository}\\{filename}.pptx"
 
     info = read_pptx(output_file)
-
-    delete_slides(output_file, output_file, list(range(4, 27)))  # 删除第2-21页
     
     # 1 时间
     page_to_modify = 1
-    date = "01/03/2026 \n"
+    date = "08/03/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
@@ -765,8 +763,8 @@ if __name__ == "__main__":
     end = 48           # 到第5节
 
     #text = "\n"+ get_bibles.get_bible_verses(book_zh, chapter_num, start, end)[0] 
-    text = "\n约翰福音15：7 你们若常在我里面，我的话也常在你们里面，凡你们所愿意的，祈求就给你们成就。"
-    text_fr = "\nSi vous demeurez en moi, et que mes paroles demeurent en vous, demandez ce que vous voudrez, et cela vous sera accordé."
+    text = "\n约翰福音6：35 耶稣说 我就是生命的粮，到我这里来的，必定不饿，信我的，永远不可。阿们！"
+    text_fr = "\nJésus leur dit: Je suis le pain de vie. Celui qui vient à moi n'aura jamais faim, et celui qui croit en moi n'aura jamais soif."
     remplacements = {0: {3: {1: text}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
