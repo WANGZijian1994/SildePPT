@@ -725,7 +725,7 @@ def update_page(output_file, page_to_modify, text):
         print(f"错误：找不到文件 {pptx_file}")
         return False
     
-    remplacements = {0: {3: {1: text}, 4: {1: "", 2: ""}}}
+    remplacements = {0: {3: {1: text, 2: "", 3: "", 4: ""}, 4: {1: "", 2: ""}}}
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
     
     return True
@@ -750,10 +750,10 @@ if __name__ == "__main__":
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
     # 2 经文
-    page_to_modify = 2
+    page_to_modify = 25
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
 
     book_zh = "约翰福音"      # 路加福音
@@ -767,19 +767,20 @@ if __name__ == "__main__":
     text_fr = "\nJésus leur dit: Je suis le pain de vie. Celui qui vient à moi n'aura jamais faim, et celui qui croit en moi n'aura jamais soif."
     remplacements = {0: {3: {1: text}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
     
     #duplicate_slide(output_file, output_file, page_to_modify)
-    page_to_modify = 3
-    remplacements = {0: {3: {1: text_fr}, 4: {1: "", 2: ""}}}
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    page_to_modify = 26
+    remplacements = {0: {3: {1: "", 2: text_fr}, 4: {1: "", 2: ""}}}
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
     #delete_slides(output_file, output_file, [5])
     #duplicate_slide(output_file, output_file, page_to_modify)
-    page_to_modify = 7
-    vowels = "发音规则3，CFLR辅音在词尾发音  \nle sac 包 avec 一起 \nle chef 首长 neuf 新的 \nmal 疼痛，不好 journal 日记日报"
+    page_to_modify = 8
+    #show_structure_one_page(output_file, page_to_modify)
+    vowels = "Dictée, vous êtes prêts ?\nBonjou_ ! Vot_e coli_ est arrivé ! \n您好，您的包裹送达了\nIl y a une po__e sur la tab__. \n桌子上有一个🍎"
     #update_page(output_file, page_to_modify, vowels)
-    #append_page(output_file, page_to_modify, vowels) 
+    append_page(output_file, page_to_modify, vowels) 
 
     #swap_slides(output_file, output_file, 3, 5)
 
