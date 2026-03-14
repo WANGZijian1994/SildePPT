@@ -753,7 +753,7 @@ if __name__ == "__main__":
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
     # 2 经文
-    delete_slides(output_file, output_file, [25])
+    #delete_slides(output_file, output_file, [25])
     page_to_modify = 25
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
 
