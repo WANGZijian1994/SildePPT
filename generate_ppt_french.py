@@ -746,13 +746,14 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "08/03/2026 \n"
+    date = "15/03/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
     # 2 经文
+    delete_slides(output_file, output_file, [25])
     page_to_modify = 25
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
 
@@ -762,15 +763,16 @@ if __name__ == "__main__":
     start = 48          # 第1节
     end = 48           # 到第5节
 
+    #show_structure_one_page(output_file, page_to_modify)
     #text = "\n"+ get_bibles.get_bible_verses(book_zh, chapter_num, start, end)[0] 
-    text = "\n约翰福音6：35 耶稣说 我就是生命的粮，到我这里来的，必定不饿，信我的，永远不可。阿们！"
-    text_fr = "\nJésus leur dit: Je suis le pain de vie. Celui qui vient à moi n'aura jamais faim, et celui qui croit en moi n'aura jamais soif."
-    remplacements = {0: {3: {1: text}, 4: {1: "", 2: ""}}}
+    text = "\n箴言 9章10节  敬畏耶和华是智慧的开端认识至圣者便是聪明 爱我的\n箴言 8章17节 我也爱他 恳切寻求我的 必寻得见。 阿们"
+    text_fr = "\nLe commencement de la sagesse, c'est la crainte de l'Éternel ; et la science des saints, c'est l'intelligence.J'aime ceux qui m'aiment, et ceux qui me cherchent me trouvent."
+    remplacements = {0: {3: {1: text, 2: ""}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
     
     #duplicate_slide(output_file, output_file, page_to_modify)
-    page_to_modify = 26
+    page_to_modify = 27
     remplacements = {0: {3: {1: "", 2: text_fr}, 4: {1: "", 2: ""}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
@@ -778,9 +780,9 @@ if __name__ == "__main__":
     #duplicate_slide(output_file, output_file, page_to_modify)
     page_to_modify = 8
     #show_structure_one_page(output_file, page_to_modify)
-    vowels = "Dictée, vous êtes prêts ?\nBonjou_ ! Vot_e coli_ est arrivé ! \n您好，您的包裹送达了\nIl y a une po__e sur la tab__. \n桌子上有一个🍎"
+    vowels = "Dictée, vous êtes prêts ?\nBon_our ! Monsieur  \n您好，您的包裹送达了\nIl y a une po__e sur la tab__. \n桌子上有一个🍎"
     #update_page(output_file, page_to_modify, vowels)
-    append_page(output_file, page_to_modify, vowels) 
+    #append_page(output_file, page_to_modify, vowels) 
 
     #swap_slides(output_file, output_file, 3, 5)
 
