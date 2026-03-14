@@ -1,24 +1,21 @@
-import asyncio
-from edge_tts import Communicate
+#!pip install git+https://github.com/huggingface/parler-tts.git
+import torch
+from parler_tts import ParlerTTSForConditionalGeneration
+from transformers import AutoTokenizer
+import soundfile as sf
 
-# 2. 定义你的测试单词（涵盖你 PPT 里的三大规则）
-# 格式: {文件名: 单词内容}
-test_suite = {
-    "rule1_table": "la table",     # e 不发音
-    "rule2_paris": "Paris",        # s 睡觉
-    "rule2_salut": "Salut",        # t 睡觉
-    "rule3_sac": "le sac",         # c 值班
-    "rule3_chef": "le chef",       # f 值班
-    "rule3_avoir": "avoir",        # r 值班
-    "mix_forte": "forte"           # e 唤醒了 t
-}
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
-async def generate():
-    for name, text in test_suite.items():
-        # 使用 HenriNeural，一个非常清晰的法国男声
-        communicate = Communicate(text, "fr-FR-HenriNeural")
-        await communicate.save(f"audio/{name}.mp3")
-        print(f"✅ 已生成: {name}.mp3")
+model = ParlerTTSForConditionalGeneration.from_pretrained("parler-tts/parler-tts-mini-multilingual-v1.1").to(device)
+tokenizer = AutoTokenizer.from_pretrained("parler-tts/parler-tts-mini-multilingual-v1.1")
+description_tokenizer = AutoTokenizer.from_pretrained(model.config.text_encoder._name_or_path)
 
-# 3. 执行生成
-asyncio.run(generate())
+prompt = "Il y a une pomme sur la table"
+description = "A female speaker from Paris delivers a slightly expressive and animated speech with a moderate speed and pitch. The recording is of very high quality, with the speaker's voice sounding clear and very close up."
+
+input_ids = description_tokenizer(description, return_tensors="pt").input_ids.to(device)
+prompt_input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
+
+generation = model.generate(input_ids=input_ids, prompt_input_ids=prompt_input_ids)
+audio_arr = generation.cpu().numpy().squeeze()
+sf.write("dos.wav", audio_arr, model.config.sampling_rate)
