@@ -780,17 +780,15 @@ if __name__ == "__main__":
 
 11:26 你们每逢吃这饼，喝这杯，是表明主的死，直等到他来。
     '''
+
+    # 事工表
     page_to_modify = 18
+    show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
-    replacements = {1: {0: {1: "                         圣餐", 2: ""}}, 
-                                    2: {
-                0: {0: "", 1: ""},
-                1: {0: "11:23", 1: "我当日传给你们的，原是从主领受的，就是主耶稣被卖的那一夜，拿起饼来，"},
-                2: {0: "11:24", 1: "祝谢了，就擘开，说：“这是我的身体，为你们舍的（注：“舍”有古卷作“擘开”）。你们应当如此行，为的是纪念我。”"},
-                3: {0: "11:25", 1: "饭后，也照样拿起杯来，说：“这杯是用我的血所立的新约。你们每逢喝的时候，要如此行，为的是纪念我。”"},
-                4: {0: "11:26", 1: "你们每逢吃这饼，喝这杯，是表明主的死，直等到他来。"}
-            }}
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=38)
+    replacements = {2: {2: {4: "祷告小组 – 星期六", 5: "  16:00-18:00"},
+                        7: {1: "", 2: "", 3: "", 4: ""}
+                        }}
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
 
     # comptable
@@ -827,7 +825,7 @@ if __name__ == "__main__":
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    delete_slides(output_file, output_file, list(range(11, 15)))  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, list(range(11, 15)))  # 删除多余的经文页，保留第一页经文页
     #duplicate_slide(output_file, output_file, 10)  # 复制第一页经文页作为模板
     page_to_modify = 10
     #show_structure_one_page(output_file, page_to_modify)
@@ -882,8 +880,9 @@ if __name__ == "__main__":
         '''
 
         
-        
+        '''
         set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize=36, size = True, color=RGBColor(0, 0, 0))
         if count < len(texts):
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
+        '''
