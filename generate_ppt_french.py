@@ -746,7 +746,7 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "15/03/2026 \n"
+    date = "22/03/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
@@ -765,24 +765,25 @@ if __name__ == "__main__":
 
     #show_structure_one_page(output_file, page_to_modify)
     #text = "\n"+ get_bibles.get_bible_verses(book_zh, chapter_num, start, end)[0] 
-    text = "\n箴言 9章10节  敬畏耶和华是智慧的开端认识至圣者便是聪明 爱我的\n箴言 8章17节 我也爱他 恳切寻求我的 必寻得见。 阿们"
-    text_fr = "\nLe commencement de la sagesse, c'est la crainte de l'Éternel ; et la science des saints, c'est l'intelligence.J'aime ceux qui m'aiment, et ceux qui me cherchent me trouvent."
+    text = "\n箴言书 3:5 你们要专心仰赖耶和华，不可依靠自己的聪明，\n3:6  在你一切所行的事上，都要认定他，他必指引你的路。阿们！"
+    text_fr = "\nMets ta confiance en l’Eternel de tout ton cœur,et ne te repose pas sur ta propre intelligence.\nTiens compte de lui pour tout ce que tu entreprends,et il te conduira sur le droit chemin."
     remplacements = {0: {3: {1: text, 2: ""}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
     
     #duplicate_slide(output_file, output_file, page_to_modify)
-    page_to_modify = 27
+    page_to_modify = 26
     remplacements = {0: {3: {1: "", 2: text_fr}, 4: {1: "", 2: ""}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
     #delete_slides(output_file, output_file, [5])
     #duplicate_slide(output_file, output_file, page_to_modify)
-    page_to_modify = 8
+    page_to_modify = 19
     #show_structure_one_page(output_file, page_to_modify)
-    vowels = "Dictée, vous êtes prêts ?\nBon_our ! Monsieur  \n您好，您的包裹送达了\nIl y a une po__e sur la tab__. \n桌子上有一个🍎"
+    vowels = "字母/组合：eu, œu \n-eu 和 œu 在词尾闭音节（后无发音辅音或词尾）时，发音为 [ø]，如 deux 2. La peur 害怕\n- 在其他位置，eu 和 œu 发音为 [œ] 如le cœur 心脏、la sœur 姐妹"
     #update_page(output_file, page_to_modify, vowels)
     #append_page(output_file, page_to_modify, vowels) 
+    delete_slides(output_file, output_file, [20])
 
     #swap_slides(output_file, output_file, 3, 5)
 
