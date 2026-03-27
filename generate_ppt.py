@@ -706,52 +706,52 @@ if __name__ == "__main__":
     # 1 时间
     page_to_modify = 1
     #show_structure_one_page(output_file, page_to_modify)
-    date = "15/03/2026"
-    old_date = "22/03/2026"
+    date = "29/03/2026"
+    old_date = "15/03/2026"
 
-    #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
+    set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
 
     # 2 领会
     page_to_modify = 2
-    name_linhui="吴兴隆弟兄"
-    replacements = {0: {0: {2: "诗篇", 4: "23:1"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "耶和华是我的牧者，我必不至缺乏L'Eternel est mon berger : je ne manquerai de rien", 1: "", 2: ""}}}
+    name_linhui="徐霞姐妹"
+    replacements = {0: {0: {2: "诗篇", 4: "67：1-2"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "愿神怜悯我们，赐福与我们，用脸光照我们，好叫世界得知你的道路，万国得知你的救恩。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
-    replacements = {2: {0: {0: "徐霞姐妹, 于福芬姐妹", 1: ""}}}
+    replacements = {2: {0: {0: "吉娜姐妹, 于福芬姐妹", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
 
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "大卫王得胜的生命"}, 1: {0: "  撒母耳上", 1: "24章", 2: "1:22"}, 2: {1: "吉娜姐妹", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "上行之路2"}, 1: {0: "  诗篇", 1: "", 2: "121"}, 2: {1: "晓露牧师", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
     
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # musics
     pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第6页
-    #delete_slides(output_file, output_file, pages_music)
+    delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
         index = pages_music[i] - 3
         video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
-        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     # 回应诗歌
-    pages_music = [15]  # 假设音乐幻灯片是第4到第6页
-    #delete_slides(output_file, output_file, pages_music)
+    pages_music = [14]  # 假设音乐幻灯片是第4到第6页
+    delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
         video_file = f"{repository_music}\\3.mp4"  # 修改为实际视频文件路径
-        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     #swap_slides(output_file, output_file, 12, 13)
 
@@ -825,7 +825,7 @@ if __name__ == "__main__":
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    delete_slides(output_file, output_file, list(range(11, 14)))  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, list(range(11, 14)))  # 删除多余的经文页，保留第一页经文页
     #duplicate_slide(output_file, output_file, 10)  # 复制第一页经文页作为模板
     page_to_modify = 10
     #show_structure_one_page(output_file, page_to_modify)
@@ -879,8 +879,11 @@ if __name__ == "__main__":
         '''
 
         
-        
+        '''
         set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize=34, size = True, color=RGBColor(0, 0, 0))
         if count < len(texts):
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
+        '''
+
+    delete_slides(output_file, output_file, list(range(10, 14)))  # 删除多余的经文页，保留第一页经文页
