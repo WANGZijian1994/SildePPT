@@ -706,30 +706,30 @@ if __name__ == "__main__":
     # 1 时间
     page_to_modify = 1
     #show_structure_one_page(output_file, page_to_modify)
-    date = "29/03/2026"
-    old_date = "15/03/2026"
+    date = "05/04/2026"
+    old_date = "01/03/2026"
 
-    set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
+    #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
 
     # 2 领会
     page_to_modify = 2
-    name_linhui="徐霞姐妹"
-    replacements = {0: {0: {2: "诗篇", 4: "67：1-2"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "愿神怜悯我们，赐福与我们，用脸光照我们，好叫世界得知你的道路，万国得知你的救恩。", 1: "", 2: ""}}}
+    name_linhui="吴兴隆弟兄"
+    replacements = {0: {0: {2: "约翰福音", 4: "3:16"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "神爱世人、甚至将他的独生子赐给他们、叫一切信他的、不至灭亡、反得永生。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
-    replacements = {2: {0: {0: "吉娜姐妹, 于福芬姐妹", 1: ""}}}
+    replacements = {2: {0: {0: "徐霞姐妹, 周国莲姐妹", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
 
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "上行之路2"}, 1: {0: "  诗篇", 1: "", 2: "121"}, 2: {1: "晓露牧师", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: ""}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "黄玮珥牧师", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
     
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
@@ -745,13 +745,13 @@ if __name__ == "__main__":
         insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     # 回应诗歌
-    pages_music = [14]  # 假设音乐幻灯片是第4到第6页
-    delete_slides(output_file, output_file, pages_music)
+    pages_music = [10, 11]  # 假设音乐幻灯片是第4到第6页
+    #delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
         video_file = f"{repository_music}\\3.mp4"  # 修改为实际视频文件路径
-        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     #swap_slides(output_file, output_file, 12, 13)
 
@@ -793,30 +793,31 @@ if __name__ == "__main__":
 
     # comptable
     '''
-子健你好 这是上个月的财务报表 你把它公布到这个主日上 谢谢
-二月份报表
-爱心扶贫 100 欧元（陈弟兄）
-宣教赞助金 300欧元（约旦-国莲姐妹）
-外来讲道费用70欧元 
-主日爱宴+春节宴 共472.18欧元
-二月份奉献总收入840欧元
-二月份费用支出共942.18欧元
-二月份余额 5197.99欧元
+三月份 财务报表
+余额4968.36
+奉献收入 520欧元
+教学费用 125欧元
+爱心扶助 100欧元
+宣教扶助 300欧元
+外来讲道 70欧元
+洗礼大毛巾 40 欧元
+爱宴 126欧元
+
     '''
 
-    page_to_modify = 17
-    month = 2
+    page_to_modify = 14
+    month = 3
     #show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
     replacements = {1: {0: {1: f"信望爱基督之家{month}月财务报告", 2: ""}}, 
                                     2: {
-                0: {0: f"{month - 1}月份余额", 1: "5300.17欧元"},
-                1: {0: "", 1: f"{month}月份奉献入账总额+840欧元   \n{month}月份支出总额-942.18欧元"},
-                2: {0: "", 1: f"支出明细 : \n-爱心扶贫 100 欧元（陈弟兄）\n-宣教赞助金 300欧元（约旦-国莲姐妹）\n-外来讲道费用70欧元 \n-主日爱宴+春节宴 共472.18欧元"},
+                0: {0: f"{month - 1}月份余额", 1: "5197.99欧元"},
+                1: {0: "", 1: f"  {month}月份奉献入账总额+520欧元   \n  {month}月份支出总额-761欧元"},
+                2: {0: "", 1: f"  支出明细 : \n  -爱心扶贫 100 欧元（陈弟兄）\n  -宣教赞助金 300欧元（约旦-国莲姐妹）\n  -洗礼大毛巾 40 欧元 \n  -教学费用 125欧元\n  -外来讲道 70欧元 \n  -主日爱宴 126欧元"},
                 3: {0: "", 1: ""},
-                4: {0: f"{month}月份余额", 1: "5197.99欧元"}
+                4: {0: f"{month}月份余额", 1: "4968.36欧元"}
             }}
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=34, color=RGBColor(0, 0, 0))
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=28, color=RGBColor(0, 0, 0))
 
     #delete_slides(output_file, output_file, list(range(16, 20))+[21, 22])  # 删除多余的财务页，保留第一页财务页
   
@@ -886,4 +887,4 @@ if __name__ == "__main__":
         page_to_modify += 1
         '''
 
-    delete_slides(output_file, output_file, list(range(10, 14)))  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, list(range(10, 14)))  # 删除多余的经文页，保留第一页经文页

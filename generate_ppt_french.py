@@ -627,7 +627,7 @@ def set_pptx_page_texts(pptx_file, output_file, slide_number, replacements):
     return True
 
 
-def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_number, replacements):
+def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_number, replacements, size=40):
     """
     修改指定页的文字内容
     
@@ -668,7 +668,7 @@ def set_pptx_page_texts_by_slides_shapes_index(pptx_file, output_file, slide_num
                     print(f" original text {paragraph.runs[run_index].text} new text: {new_text}")
                     paragraph.runs[run_index].text = new_text
                     paragraph.runs[run_index].font.bold = True
-                    paragraph.runs[run_index].font.size = Pt(40)
+                    paragraph.runs[run_index].font.size = Pt(size)
                 else:
                     print(f" append new text on {run_index}: {new_text}")
                     new_run = paragraph.add_run()
@@ -746,7 +746,7 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "22/03/2026 \n"
+    date = "05/04/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
@@ -765,16 +765,18 @@ if __name__ == "__main__":
 
     #show_structure_one_page(output_file, page_to_modify)
     #text = "\n"+ get_bibles.get_bible_verses(book_zh, chapter_num, start, end)[0] 
-    text = "\n箴言书 3:5 你们要专心仰赖耶和华，不可依靠自己的聪明，\n3:6  在你一切所行的事上，都要认定他，他必指引你的路。阿们！"
-    text_fr = "\nMets ta confiance en l’Eternel de tout ton cœur,et ne te repose pas sur ta propre intelligence.\nTiens compte de lui pour tout ce que tu entreprends,et il te conduira sur le droit chemin."
+    text = "\n箴言 3:13 得智慧 ，得聪明的，这人便为有福。\n3:14 因为得智慧胜过得银子，其利益强如精金，\n3:15  比珍珠宝贵，你一切所喜爱的，都不足与比较。\n3:16  她右手有长寿，左手有高贵。阿们！"
+    #text_fr = "\nHeureux qui trouve la sagesse, qui accède à la raison !C'est une bonne affaire, meilleure qu'une affaire d'argent, plus rentable que l'or."
     remplacements = {0: {3: {1: text, 2: ""}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements, size=32)
     
     #duplicate_slide(output_file, output_file, page_to_modify)
     page_to_modify = 26
-    remplacements = {0: {3: {1: "", 2: text_fr}, 4: {1: "", 2: ""}}}
+    #remplacements = {0: {3: {1: "", 2: text_fr}, 4: {1: "", 2: ""}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
+
+    #delete_slides(output_file, output_file, [26])
 
     #delete_slides(output_file, output_file, [5])
     #duplicate_slide(output_file, output_file, page_to_modify)
@@ -783,7 +785,7 @@ if __name__ == "__main__":
     vowels = "字母/组合：eu, œu \n-eu 和 œu 在词尾闭音节（后无发音辅音或词尾）时，发音为 [ø]，如 deux 2. La peur 害怕\n- 在其他位置，eu 和 œu 发音为 [œ] 如le cœur 心脏、la sœur 姐妹"
     #update_page(output_file, page_to_modify, vowels)
     #append_page(output_file, page_to_modify, vowels) 
-    delete_slides(output_file, output_file, [20])
+    #delete_slides(output_file, output_file, [20])
 
     #swap_slides(output_file, output_file, 3, 5)
 
