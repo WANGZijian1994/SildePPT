@@ -721,9 +721,9 @@ if __name__ == "__main__":
 
     # 3 敬拜
     page_to_modify = 3
-    replacements = {2: {0: {0: "徐霞姐妹, 周国莲姐妹", 1: ""}}}
+    replacements = {2: {0: {0: "徐霞姐妹, 于福芬姐妹", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
 
     # 主日证道
