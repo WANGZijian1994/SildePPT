@@ -706,52 +706,52 @@ if __name__ == "__main__":
     # 1 时间
     page_to_modify = 1
     #show_structure_one_page(output_file, page_to_modify)
-    date = "05/04/2026"
+    date = "12/04/2026"
     old_date = "01/03/2026"
 
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
 
     # 2 领会
     page_to_modify = 2
-    name_linhui="吴兴隆弟兄"
-    replacements = {0: {0: {2: "约翰福音", 4: "3:16"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "神爱世人、甚至将他的独生子赐给他们、叫一切信他的、不至灭亡、反得永生。", 1: "", 2: ""}}}
+    name_linhui="吉娜姐妹"
+    replacements = {0: {0: {2: "约翰福音", 4: "15:10"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "你们若遵守我的命令，就常在我的爱里，正如遵守了我父的命令，常在他的爱里。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
     replacements = {2: {0: {0: "徐霞姐妹, 于福芬姐妹", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
 
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: ""}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "黄玮珥牧师", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "浪子回頭金不換"}, 1: {0: "路加福音", 1: "15:11-32", 2: ""}, 2: {1: "李勋荣执事", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
     
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # musics
     pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第6页
-    delete_slides(output_file, output_file, pages_music)
+    #delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
         index = pages_music[i] - 3
         video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
-        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     # 回应诗歌
-    pages_music = [10, 11]  # 假设音乐幻灯片是第4到第6页
-    #delete_slides(output_file, output_file, pages_music)
+    pages_music = [14]  # 假设音乐幻灯片是第4到第6页
+    delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
         video_file = f"{repository_music}\\3.mp4"  # 修改为实际视频文件路径
-        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     #swap_slides(output_file, output_file, 12, 13)
 
@@ -795,29 +795,31 @@ if __name__ == "__main__":
     '''
 三月份 财务报表
 余额4968.36
-奉献收入 520欧元
+奉献收入 720欧元
 教学费用 125欧元
 爱心扶助 100欧元
 宣教扶助 300欧元
 外来讲道 70欧元
 洗礼大毛巾 40 欧元
-爱宴 126欧元
+爱宴 115.63欧元
+
+5177.16 + 720 - 125 - 100 - 300 - 70 - 40 - 115.63 = 4968.36
 
     '''
 
-    page_to_modify = 14
+    page_to_modify = 15
     month = 3
     #show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
     replacements = {1: {0: {1: f"信望爱基督之家{month}月财务报告", 2: ""}}, 
                                     2: {
-                0: {0: f"{month - 1}月份余额", 1: "5197.99欧元"},
-                1: {0: "", 1: f"  {month}月份奉献入账总额+520欧元   \n  {month}月份支出总额-761欧元"},
-                2: {0: "", 1: f"  支出明细 : \n  -爱心扶贫 100 欧元（陈弟兄）\n  -宣教赞助金 300欧元（约旦-国莲姐妹）\n  -洗礼大毛巾 40 欧元 \n  -教学费用 125欧元\n  -外来讲道 70欧元 \n  -主日爱宴 126欧元"},
+                0: {0: f"{month - 1}月份余额", 1: "5177.16欧元"},
+                1: {0: "", 1: f"  {month}月份奉献入账总额+720欧元   \n  {month}月份支出总额-761欧元"},
+                2: {0: "", 1: f"  支出明细 : \n  -爱心扶贫 100 欧元（陈弟兄）\n  -宣教赞助金 300欧元（约旦-国莲姐妹）\n  -洗礼大毛巾 40 欧元 \n  -教学费用 125欧元; -外来讲道 70欧元 \n  -主日爱宴 115.63欧元"},
                 3: {0: "", 1: ""},
                 4: {0: f"{month}月份余额", 1: "4968.36欧元"}
             }}
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=28, color=RGBColor(0, 0, 0))
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=29, color=RGBColor(0, 0, 0))
 
     #delete_slides(output_file, output_file, list(range(16, 20))+[21, 22])  # 删除多余的财务页，保留第一页财务页
   
@@ -826,18 +828,18 @@ if __name__ == "__main__":
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    #delete_slides(output_file, output_file, list(range(11, 14)))  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, list(range(12, 14)))  # 删除多余的经文页，保留第一页经文页
     #duplicate_slide(output_file, output_file, 10)  # 复制第一页经文页作为模板
-    page_to_modify = 10
+    page_to_modify = 11
     #show_structure_one_page(output_file, page_to_modify)
-    title = "撒母耳记上" 
-    chapter = 24
+    title = "路加福音" 
+    chapter = 15
     index_text = get_bibles.indexes[title]
     texts = [
-        [title, chapter, 1, 5, get_bibles.get_bible_verses(index_text, chapter, 1, 5)],
-        [title, chapter, 6, 10, get_bibles.get_bible_verses(index_text, chapter, 6, 10)],
-        [title, chapter, 11, 15, get_bibles.get_bible_verses(index_text, chapter, 11, 15)],
-        [title, chapter, 16, 22, get_bibles.get_bible_verses(index_text, chapter, 16, 22)],
+        [title, chapter, 11, 17, get_bibles.get_bible_verses(index_text, chapter, 11, 17)],
+        [title, chapter, 18, 23, get_bibles.get_bible_verses(index_text, chapter, 18, 23)],
+        [title, chapter, 24, 28, get_bibles.get_bible_verses(index_text, chapter, 24, 28)],
+        [title, chapter, 29, 32, get_bibles.get_bible_verses(index_text, chapter, 29, 32)],
     ]
     count = 0
     for text in texts:

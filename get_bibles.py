@@ -9,6 +9,7 @@ indexes = {
     "撒母耳记上": "1SA",
     "雅各书": "JAS",
     "路得记": "RUT",
+    "哥林多前书": "1CO"
 }
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
@@ -45,15 +46,15 @@ def get_bible_verses(book_name, chapter, start_verse, end_verse, French=False, v
 # --- 使用示例 ---
 # 常见的英文对应：路加福音 -> Luke, 创世记 -> Genesis, 马太福音 -> Matthew
 
-'''
-book = "1SA"      # 路加福音 約翰福音 ecc 传道书
-chapter_num = 17    # 第1章
-start = 1          # 第1节
-end = 58            # 到第5节
+
+book = "1CO"      # 路加福音 約翰福音 ecc 传道书
+chapter_num = 11    # 第1章
+start = 23         # 第1节
+end = 31           # 到第5节
 
 result = get_bible_verses(book, chapter_num, start, end)
 
 # 打印结果
 for i, text in enumerate(result, start=start):
     print(f"第{i}节: {text}")
-'''
+
