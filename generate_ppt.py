@@ -750,7 +750,7 @@ if __name__ == "__main__":
 
     
     for i in range(0, len(pages_music)):
-        video_file = f"{repository_music}\\3.mp4"  # 修改为实际视频文件路径
+        video_file = f"{repository_music}\\4.mp4"  # 修改为实际视频文件路径
         insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     #swap_slides(output_file, output_file, 12, 13)

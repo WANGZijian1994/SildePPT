@@ -46,7 +46,7 @@ def get_bible_verses(book_name, chapter, start_verse, end_verse, French=False, v
 # --- 使用示例 ---
 # 常见的英文对应：路加福音 -> Luke, 创世记 -> Genesis, 马太福音 -> Matthew
 
-
+'''
 book = "1CO"      # 路加福音 約翰福音 ecc 传道书
 chapter_num = 11    # 第1章
 start = 23         # 第1节
@@ -57,4 +57,4 @@ result = get_bible_verses(book, chapter_num, start, end)
 # 打印结果
 for i, text in enumerate(result, start=start):
     print(f"第{i}节: {text}")
-
+'''
