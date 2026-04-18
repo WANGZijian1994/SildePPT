@@ -746,15 +746,15 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "12/04/2026 \n"
-    heure = "              13h30-14h45\n"
+    date = "19/04/2026 \n"
+    heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements)
 
     # 2 经文
     #delete_slides(output_file, output_file, [25])
-    page_to_modify = 25
+    page_to_modify = 2
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
 
     book_zh = "约翰福音"      # 路加福音
@@ -765,11 +765,11 @@ if __name__ == "__main__":
 
     #show_structure_one_page(output_file, page_to_modify)
     #text = "\n"+ get_bibles.get_bible_verses(book_zh, chapter_num, start, end)[0] 
-    text = "\n约翰福音1:14 道成了肉身，住在我们中间，充充滿满地有恩典，有真理。我们也见过他的荣光，正是父独生子的荣光。"
+    text = "\n约翰福音1:3-5 约翰福音 3万物是籍着他造的； 凡被造的 没有一样不是籍着他造的。4 生命在他里头, 这生命就是人的光 。5 光照在黑暗里,黑暗却不接受光。"
     #text_fr = "\nHeureux qui trouve la sagesse, qui accède à la raison !C'est une bonne affaire, meilleure qu'une affaire d'argent, plus rentable que l'or."
     remplacements = {0: {3: {1: text, 2: ""}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements, size=32)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, remplacements, size=32)
     
     #swap_slides(output_file, output_file, 25, 2)
     #duplicate_slide(output_file, output_file, page_to_modify)
