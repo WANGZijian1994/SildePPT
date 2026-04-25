@@ -706,15 +706,15 @@ if __name__ == "__main__":
     # 1 时间
     page_to_modify = 1
     #show_structure_one_page(output_file, page_to_modify)
-    date = "19/04/2026"
-    old_date = "12/04/2026"
+    date = "26/04/2026"
+    old_date = "19/04/2026"
 
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
 
     # 2 领会
     page_to_modify = 2
     name_linhui="吉娜姐妹"
-    replacements = {0: {0: {2: "提多书", 4: "3:5"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "他便救了我们，并不是因我们自己所行的义，乃是照他的怜悯，籍着重生的洗和圣灵的更新。阿们！", 1: "", 2: ""}}}
+    replacements = {0: {0: {2: "提摩太前书", 4: "3:16"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "大哉！敬虔的奥秘，无人不以为然，就是；神在肉身显现,被圣灵称义,被天使看见,被传于外邦,被世人信服,被接在荣耀里。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
@@ -729,7 +729,7 @@ if __name__ == "__main__":
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "提多书"}, 1: {0: "", 1: "3", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "         见证分享"}, 1: {0: "", 1: "3", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
     
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
@@ -745,12 +745,12 @@ if __name__ == "__main__":
         #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     # 回应诗歌
-    pages_music = [14]  # 假设音乐幻灯片是第4到第6页
+    pages_music = [13]  # 假设音乐幻灯片是第4到第6页
     #delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
-        video_file = f"{repository_music}\\4.mp4"  # 修改为实际视频文件路径
+        video_file = f"{repository_music}\\3.mp4"  # 修改为实际视频文件路径
         #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     #swap_slides(output_file, output_file, 12, 13)
@@ -782,18 +782,30 @@ if __name__ == "__main__":
     '''
 
     # 事工表
-    page_to_modify = 16
+    page_to_modify = 13
     show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify)
     replacements = {2: {2: {
-                            4: "", 
-                            5: ""
+                            4: "法语课 - 星期天", 
+                            5: "13:30-14:30",
                             },
                         4: {
-                            1: "",
-                            2: ""
+                            1: "旷野小组 – 星期三",
+                            2: "20:30-22:30"
+                        },
+                        5: {
+                            0: "                                                                                 ",
+                            1: "荒漠小组 – 星期四",
+                            2: "20:00-21:30 (线上)"
+                        },
+                        6: {
+                            1: "祷告会 - 星期六",
+                            2: "16:00-18:00",
+                            3: "",
+                            4: ""
                         },
                         7: {
+                            0: "",
                             1: "",
                             2: "",
                             3: "",
@@ -801,9 +813,9 @@ if __name__ == "__main__":
                         }
                         }
         }
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
-    delete_slides(output_file, output_file, list(range(17, 18)))  # 删除多余的事工表页，保留第一页事工表页
+    #delete_slides(output_file, output_file, list(range(10, 13)))  # 删除多余的事工表页，保留第一页事工表页
 
 
     # comptable
@@ -822,7 +834,7 @@ if __name__ == "__main__":
 
     '''
 
-    page_to_modify = 15
+    page_to_modify = 13
     month = 3
     #show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
