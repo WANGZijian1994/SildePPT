@@ -705,16 +705,18 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    #show_structure_one_page(output_file, page_to_modify)
-    date = "26/04/2026"
-    old_date = "19/04/2026"
+    show_structure_one_page(output_file, page_to_modify)
+    accueil = "接待 靳珊姐妹"
+    date = "03/05/2026"
+    old_date = "01/03/2026"
 
-    #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
+    replacements = {0: {4: {0: "", 1: f"                  {date}", 2: " 15h-17h"}}, 1: {0: {8: f"。\n\n                                {accueil}"}}}
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 2 领会
     page_to_modify = 2
-    name_linhui="吉娜姐妹"
-    replacements = {0: {0: {2: "提摩太前书", 4: "3:16"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "大哉！敬虔的奥秘，无人不以为然，就是；神在肉身显现,被圣灵称义,被天使看见,被传于外邦,被世人信服,被接在荣耀里。", 1: "", 2: ""}}}
+    name_linhui="周国莲姐妹"
+    replacements = {0: {0: {2: "提摩太前书", 4: "2:5"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "因为只有一位神，在神和人中间，只有一位中保，乃是降世为人的基督耶稣。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
@@ -729,7 +731,7 @@ if __name__ == "__main__":
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "         见证分享"}, 1: {0: "", 1: "3", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "圣洁与敬虔"}, 1: {0: "提摩太前书", 1: "4:1-16", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
     
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
@@ -743,10 +745,6 @@ if __name__ == "__main__":
         index = pages_music[i] - 3
         video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
         #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
-
-    # 回应诗歌
-    pages_music = [13]  # 假设音乐幻灯片是第4到第6页
-    #delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
@@ -782,8 +780,8 @@ if __name__ == "__main__":
     '''
 
     # 事工表
-    page_to_modify = 13
-    show_structure_one_page(output_file, page_to_modify)
+    page_to_modify = 18
+    #show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify)
     replacements = {2: {2: {
                             4: "法语课 - 星期天", 
@@ -813,40 +811,43 @@ if __name__ == "__main__":
                         }
                         }
         }
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     #delete_slides(output_file, output_file, list(range(10, 13)))  # 删除多余的事工表页，保留第一页事工表页
 
 
     # comptable
     '''
-三月份 财务报表
-余额4968.36
-奉献收入 720欧元
-教学费用 125欧元
-爱心扶助 100欧元
-宣教扶助 300欧元
-外来讲道 70欧元
-洗礼大毛巾 40 欧元
-爱宴 115.63欧元
+四月份财务报表
+上月余额 5177.16
+本月奉献收入 1025
 
-5177.16 + 720 - 125 - 100 - 300 - 70 - 40 - 115.63 = 4968.36
+爱心扶助 100（陈弟兄）
+教会厕所修理费 205.75
+爱宴费用 165.85
+宣教资助 300 （国莲）
+爱心资助 300（徐霞）
+法文教学费用 100
+外来证道费用 70
+本月余额 4961.06
+
+5177.16 + 1025 - 4961.06 = 1241.1
 
     '''
 
-    page_to_modify = 13
-    month = 3
+    page_to_modify = 19
+    month = 4
     #show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
     replacements = {1: {0: {1: f"信望爱基督之家{month}月财务报告", 2: ""}}, 
                                     2: {
                 0: {0: f"{month - 1}月份余额", 1: "5177.16欧元"},
-                1: {0: "", 1: f"  {month}月份奉献入账总额+720欧元   \n  {month}月份支出总额-761欧元"},
-                2: {0: "", 1: f"  支出明细 : \n  -爱心扶贫 100 欧元（陈弟兄）\n  -宣教赞助金 300欧元（约旦-国莲姐妹）\n  -洗礼大毛巾 40 欧元 \n  -教学费用 125欧元; -外来讲道 70欧元 \n  -主日爱宴 115.63欧元"},
+                1: {0: "", 1: f"  {month}月份奉献入账总额+1025欧元   \n  {month}月份支出总额-1241.1欧元"},
+                2: {0: "", 1: f"  支出明细 : \n  -爱心扶助 100 欧元（陈弟兄）\n  -教会厕所修理费 205.75欧元\n  -爱宴费用 165.85 \n  -教学费用 100欧元; -外来讲道 70欧元 \n  -爱心资助 300欧元（徐霞）;  -宣教资助 300欧元（国莲）"},
                 3: {0: "", 1: ""},
-                4: {0: f"{month}月份余额", 1: "4968.36欧元"}
+                4: {0: f"{month}月份余额", 1: "4961.06欧元"}
             }}
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=29, color=RGBColor(0, 0, 0))
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=30, color=RGBColor(0, 0, 0))
 
     #delete_slides(output_file, output_file, list(range(16, 20))+[21, 22])  # 删除多余的财务页，保留第一页财务页
   
@@ -855,17 +856,17 @@ if __name__ == "__main__":
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    #delete_slides(output_file, output_file, list(range(15, 16)))  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, list(range(11, 17)))  # 删除多余的经文页，保留第一页经文页
     #duplicate_slide(output_file, output_file, 10)  # 复制第一页经文页作为模板
-    page_to_modify = 11
+    page_to_modify = 10
     #show_structure_one_page(output_file, page_to_modify)
-    title = "提多书" 
-    chapter = 3
+    title = "提摩太前书" 
+    chapter = 4
     index_text = get_bibles.indexes[title]
     texts = [
         [title, chapter, 1, 5, get_bibles.get_bible_verses(index_text, chapter, 1, 5)],
         [title, chapter, 6, 10, get_bibles.get_bible_verses(index_text, chapter, 6, 10)],
-        [title, chapter, 11, 15, get_bibles.get_bible_verses(index_text, chapter, 11, 15)]
+        [title, chapter, 11, 16, get_bibles.get_bible_verses(index_text, chapter, 11, 16)]
     ]
     count = 0
     for text in texts:
@@ -914,5 +915,6 @@ if __name__ == "__main__":
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
         '''
+        
         
     #delete_slides(output_file, output_file, [15, 14, 10])  # 删除多余的经文页，保留第一页经文页
