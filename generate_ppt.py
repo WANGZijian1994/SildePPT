@@ -702,26 +702,49 @@ if __name__ == "__main__":
 
     info = read_pptx(output_file)
     
-    
     # 1 时间
     page_to_modify = 1
-    show_structure_one_page(output_file, page_to_modify)
+    #show_structure_one_page(output_file, page_to_modify)
     accueil = "接待 靳珊姐妹"
-    date = "03/05/2026"
+    date = "10/05/2026"
     old_date = "01/03/2026"
 
     replacements = {0: {4: {0: "", 1: f"                  {date}", 2: " 15h-17h"}}, 1: {0: {8: f"。\n\n                                {accueil}"}}}
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 2 领会
     page_to_modify = 2
-    name_linhui="周国莲姐妹"
-    replacements = {0: {0: {2: "提摩太前书", 4: "2:5"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "因为只有一位神，在神和人中间，只有一位中保，乃是降世为人的基督耶稣。", 1: "", 2: ""}}}
+
+
+
+
+
+    name_linhui="吉娜姐妹"
+    replacements = {0: {0: {2: "马太福音", 4: "1:24"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "约瑟醒了，起来，就遵着主使者的吩咐，把妻子娶过来，只是没有和她同房，等她生了儿子，就给他起名叫耶稣。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     page_to_modify = 3
     replacements = {2: {0: {0: "徐霞姐妹, 于福芬姐妹", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
@@ -731,7 +754,7 @@ if __name__ == "__main__":
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "圣洁与敬虔"}, 1: {0: "提摩太前书", 1: "4:1-16", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "默默无语的约瑟"}, 1: {0: "马太福音1:18-25;2:13-15;2:19-23 路加福音", 1: "2:1-7", 2: ""}, 2: {1: "周国莲姐妹", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
     
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
@@ -856,18 +879,20 @@ if __name__ == "__main__":
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    #delete_slides(output_file, output_file, list(range(11, 17)))  # 删除多余的经文页，保留第一页经文页
-    #duplicate_slide(output_file, output_file, 10)  # 复制第一页经文页作为模板
-    page_to_modify = 10
+    #delete_slides(output_file, output_file, list(range(15, 16)))  # 删除多余的经文页，保留第一页经文页
+    #duplicate_slide(output_file, output_file, 13)  # 复制第一页经文页作为模板
+    page_to_modify = 14
     #show_structure_one_page(output_file, page_to_modify)
-    title = "提摩太前书" 
-    chapter = 4
+    title = "路加福音" 
+    chapter = 2
     index_text = get_bibles.indexes[title]
+    
     texts = [
-        [title, chapter, 1, 5, get_bibles.get_bible_verses(index_text, chapter, 1, 5)],
-        [title, chapter, 6, 10, get_bibles.get_bible_verses(index_text, chapter, 6, 10)],
-        [title, chapter, 11, 16, get_bibles.get_bible_verses(index_text, chapter, 11, 16)]
+            [title, chapter, 1, 7, get_bibles.get_bible_verses(index_text, chapter, 1, 7)]
     ]
+
+    add_line = 6  # 每页最多显示6行经文，超过则添加新行
+    
     count = 0
     for text in texts:
         count += 1
@@ -903,18 +928,18 @@ if __name__ == "__main__":
         }
         
         '''
-        if text[3] - text[2] >= 5:
-            for j in range(5, text[3] - text[2] + 1):
-                replacements[4][4][2] += f" \n{str(i + j)}    " + (bibles[j] if len(bibles) > j else "")
-        '''
-
+        if text[3] - text[2] >= add_line:
+            for j in range(add_line, text[3] - text[2] + 1):
+                replacements[4][add_line][2] += f" \n{str(i + j)}    " + (bibles[j] if len(bibles) > j else "")
         
-        '''
-        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize=34, size = True, color=RGBColor(0, 0, 0))
+        
+        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize=32, size = True, color=RGBColor(0, 0, 0))
         if count < len(texts):
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
         '''
         
         
-    #delete_slides(output_file, output_file, [15, 14, 10])  # 删除多余的经文页，保留第一页经文页
+        
+        
+    #delete_slides(output_file, output_file, [15])  # 删除多余的经文页，保留第一页经文页

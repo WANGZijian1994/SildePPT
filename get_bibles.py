@@ -12,6 +12,7 @@ indexes = {
     "哥林多前书": "1CO",
     "提多书": "TIT",
     "提摩太前书": "1TI",
+    "马太福音": "MAT"
 }
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
