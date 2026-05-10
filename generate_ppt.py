@@ -715,10 +715,6 @@ if __name__ == "__main__":
     # 2 领会
     page_to_modify = 2
 
-
-
-
-
     name_linhui="吉娜姐妹"
     replacements = {0: {0: {2: "马太福音", 4: "1:24"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "约瑟醒了，起来，就遵着主使者的吩咐，把妻子娶过来，只是没有和她同房，等她生了儿子，就给他起名叫耶稣。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
@@ -726,25 +722,6 @@ if __name__ == "__main__":
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     page_to_modify = 3
     replacements = {2: {0: {0: "徐霞姐妹, 于福芬姐妹", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
@@ -761,13 +738,13 @@ if __name__ == "__main__":
 
     # musics
     pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第6页
-    #delete_slides(output_file, output_file, pages_music)
+    delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
         index = pages_music[i] - 3
         video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
-        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     
     for i in range(0, len(pages_music)):
