@@ -706,8 +706,7 @@ if __name__ == "__main__":
     page_to_modify = 1
     #show_structure_one_page(output_file, page_to_modify)
     accueil = "接待 靳珊姐妹"
-    date = "10/05/2026"
-    old_date = "01/03/2026"
+    date = "17/05/2026"
 
     replacements = {0: {4: {0: "", 1: f"                  {date}", 2: " 15h-17h"}}, 1: {0: {8: f"。\n\n                                {accueil}"}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
@@ -715,15 +714,15 @@ if __name__ == "__main__":
     # 2 领会
     page_to_modify = 2
 
-    name_linhui="吉娜姐妹"
-    replacements = {0: {0: {2: "马太福音", 4: "1:24"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "约瑟醒了，起来，就遵着主使者的吩咐，把妻子娶过来，只是没有和她同房，等她生了儿子，就给他起名叫耶稣。", 1: "", 2: ""}}}
+    name_linhui="徐霞姐妹"
+    replacements = {0: {0: {2: "以赛亚书", 4: "12:2"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "神是我的拯救；我要倚靠他，并不惧怕。因为主耶和华是我的力量，是我的诗歌，他也成了我的拯救。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
-    replacements = {2: {0: {0: "徐霞姐妹, 于福芬姐妹", 1: ""}}}
+    replacements = {2: {0: {0: "巩象学弟兄, 韩翠英姐妹 \n周国莲宣教士", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
@@ -731,21 +730,22 @@ if __name__ == "__main__":
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "默默无语的约瑟"}, 1: {0: "马太福音1:18-25;2:13-15;2:19-23 路加福音", 1: "2:1-7", 2: ""}, 2: {1: "周国莲姐妹", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "生命的应许"}, 1: {0: "提摩太后书1章1-18节", 1: "", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
     
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # musics
     pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第6页
-    delete_slides(output_file, output_file, pages_music)
+    #delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
         index = pages_music[i] - 3
         video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
-        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
+    #pages_music = [16]  # 假设音乐幻灯片是第7到第8页
     
     for i in range(0, len(pages_music)):
         video_file = f"{repository_music}\\3.mp4"  # 修改为实际视频文件路径
@@ -858,14 +858,16 @@ if __name__ == "__main__":
     
     #delete_slides(output_file, output_file, list(range(15, 16)))  # 删除多余的经文页，保留第一页经文页
     #duplicate_slide(output_file, output_file, 13)  # 复制第一页经文页作为模板
-    page_to_modify = 14
+    page_to_modify = 10
     #show_structure_one_page(output_file, page_to_modify)
-    title = "路加福音" 
-    chapter = 2
+    title = "提摩太后书" 
+    chapter = 1
     index_text = get_bibles.indexes[title]
     
     texts = [
-            [title, chapter, 1, 7, get_bibles.get_bible_verses(index_text, chapter, 1, 7)]
+            [title, chapter, 1, 6, get_bibles.get_bible_verses(index_text, chapter, 1, 6)],
+            [title, chapter, 7, 12, get_bibles.get_bible_verses(index_text, chapter, 7, 12)],
+            [title, chapter, 13, 18, get_bibles.get_bible_verses(index_text, chapter, 13, 18)],
     ]
 
     add_line = 6  # 每页最多显示6行经文，超过则添加新行
@@ -919,4 +921,5 @@ if __name__ == "__main__":
         
         
         
-    #delete_slides(output_file, output_file, [15])  # 删除多余的经文页，保留第一页经文页
+        
+    #delete_slides(output_file, output_file, [13, 14, 15, 17])  # 删除多余的经文页，保留第一页经文页
