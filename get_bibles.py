@@ -13,7 +13,10 @@ indexes = {
     "提多书": "TIT",
     "提摩太前书": "1TI",
     "提摩太后书": "2TI",
-    "马太福音": "MAT"
+    "马太福音": "MAT",
+    "以赛亚书": "ISA",
+    "箴言": "PRO",
+    "诗篇": "PSA",
 }
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
