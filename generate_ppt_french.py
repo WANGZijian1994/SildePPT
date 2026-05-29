@@ -746,7 +746,7 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "17/05/2026 \n"
+    date = "31/05/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
@@ -759,13 +759,13 @@ if __name__ == "__main__":
 
     book_zh = "约翰福音"      # 路加福音
     book_fr = ""
-    chapter_num = 3    # 第3章
+    chapter_num = 1    # 第1章
     start = 18          # 第18节
     end = 18           # 到第18节
     title = get_bibles.indexes[book_zh]
 
     #show_structure_one_page(output_file, page_to_modify)
-    text = f"\n约翰福音3: {start}"+ get_bibles.get_bible_verses(title, chapter_num, start, end)[0] 
+    text = f"\n约翰福音1: {start}"+ get_bibles.get_bible_verses(title, chapter_num, start, end)[0] 
     #text = "\n约翰福音1:14 "
     #text_fr = "\nHeureux qui trouve la sagesse, qui accède à la raison !C'est une bonne affaire, meilleure qu'une affaire d'argent, plus rentable que l'or."
     remplacements = {0: {3: {1: text, 2: ""}, 4: {1: "", 2: ""}}}
