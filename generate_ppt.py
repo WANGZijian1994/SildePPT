@@ -718,32 +718,32 @@ if __name__ == "__main__":
     replacements = {0: {0: {2: "提摩太前书", 4: "6:19"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "为自己积成美好的根基，预备将来，叫他们持定那真正的生命。 感谢主！", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
     replacements = {2: {0: {0: "周国莲姐妹, 韩翠英姐妹,\n巩象学弟兄, 宋利忠弟兄", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
 
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "         见证分享"}, 1: {0: "", 1: "", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "       看哪，主必快来！"}, 1: {0: "提摩太后书4章", 1: "", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
     
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # musics
     pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第6页
-    delete_slides(output_file, output_file, pages_music)
+    #delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
         index = pages_music[i] - 3
         video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
-        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     #delete_slides(output_file, output_file, [14, 15])  # 删除原有的音乐页
     pages_music = [14]  # 假设音乐幻灯片是第7到第8页
@@ -926,4 +926,4 @@ if __name__ == "__main__":
         
         
         
-    delete_slides(output_file, output_file, [10, 11, 12, 13, 14])  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, [10, 11, 12, 13, 14])  # 删除多余的经文页，保留第一页经文页
