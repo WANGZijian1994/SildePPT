@@ -705,24 +705,32 @@ if __name__ == "__main__":
     # 1 时间
     page_to_modify = 1
     #show_structure_one_page(output_file, page_to_modify)
-    accueil = "接待 丁建波弟兄"
-    date = "31/05/2026"
+    accueil = "接待 巩象学弟兄"
+    date = "14/06/2026"
 
     replacements = {0: {4: {0: "", 1: f"                  {date}", 2: " 15h-17h"}}, 1: {0: {8: f"。\n\n                                {accueil}"}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+
+    # 代祷事项
+    replacements = {3: {0: {4: "", 6: "", 8: "", 9: ""}}, 4: {1: {0: "", 2: "教会代祷事项报告"}, 2: {0: "", 1: "", 2: ""}, 
+                                                              3: {0: "1", 1: "信望爱基督之家开始向法国政府申请成立教会\n(合法申请人:吉娜姐妹,周国莲姐妹,徐霞姐妹)", },
+                                                              4: {0: "2", 1: "周国莲姐妹从2026年6月1日正式开始在信望爱基督之家的传道人实习", 2: ""},
+                                                              5: {0: "", 1: "", 2: ""}}}
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, 10, replacements)
+    swap_slides(output_file, output_file, 9, 10)
 
     # 2 领会
     page_to_modify = 2
 
     name_linhui="吉哪姐妹"
-    replacements = {0: {0: {2: "提摩太前书", 4: "6:19"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "为自己积成美好的根基，预备将来，叫他们持定那真正的生命。 感谢主！", 1: "", 2: ""}}}
+    replacements = {0: {0: {2: "路加福音", 4: "9:24"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "因为凡要救自己生命的，必丧掉生命:凡为我丧掉生命的，必救了生命。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
-    replacements = {2: {0: {0: "周国莲姐妹, 韩翠英姐妹,\n巩象学弟兄, 宋利忠弟兄", 1: ""}}}
+    replacements = {2: {0: {0: "徐霞姐妹, 韩翠英姐妹,", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
@@ -730,10 +738,10 @@ if __name__ == "__main__":
     # 主日证道
     page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "       看哪，主必快来！"}, 1: {0: "提摩太后书4章", 1: "", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "       遇见赐生命的主"}, 1: {0: "路加福音7：11-17", 1: "", 2: ""}, 2: {1: "周国莲宣教士", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
     
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # musics
     pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第6页
@@ -859,23 +867,17 @@ if __name__ == "__main__":
     
     #delete_slides(output_file, output_file, list(range(15, 16)))  # 删除多余的经文页，保留第一页经文页
     #duplicate_slide(output_file, output_file, 13)  # 复制第一页经文页作为模板
-    page_to_modify = 12
+    page_to_modify = 11
     #show_structure_one_page(output_file, page_to_modify)
-    title = "以赛亚书" 
-    chapter = 21
+    title = "路加福音" 
+    chapter = 7
     index_text = get_bibles.indexes[title]
     
     texts = [
-            [title, chapter, 11, 18, get_bibles.get_bible_verses(index_text, chapter, 11, 18)],
-            [title, chapter, 19, 24, get_bibles.get_bible_verses(index_text, chapter, 19, 24)],
+            [title, chapter, 11, 17, get_bibles.get_bible_verses(index_text, chapter, 11, 17)]
     ]
 
-    texts = [
-            ["以赛亚书", 30, 21, 21, get_bibles.get_bible_verses(get_bibles.indexes["以赛亚书"], 30, 21, 21)],
-            #["箴言", 14, 21, 21, get_bibles.get_bible_verses(get_bibles.indexes["箴言"], 14, 21, 21)]
-    ]
-
-    add_line = 6  # 每页最多显示6行经文，超过则添加新行
+    add_line = 7  # 每页最多显示6行经文，超过则添加新行
     
     count = 0
     for text in texts:
@@ -922,7 +924,6 @@ if __name__ == "__main__":
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
         '''
-        
         
         
         
