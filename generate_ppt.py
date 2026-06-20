@@ -706,10 +706,10 @@ if __name__ == "__main__":
     page_to_modify = 1
     #show_structure_one_page(output_file, page_to_modify)
     accueil = "接待 巩象学弟兄"
-    date = "14/06/2026"
+    date = "21/06/2026"
 
     replacements = {0: {4: {0: "", 1: f"                  {date}", 2: " 15h-17h"}}, 1: {0: {8: f"。\n\n                                {accueil}"}}}
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 代祷事项
     replacements = {3: {0: {4: "", 6: "", 8: "", 9: ""}}, 4: {1: {0: "", 2: "教会代祷事项报告"}, 2: {0: "", 1: "", 2: ""}, 
@@ -717,48 +717,46 @@ if __name__ == "__main__":
                                                               4: {0: "2", 1: "周国莲姐妹从2026年6月1日正式开始在信望爱基督之家的传道人实习", 2: ""},
                                                               5: {0: "", 1: "", 2: ""}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, 10, replacements)
-    swap_slides(output_file, output_file, 9, 10)
-
     # 2 领会
     page_to_modify = 2
 
-    name_linhui="吉哪姐妹"
-    replacements = {0: {0: {2: "路加福音", 4: "9:24"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "因为凡要救自己生命的，必丧掉生命:凡为我丧掉生命的，必救了生命。", 1: "", 2: ""}}}
+    name_linhui="周国莲宣教士"
+    replacements = {0: {0: {2: "帖前", 4: "4:1"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "弟兄们，我还有话说:我们靠着主耶稣里面求你们、劝你们，你们既然受了我们的教训，知道该怎样行，可以讨神的喜悦，就要照你们现在所行的，更加勉励", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
-    replacements = {2: {0: {0: "徐霞姐妹, 韩翠英姐妹,", 1: ""}}}
+    replacements = {2: {0: {0: "徐霞姐妹, 宋利忠弟兄", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
 
 
     # 主日证道
-    page_to_modify = 9
+    page_to_modify = 10
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "       遇见赐生命的主"}, 1: {0: "路加福音7：11-17", 1: "", 2: ""}, 2: {1: "周国莲宣教士", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
-    #replacements = {1: {0: {0: "", 1: ""}}, 3: {0: {0: "         见证分享"}, 1: {0: "  ", 1: "", 2: ""}, 2: {1: "", 2: "", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "       （圣）属神的与（俗）属世的"}, 1: {0: "帖撒罗尼迦前书4章", 1: "", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    #replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "       "}, 1: {0: "路加福音7：11-17", 1: "", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # musics
     pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第6页
-    #delete_slides(output_file, output_file, pages_music)
+    delete_slides(output_file, output_file, pages_music)
 
     
     for i in range(0, len(pages_music)):
         index = pages_music[i] - 3
         video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
-        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
-    #delete_slides(output_file, output_file, [14, 15])  # 删除原有的音乐页
-    pages_music = [14]  # 假设音乐幻灯片是第7到第8页
+    delete_slides(output_file, output_file, [12])  # 删除原有的音乐页
+    pages_music = [12]  # 假设音乐幻灯片是第7到第8页
     
     for i in range(0, len(pages_music)):
         video_file = f"{repository_music}\\3.mp4"  # 修改为实际视频文件路径
-        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     #swap_slides(output_file, output_file, 12, 13)
 
@@ -869,12 +867,14 @@ if __name__ == "__main__":
     #duplicate_slide(output_file, output_file, 13)  # 复制第一页经文页作为模板
     page_to_modify = 11
     #show_structure_one_page(output_file, page_to_modify)
-    title = "路加福音" 
-    chapter = 7
+    title = "帖撒罗尼迦前书" 
+    chapter = 4
     index_text = get_bibles.indexes[title]
     
     texts = [
-            [title, chapter, 11, 17, get_bibles.get_bible_verses(index_text, chapter, 11, 17)]
+            [title, chapter, 1, 6, get_bibles.get_bible_verses(index_text, chapter, 1, 6)],
+            [title, chapter, 7, 12, get_bibles.get_bible_verses(index_text, chapter, 7, 12)],
+            [title, chapter, 13, 18, get_bibles.get_bible_verses(index_text, chapter, 13, 18)]
     ]
 
     add_line = 7  # 每页最多显示6行经文，超过则添加新行
@@ -913,7 +913,7 @@ if __name__ == "__main__":
             }
         }
         
-        '''
+        
         if text[3] - text[2] >= add_line:
             for j in range(add_line, text[3] - text[2] + 1):
                 replacements[4][add_line][2] += f" \n{str(i + j)}    " + (bibles[j] if len(bibles) > j else "")
@@ -923,7 +923,7 @@ if __name__ == "__main__":
         if count < len(texts):
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
-        '''
+        
         
         
         

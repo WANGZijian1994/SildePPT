@@ -17,6 +17,8 @@ indexes = {
     "以赛亚书": "ISA",
     "箴言": "PRO",
     "诗篇": "PSA",
+    "帖撒罗尼迦前书": "1TH",
+    "帖撒罗尼迦后书": "2TH",
 }
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
