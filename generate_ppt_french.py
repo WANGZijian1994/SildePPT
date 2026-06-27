@@ -746,7 +746,7 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "21/06/2026 \n"
+    date = "28/06/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
@@ -757,16 +757,16 @@ if __name__ == "__main__":
     page_to_modify = 2
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
 
-    book_zh = "约翰福音"      # 路加福音
+    book_zh = "诗篇"      # 路加福音
     book_fr = ""
-    chapter_num = 15    # 第1章
-    start = 7          # 第18节
-    end = 7            # 到第18节
+    chapter_num = 5    # 第1章
+    start = 11          # 第18节
+    end = 11            # 到第18节
     title = get_bibles.indexes[book_zh]
 
     #show_structure_one_page(output_file, page_to_modify)
-    text = f"\n约翰福音15: {start}"+ get_bibles.get_bible_verses(title, chapter_num, start, end)[0] 
-    text = "\n如经上所记、『 神为爱他的人所预备的、是眼睛未曾看见、耳朵未曾听见、人心也未曾想到的。』"
+    text = f"\n诗篇5:11: {start}"+ get_bibles.get_bible_verses(title, chapter_num, start, end)[0] 
+    text = "\n诗篇5:11: 凡投靠你的、愿他们喜乐、时常欢呼、因为你护庇他们。又愿那爱你名的人、都靠你欢欣。"
     #text_fr = "\nHeureux qui trouve la sagesse, qui accède à la raison !C'est une bonne affaire, meilleure qu'une affaire d'argent, plus rentable que l'or."
     remplacements = {0: {3: {1: text, 2: ""}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
