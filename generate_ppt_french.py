@@ -746,7 +746,7 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "28/06/2026 \n"
+    date = "05/07/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
@@ -766,7 +766,7 @@ if __name__ == "__main__":
 
     #show_structure_one_page(output_file, page_to_modify)
     text = f"\n诗篇5:11: {start}"+ get_bibles.get_bible_verses(title, chapter_num, start, end)[0] 
-    text = "\n诗篇5:11: 凡投靠你的、愿他们喜乐、时常欢呼、因为你护庇他们。又愿那爱你名的人、都靠你欢欣。"
+    text = "\n神借我们所传的福音、召你们到这地步、好得着我们主耶稣基督的荣光。"
     #text_fr = "\nHeureux qui trouve la sagesse, qui accède à la raison !C'est une bonne affaire, meilleure qu'une affaire d'argent, plus rentable que l'or."
     remplacements = {0: {3: {1: text, 2: ""}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)

@@ -705,86 +705,101 @@ if __name__ == "__main__":
     # 1 时间
     page_to_modify = 1
     #show_structure_one_page(output_file, page_to_modify)
-    accueil = "接待 宋利忠弟兄"
-    date = "28/06/2026"
+    accueil = "接待 巩象学弟兄"
+    date = "05/07/2026"
 
     replacements = {0: {4: {0: "", 1: f"                  {date}", 2: " 15h-17h"}}, 1: {0: {8: f"。\n\n                                {accueil}"}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 代祷事项
+    page_to_modify = 16
+    #show_structure_one_page(output_file, page_to_modify)
     replacements = {3: {0: {4: "", 6: "", 8: "", 9: ""}}, 4: {1: {0: "", 2: "教会代祷事项报告"}, 2: {0: "", 1: "", 2: ""}, 
                                                               3: {0: "1", 1: "信望爱基督之家开始向法国政府申请成立教会\n(合法申请人:吉娜姐妹,周国莲姐妹,徐霞姐妹)", },
-                                                              4: {0: "2", 1: "周国莲姐妹从2026年6月1日正式开始在信望爱基督之家的传道人实习", 2: ""},
+                                                              4: {0: "2", 1: "周国莲姐妹从2026年6月1日正式开始在信望爱基督之家的传道人实习 \n3.为教会的慕道友:金辉、张娟娟、丁建波、信祖生、白建亮、王子健、刘克辉，卜香峰，愿神的灵感动他们，让他们得着宝贵的救恩。\n4.为教会还在等待申请或延期居留的弟兄姐妹们祷告，求神预备，在这件事情上彰显神的荣耀。\n4.为那些还在找工作的弟兄姐妹们祷告。求神预备，并赐给他们合适的工作，能够安心生活在法国。\n5.为陈忠勇弟兄，宋立忠弟兄祷告，求神医治他们的身体，使他们快快的得到康复。\n6.徐霞姐妹家的小旋风belle 飞丢了一周 祈祷主把它引领回到家", 2: ""},
                                                               5: {0: "", 1: "", 2: ""}}}
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, 10, replacements)
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=26, color=RGBColor(0, 0, 0))
     # 2 领会
     page_to_modify = 2
 
-    name_linhui="吳兴隆弟兄"
-    replacements = {0: {0: {2: "以赛亚书", 4: "48:18"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "甚愿你素来听从我的命令，你的平安就如河水，你的公义就如海浪。", 1: "", 2: ""}}}
+    name_linhui="周国莲宣教士"
+    replacements = {0: {0: {2: "罗马书", 4: "5:10"}}, 1: {0: {2: name_linhui}}, 2: {0: {0: "因为我们作仇敌的时候，且藉着神儿子的死，得与神和好；既已和好，就更要因他的生得救了。", 1: "", 2: ""}}}
     # update_slide_text(output_file, output_file, page_to_modify, {old_name: new_name})
     #set_pptx_page_texts(output_file, output_file, page_to_modify, replacements) 
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # 3 敬拜
     page_to_modify = 3
-    replacements = {2: {0: {0: "徐霞姐妹, 唐京会弟兄", 1: ""}}}
+    replacements = {2: {0: {0: "徐霞姐妹, 宋利忠弟兄", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)  
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+
+    # musics + 诗班
+    pages_music = [4,5,6,8]  # 假设音乐幻灯片是第4到第6页
+    #delete_slides(output_file, output_file, pages_music)  # 删除原有的音乐页
+    
+    for i in range(0, len(pages_music)):
+        if i < 3:
+            index = pages_music[i] - 3
+            video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
+            #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=(pages_music[i]))
+        else:
+            index = pages_music[i] - 4
+            video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
+            #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=(pages_music[i]))
+
+    # 诗班献诗
+    page_to_modify = 7
+    replacements = {0: {0: {1: "诗班献诗"}}, 1: {0: {0: "                    炼我俞精"}}, 2: {0: {0: "徐霞  韩翠英 姐妹\n巩象学 宋利忠弟兄", 1: ""}}}
+
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+
+    #insert_fullscreen_video_slide(output_file, output_file, f"{repository_music}\\4.mp4", insert_position=8)
+    
 
 
     # 主日证道
-    page_to_modify = 10
+    page_to_modify = 9
     #show_structure_one_page(output_file, page_to_modify)
-    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "       人的尽头，神的起头"}, 1: {0: "马可福音5:21-43", 1: "", 2: ""}, 2: {1: "周国莲宣教士", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
+    replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "       信从虚谎与信服真道"}, 1: {0: "帖后2章", 1: "", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     #replacements = {1: {0: {0: "主日证道"}}, 3: {0: {0: "       "}, 1: {0: "路加福音7：11-17", 1: "", 2: ""}, 2: {1: "吴兴隆弟兄", 2: f"分享 {name_linhui}回应", 3: "", 4: ""}}}
     
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
-    # musics
-    pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第6页
-    #delete_slides(output_file, output_file, pages_music)
-
-    
-    for i in range(0, len(pages_music)):
-        index = pages_music[i] - 3
-        video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
-        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
-
-    delete_slides(output_file, output_file, [14])  # 删除原有的音乐页
+    # 回应
+    #delete_slides(output_file, output_file, [14])  # 删除原有的音乐页
     pages_music = [14]  # 假设音乐幻灯片是第7到第8页
     
     for i in range(0, len(pages_music)):
-        video_file = f"{repository_music}\\3.mp4"  # 修改为实际视频文件路径
-        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
+        video_file = f"{repository_music}\\4.mp4"  # 修改为实际视频文件路径
+        #insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=pages_music[i])
 
     #swap_slides(output_file, output_file, 12, 13)
 
-    # 鼓励劝勉
-    page_to_modify = 16
+    # 圣餐
+    #delete_slides(output_file, output_file, [15])  # 删除原有的圣餐页
+    #duplicate_slide(output_file, output_file, 14)  # 复制圣餐页作为模板
+    page_to_modify = 15
     #show_structure_one_page(output_file, page_to_modify)
 
-    replacements = {1: {0: {1: "鼓励劝勉 贴前 2:4", 2: ""}}, 
-                                    2: {
-                0: {0: "", 1: ""},
-                1: {0: "", 1: ""},
-                2: {0: "但神既然验中了我们，把福音托付我们，我们就照样讲，不是要讨人喜欢，乃是要讨那察验我们心的神喜欢。", 1: ""},
-                3: {0: "", 1: ""},
-                4: {0: "", 1: ""}
-            }}
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=45)
+    replacements = {
+        3: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "", 9: "                            圣餐"}},
+        4: {
+            0: {0: "", 1: "", 2: ""},
+            1: {0: "" , 2: ""},
+            2: {0: "" , 2: ""},
+            3: {0: "", 1: "耶稣说：“我就是生命的粮。到我这里来的，必定不饿；信我的，也必永远不渴。”", 2: ""},
+            4: {0: "", 1: "", 2: ""},
+            5: {0: "", 1: "", 2: ""},
+            6: {0: "", 1: "", 2: ""},
+            7: {0: "", 1: "", 2: ""},
+            8: {0: "", 1: "", 2: ""}
+        }
+    }
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=50, color=RGBColor(0, 0, 0))
 
-    # 圣餐
-    #delete_slides(output_file, output_file, [17])  # 删除多余的圣餐页，保留第一页圣餐页
-    '''
-11:23 我当日传给你们的，原是从主领受的，就是主耶稣被卖的那一夜，拿起饼来，
+    #insert_fullscreen_video_slide(output_file, output_file, f"{repository_music}\\6.mp4", insert_position=16)
 
-11:24 祝谢了，就擘开，说：“这是我的身体，为你们舍的（注：“舍”有古卷作“擘开”）。你们应当如此行，为的是纪念我。”
-
-11:25 饭后，也照样拿起杯来，说：“这杯是用我的血所立的新约。你们每逢喝的时候，要如此行，为的是纪念我。”
-
-11:26 你们每逢吃这饼，喝这杯，是表明主的死，直等到他来。
-    '''
 
     # 事工表
     page_to_modify = 18
@@ -842,19 +857,17 @@ if __name__ == "__main__":
 
     '''
 
-    page_to_modify = 19
-    month = 4
+    # 财务报表
+    #duplicate_slide(output_file, output_file, 16)  # 复制第一页财务页作为模板
+    page_to_modify = 18
+    month = 6
     #show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
-    replacements = {1: {0: {1: f"信望爱基督之家{month}月财务报告", 2: ""}}, 
-                                    2: {
-                0: {0: f"{month - 1}月份余额", 1: "5177.16欧元"},
-                1: {0: "", 1: f"  {month}月份奉献入账总额+1025欧元   \n  {month}月份支出总额-1241.1欧元"},
-                2: {0: "", 1: f"  支出明细 : \n  -爱心扶助 100 欧元（陈弟兄）\n  -教会厕所修理费 205.75欧元\n  -爱宴费用 165.85 \n  -教学费用 100欧元; -外来讲道 70欧元 \n  -爱心资助 300欧元（徐霞）;  -宣教资助 300欧元（国莲）"},
-                3: {0: "", 1: ""},
-                4: {0: f"{month}月份余额", 1: "4961.06欧元"}
-            }}
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=30, color=RGBColor(0, 0, 0))
+    replacements = {3: {0: {4: "", 6: "", 8: "", 9: ""}}, 4: {1: {0: "", 2: f"信望爱基督之家{month}月财务报告"}, 2: {0: f"{month - 1}月份余额 5639.26", 1: "", 2: ""}, 
+                                                              3: {0: f"{month}收入", 1: "奉献收入 1075欧元", },
+                                                              4: {0: f"{month}支出", 1: "法文教学费用 125 欧元 爱心援助费用100欧元\n爱心助教费用600欧元 教会周年庆祝462.26欧元\n教会打印墨水73.97欧元 教会爱宴106.01欧元", 2: ""},
+                                                              5: {0: f"{month}月份余额", 1: " 5247.02欧元", 2: ""}}}
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=33, color=RGBColor(0, 0, 0))
 
     #delete_slides(output_file, output_file, list(range(16, 20))+[21, 22])  # 删除多余的财务页，保留第一页财务页
   
@@ -867,18 +880,17 @@ if __name__ == "__main__":
     #duplicate_slide(output_file, output_file, 13)  # 复制第一页经文页作为模板
     page_to_modify = 10
     #show_structure_one_page(output_file, page_to_modify)
-    title = "马可福音" 
-    chapter = 5
+    title = "帖撒罗尼迦后书" 
+    chapter = 2
     index_text = get_bibles.indexes[title]
     
     texts = [
-            [title, chapter, 21, 26, get_bibles.get_bible_verses(index_text, chapter, 21, 26)],
-            [title, chapter, 27, 33, get_bibles.get_bible_verses(index_text, chapter, 27, 33)],
-            [title, chapter, 34, 38, get_bibles.get_bible_verses(index_text, chapter, 34, 38)],
-            [title, chapter, 39, 43, get_bibles.get_bible_verses(index_text, chapter, 39, 43)],
+            [title, chapter, 1, 6, get_bibles.get_bible_verses(index_text, chapter, 1, 6)],
+            [title, chapter, 7, 12, get_bibles.get_bible_verses(index_text, chapter, 7, 12)],
+            [title, chapter, 13, 17, get_bibles.get_bible_verses(index_text, chapter, 13, 17)]
     ]
 
-    add_line = 7  # 每页最多显示6行经文，超过则添加新行
+    add_line = 6  # 每页最多显示6行经文，超过则添加新行
     
     count = 0
     for text in texts:
@@ -914,16 +926,17 @@ if __name__ == "__main__":
             }
         }
         
-        
+        '''
         if text[3] - text[2] >= add_line:
             for j in range(add_line, text[3] - text[2] + 1):
                 replacements[4][add_line][2] += f" \n{str(i + j)}    " + (bibles[j] if len(bibles) > j else "")
         
-        '''
+        
         set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize=32, size = True, color=RGBColor(0, 0, 0))
         if count < len(texts):
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
         '''
+        
          
     #delete_slides(output_file, output_file, [10, 11, 12, 13, 14])  # 删除多余的经文页，保留第一页经文页
