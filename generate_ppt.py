@@ -732,7 +732,7 @@ if __name__ == "__main__":
     page_to_modify = 3
     replacements = {2: {0: {0: "徐霞姐妹, 宋利忠弟兄", 1: ""}}}
     #show_structure_one_page(output_file, page_to_modify)
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
 
     # musics + 诗班
     pages_music = [4,5,6,8]  # 假设音乐幻灯片是第4到第6页
@@ -796,7 +796,7 @@ if __name__ == "__main__":
             8: {0: "", 1: "", 2: ""}
         }
     }
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=50, color=RGBColor(0, 0, 0))
+    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=50, color=RGBColor(0, 0, 0))
 
     #insert_fullscreen_video_slide(output_file, output_file, f"{repository_music}\\6.mp4", insert_position=16)
 
