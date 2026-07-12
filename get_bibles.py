@@ -21,6 +21,9 @@ indexes = {
     "帖撒罗尼迦后书": "2TH",
     "马可福音": "MRK",
     "腓立比书": "PHP",
+    "约翰一书": "1JN",
+    "约翰二书": "2JN",
+    "启示录": "REV",
 }
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
