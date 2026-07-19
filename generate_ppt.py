@@ -702,15 +702,15 @@ def set_new_time(output_file, acceuil, date, page_to_modify=1):
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
     return output_file
 
-def set_daidao(page_to_modify, output_file, daidao_text):
+def set_daidao(page_to_modify, output_file, daidao_text, resize=23):
     """
     3.为教会的慕道友:金辉、张娟娟、丁建波、信祖生、白建亮、王子健、刘克辉，卜香峰，愿神的灵感动他们，让他们得着宝贵的救恩。\n4.为教会还在等待申请或延期居留的弟兄姐妹们祷告，求神预备，在这件事情上彰显神的荣耀。\n4.为那些还在找工作的弟兄姐妹们祷告。求神预备，并赐给他们合适的工作，能够安心生活在法国。\n5.为陈忠勇弟兄，宋立忠弟兄祷告，求神医治他们的身体，使他们快快的得到康复。\n6.徐霞姐妹家的小旋风belle 飞丢了一周 祈祷主把它引领回到家
     """
     replacements = {3: {0: {4: "", 6: "", 8: "", 9: ""}}, 4: {1: {0: "", 2: "教会代祷事项报告"}, 2: {0: "", 1: "", 2: ""}, 
-                                                              3: {0: "1", 1: "信望爱基督之家开始向法国政府申请成立教会\n(合法申请人:吉娜姐妹,周国莲姐妹,徐霞姐妹)", },
+                                                              3: {0: "1", 1: "信望爱基督之家向法国政府申请成立会的事已经通过了，感谢赞美主，为接下来开银行帐户等事项请继续代祷。愿神亲自成就祂的旨意。", },
                                                               4: {0: "2", 1: f"周国莲姐妹从2026年6月1日正式开始在信望爱基督之家的传道人实习 \n{daidao_text}", 2: ""},
                                                               5: {0: "", 1: "", 2: ""}}}
-    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=26, color=RGBColor(0, 0, 0))
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=resize, color=RGBColor(0, 0, 0))
     return output_file
 
 def set_xuanzhao(output_file, name_linhui, titre, index, xuanzhao_text, page_to_modify=2):
@@ -732,7 +732,7 @@ def set_jinbai_shiban(output_file, jinbai_text, shiban_title,shiban_text, if_shi
         set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
     return output_file
 
-def add_music(output_file, repository_music, page_huiyin, if_shiban=True):
+def add_music(output_file, repository_music, page_huiyin, if_shiban=True, add_hui_ying=True):
     # musics 
     pages_music = [4,5,6]  # 假设音乐幻灯片是第4到第6页
     delete_slides(output_file, output_file, pages_music)  # 删除原有的音乐页
@@ -751,12 +751,13 @@ def add_music(output_file, repository_music, page_huiyin, if_shiban=True):
             video_file = f"{repository_music}\\{index}.mp4"  # 修改为实际视频文件路径
             insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=(pages_music[i]))
 
-    pages_music = [page_huiyin]  # 假设音乐幻灯片是第4到第6页
-    delete_slides(output_file, output_file, pages_music)  # 删除原有的音乐页
-    
-    for i in range(0, len(pages_music)):
-        video_file = f"{repository_music}\\4.mp4"  # 修改为实际视频文件路径
-        insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=(pages_music[i]))
+    if add_hui_ying:
+        pages_music = [page_huiyin]  # 假设音乐幻灯片是第4到第6页
+        delete_slides(output_file, output_file, pages_music)  # 删除原有的音乐页
+        
+        for i in range(0, len(pages_music)):
+            video_file = f"{repository_music}\\3.mp4"  # 修改为实际视频文件路径
+            insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=(pages_music[i]))
     
     return output_file
 
@@ -783,35 +784,35 @@ if __name__ == "__main__":
     info = read_pptx(output_file)
     
     # 1 时间 + 接待
-    #output_file = set_new_time(output_file, "宋利忠弟兄", "12/07/2026", page_to_modify=1)
+    #output_file = set_new_time(output_file, "韩翠英姐妹", "19/07/2026", page_to_modify=1)
     # 代祷事项
-    daidao_text = "3.为教会的慕道友:金辉、张娟娟、丁建波、信祖生、白建亮、王子健、刘克辉，卜香峰，愿神的灵感动他们，让他们得着宝贵的救恩。\n4.为教会还在等待申请或延期居留的弟兄姐妹们祷告，求神预备，在这件事情上彰显神的荣耀。\n5.为那些还在找工作的弟兄姐妹们祷告。求神预备，并赐给他们合适的工作，能够安心生活在法国。\n6.为陈忠勇弟兄，宋立忠弟兄祷告，求神医治他们的身体，使他们快快的得到康复。\n7.为valentina去埃及和约旦2个月的服事祷告，求神与她同在，赐聪明、智慧和能力，有神迹奇事伴随都见证耶稣基督。"
-    #output_file = set_daidao(17, output_file, daidao_text)
+    daidao_text = "3，为9月份第一周将要受洗的弟兄姐妹，张娟娟、丁建波、卜祥峰祷告，求神坚固他们的信心。\n4，为慕道友，金辉、信祖生、白建亮、王子健、刘克辉，愿神的灵再次感动他们，让他们得着宝贵的救恩。\n5，为教会还在等待申请或延期拘留的弟兄姐妹们祷告。求神预备在这件事上彰显神的荣耀。\n6，为valentina去埃及和约旦两个月的服侍祷告，求神与她同在，赐聪明智慧能力，有神迹奇事伴随，见证耶稣基督。\n7，为那些还在找工作的弟兄姐妹们祷告，求神预备合适的工作，能够安心生活在法国。\n8，为陈忠勇弟兄、宋立忠弟兄祷告，求神医治他们身体，使他们快快地得到康复。\n9，为法语课程的老师和同学来祷告，愿意通过学习，更多地愿意委身。"
+    output_file = set_daidao(15, output_file, daidao_text)
     # 领会
     page_to_modify = 2
 
     # 宣召经文
-    name_linhui="吉娜姐妹"
-    titre = "约翰福音"
-    index = "8:12"
-    xuanzhao_text = "耶稣又对众人说 : 我是世界的光 。跟从我的，就不在黑暗里走， 必要得着生的光。"
+    name_linhui="周国莲宣教士"
+    titre = "以弗所书"
+    index = "1:4"
+    xuanzhao_text = "就如神从创立世界以前，在基督里拣选了我们，使我们在他面前成为圣洁，无有瑕疵。阿们！"
     #output_file = set_xuanzhao(output_file, name_linhui, titre, index, xuanzhao_text, page_to_modify=2)
 
     # 敬拜
     jinbao_text = "徐霞姐妹  巩象学弟兄"
     shiban_title = "炼我俞精"
-    shiban_text = "徐霞  韩翠英 姐妹\n巩象学 宋利忠弟兄"
+    shiban_text = "徐霞姐妹, 巩象学弟兄"
     #output_file = set_jinbai_shiban(output_file, jinbao_text, shiban_title, shiban_text, if_shiban=False)
 
     # musics 
-    #output_file = add_music(output_file, repository_music, page_huiyin=16)  # 假设音乐幻灯片是第13页
+    #output_file = add_music(output_file, repository_music, if_shiban=False, page_huiyin=12, add_hui_ying=False)  # 假设音乐幻灯片是第13页
 
 
     # 主日证道
-    name_zhengdao = "周国莲宣教士"
-    titre = "光与暗"
-    index = "约翰一书1:5-10，约翰福音12:46-48"
-    #output_file = zhirizhengdao(output_file, name_zhengdao, name_linhui, titre, index, page_to_modify=11)
+    name_zhengdao = "吴兴隆弟兄"
+    titre = "在基督里的我们"
+    index = "歌罗西书2章"
+    #output_file = zhirizhengdao(output_file, name_zhengdao, name_linhui, titre, index, page_to_modify=9)
 
 
     # 圣餐
@@ -914,16 +915,19 @@ if __name__ == "__main__":
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    #delete_slides(output_file, output_file, list(range(13, 15)))  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, list(range(11,12)))  # 删除多余的经文页，保留第一页经文页
     #duplicate_slide(output_file, output_file, 12)  # 复制第一页经文页作为模板
-    page_to_modify = 13
+    page_to_modify = 10
     #show_structure_one_page(output_file, page_to_modify)
-    title = "约翰福音" 
-    chapter = 12
+    title = "歌罗西书" 
+    chapter = 2
     index_text = get_bibles.indexes[title]
     
     texts = [
-            [title, chapter, 46, 48, get_bibles.get_bible_verses(index_text, chapter, 46, 48)]
+            [title, chapter, 1, 6, get_bibles.get_bible_verses(index_text, chapter, 1, 6)],
+            [title, chapter, 7, 12, get_bibles.get_bible_verses(index_text, chapter, 7, 12)],
+            [title, chapter, 13, 18, get_bibles.get_bible_verses(index_text, chapter, 13, 18)],
+            [title, chapter, 19, 23, get_bibles.get_bible_verses(index_text, chapter, 19, 23)],
     ]
 
     add_line = 6  # 每页最多显示6行经文，超过则添加新行
@@ -974,4 +978,4 @@ if __name__ == "__main__":
         '''
         
          
-    delete_slides(output_file, output_file, [14])  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, [14])  # 删除多余的经文页，保留第一页经文页
