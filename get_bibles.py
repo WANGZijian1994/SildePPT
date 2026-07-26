@@ -26,6 +26,7 @@ indexes = {
     "启示录": "REV",
     "歌罗西书": "COL",
     "腓利门书": "PHM",
+    "使徒行传": "ACT",
 }
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
