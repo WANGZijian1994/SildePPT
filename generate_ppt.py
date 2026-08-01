@@ -784,35 +784,35 @@ if __name__ == "__main__":
     info = read_pptx(output_file)
     
     # 1 时间 + 接待
-    #output_file = set_new_time(output_file, "宋利忠弟兄", "26/07/2026", page_to_modify=1)
+    #output_file = set_new_time(output_file, "韩翠英姐妹", "02/08/2026", page_to_modify=1)
     # 代祷事项
-    daidao_text = "3，为9月份第一周将要受洗的弟兄姐妹，张娟娟、丁建波、卜祥峰祷告，求神坚固他们的信心。\n4，为慕道友，金辉、信祖生、白建亮、王子健、刘克辉，愿神的灵再次感动他们，让他们得着宝贵的救恩。\n5，为教会还在等待申请或延期拘留的弟兄姐妹们祷告。求神预备在这件事上彰显神的荣耀。\n6，为valentina去埃及和约旦两个月的服侍祷告，求神与她同在，赐聪明智慧能力，有神迹奇事伴随，见证耶稣基督。\n7，为那些还在找工作的弟兄姐妹们祷告，求神预备合适的工作，能够安心生活在法国。\n8，为陈忠勇弟兄、宋立忠弟兄祷告，求神医治他们身体，使他们快快地得到康复。\n9，为法语课程的老师和同学来祷告，愿意通过学习，更多地愿意委身。\n10 为兴隆弟兄周日去小羊之家的服事代祷，求神与他同在，因为他的分享，让更多的人得蒙祝福,荣耀归主！"
-    #output_file = set_daidao(18, output_file, daidao_text)
+    daidao_text = "3，为9月份第一周将要受洗的弟兄姐妹，张娟娟、丁建波、卜祥峰祷告，求神坚固他们的信心。\n4，为慕道友，金辉、信祖生、白建亮、王子健、刘克辉，愿神的灵再次感动他们，让他们得着宝贵的救恩。\n5，为教会还在等待申请或延期拘留的弟兄姐妹们祷告。求神预备在这件事上彰显神的荣耀。\n6，为valentina去埃及和约旦两个月的服侍祷告，求神与她同在，赐聪明智慧能力，有神迹奇事伴随，见证耶稣基督。\n7 为在约旦中国宣教士的家庭，他们的孩子们来祷告，求神的恩典，怜悯再次了临到他们，祝福他们手上的工作，尽都顺利。\n8，为那些还在找工作的弟兄姐妹们祷告，求神预备合适的工作，能够安心生活在法国。\n9，为陈忠勇弟兄、宋立忠弟兄祷告，求神医治他们身体，使他们快快地得到康复。\n10，为法语课程的老师和同学来祷告，愿意通过学习，更多地愿意委身。"
+    #output_file = set_daidao(16, output_file, daidao_text)
     # 领会
     page_to_modify = 2
 
     # 宣召经文
-    name_linhui="吉娜姐妹"
-    titre = "使徒行传"
-    index = "2:37"
-    xuanzhao_text = "众人听见这话，觉得扎心，就对彼得和其余的使徒说：弟兄们，我们当怎样行？ "
+    name_linhui="吳兴隆弟兄"
+    titre = "歌罗西书3:12"
+    index = "3:12"
+    xuanzhao_text = "所以你们既是　神的选民、圣洁蒙爱的人、就要存〔原文作穿下同〕怜悯、恩慈、谦虚、温柔、忍耐的心。"
     #output_file = set_xuanzhao(output_file, name_linhui, titre, index, xuanzhao_text, page_to_modify=2)
 
     # 敬拜
-    jinbao_text = "徐霞姐妹 韩翠英姐妹"
+    jinbao_text = "徐霞姐妹 巩家学弟兄"
     shiban_title = "炼我俞精"
     shiban_text = "徐霞姐妹, 巩象学弟兄"
     #output_file = set_jinbai_shiban(output_file, jinbao_text, shiban_title, shiban_text, if_shiban=False)
 
     # musics 
-    #output_file = add_music(output_file, repository_music, if_shiban=False, page_huiyin=14, add_hui_ying=False)  # 假设音乐幻灯片是第13页
+    #output_file = add_music(output_file, repository_music, if_shiban=False, page_huiyin=14, add_hui_ying=True)  # 假设音乐幻灯片是第13页
 
 
     # 主日证道
     name_zhengdao = "周国莲宣教士"
-    titre = "脱离黑暗走向光明经文"
-    index = "使徒行传9：1-22"
-    output_file = zhirizhengdao(output_file, name_zhengdao, name_linhui, titre, index, page_to_modify=9)
+    titre = "神的智慧 拯救--教会--差传"
+    index = ""
+    #output_file = zhirizhengdao(output_file, name_zhengdao, name_linhui, titre, index, page_to_modify=10)
 
 
     # 圣餐
@@ -898,14 +898,14 @@ if __name__ == "__main__":
 
     # 财务报表
     #duplicate_slide(output_file, output_file, 16)  # 复制第一页财务页作为模板
-    page_to_modify = 18
-    month = 6
+    page_to_modify = 16
+    month = 7
     #show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
-    replacements = {3: {0: {4: "", 6: "", 8: "", 9: ""}}, 4: {1: {0: "", 2: f"信望爱基督之家{month}月财务报告"}, 2: {0: f"{month - 1}月份余额 5639.26", 1: "", 2: ""}, 
-                                                              3: {0: f"{month}收入", 1: "奉献收入 1075欧元", },
-                                                              4: {0: f"{month}支出", 1: "法文教学费用 125 欧元 爱心援助费用100欧元\n爱心助教费用600欧元 教会周年庆祝462.26欧元\n教会打印墨水73.97欧元 教会爱宴106.01欧元", 2: ""},
-                                                              5: {0: f"{month}月份余额", 1: " 5247.02欧元", 2: ""}}}
+    replacements = {3: {0: {4: "", 6: "", 8: "", 9: ""}}, 4: {1: {0: "", 1: "", 2: f"信望爱基督之家{month}月财务报告"}, 2: {0: f"{month - 1}月份余额 5247.02", 1: "", 2: ""}, 
+                                                              3: {0: f"{month}收入", 1: "奉献收入 1085欧元", },
+                                                              4: {0: f"{month}支出 1015.47 欧元", 1: "奉献总收入1085欧元\n爱心助教费用600欧元 爱心扶助 100欧元\n法文班教师 100欧元\n打印机墨水 74.73欧元\n洗礼大毛巾 29.24欧元\n爱宴总费用 111.5欧元", 2: ""},
+                                                              5: {0: f"{month}月份余额", 1: " 5316.55欧元", 2: ""}}}
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=33, color=RGBColor(0, 0, 0))
 
     #delete_slides(output_file, output_file, list(range(16, 20))+[21, 22])  # 删除多余的财务页，保留第一页财务页
@@ -918,11 +918,24 @@ if __name__ == "__main__":
     #delete_slides(output_file, output_file, list(range(11,12)))  # 删除多余的经文页，保留第一页经文页
     #duplicate_slide(output_file, output_file, 12)  # 复制第一页经文页作为模板
     page_to_modify = 10
-    #show_structure_one_page(output_file, page_to_modify)
-    title = "使徒行传" 
+    title = "哥林多前书" 
     chapter = 9
-    index_text = get_bibles.indexes[title]
-    
+    #index_text = get_bibles.indexes[title]
+
+    replacements = {
+        3: {0: {0: ""}},
+        4: {1: {0: "", 1: "林前1：21世人凭自己的智慧，既不认识神，神就乐意用人所当作愚拙的道理拯救那些信的人；这就是神的智慧。", 2: ""},
+            2: {0: "", 1: "弗3：10为要藉着教会使天上执政的、掌权的,现在得知神百般的智慧。", 2: ""},
+            3: {0: "", 1: "弗3：11这是照神从万世以前，在我们主耶稣基督里所定的旨意。"},
+            4: {0: "", 1: "太28：18天上地下所有的权柄都赐给我了。\n太28：19所以,你们要去,使万名作我的门徒，奉父、子、圣灵的名给他们施洗"},
+            5: {0: "", 1: "太28：20凡我所吩咐你们的，都教训他们遵守，我就常与你们同在，直到世界的末了。"},
+            6: {0: "", 1: "结语：神的智慧：神藉着基督施行拯救----神藉着教会建立百姓----神藉着百姓宣扬基督。"}
+        }
+    }
+
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=33, color=RGBColor(0, 0, 0))
+
+    '''
     texts = [
             [title, chapter, 1, 6, get_bibles.get_bible_verses(index_text, chapter, 1, 6)],
             [title, chapter, 7, 11, get_bibles.get_bible_verses(index_text, chapter, 7, 11)],
@@ -930,6 +943,18 @@ if __name__ == "__main__":
             [title, chapter, 18, 22, get_bibles.get_bible_verses(index_text, chapter, 18, 22)],
     ]
 
+    print(f"经文内容: {texts}")
+
+    show_structure_one_page(output_file, 12)
+
+    texts = [
+            [title, chapter, 1, 1, get_bibles.get_bible_verses(index_text, chapter, 1, 6)],
+            [title, chapter, 7, 11, get_bibles.get_bible_verses(index_text, chapter, 7, 11)],
+            [title, chapter, 12, 17, get_bibles.get_bible_verses(index_text, chapter, 12, 17)],
+            [title, chapter, 18, 22, get_bibles.get_bible_verses(index_text, chapter, 18, 22)],
+    ]
+    '''
+    texts = []
     add_line = 6  # 每页最多显示6行经文，超过则添加新行
     
     count = 0
@@ -976,6 +1001,5 @@ if __name__ == "__main__":
             duplicate_slide(output_file, output_file, page_to_modify)
         page_to_modify += 1
         '''
-        
          
-    #delete_slides(output_file, output_file, [14])  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, [11])  # 删除多余的经文页，保留第一页经文页
