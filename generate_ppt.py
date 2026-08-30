@@ -849,8 +849,8 @@ if __name__ == "__main__":
     titre = "同心合意，兴旺福音。生命成长，建立教会。"
     index = "以弗所书4:1-32"
     page_zhuri = 9
-    show_structure_one_page(output_file, page_zhuri)
-    output_file = zhirizhengdao(output_file, name_zhengdao, name_linhui, titre, index, page_to_modify=page_zhuri)
+    #show_structure_one_page(output_file, page_zhuri)
+    #output_file = zhirizhengdao(output_file, name_zhengdao, name_linhui, titre, index, page_to_modify=page_zhuri)
 
 
     # 圣餐
@@ -953,7 +953,7 @@ if __name__ == "__main__":
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    #delete_slides(output_file, output_file, [10])
+    delete_slides(output_file, output_file, [11])
     #duplicate_slide(output_file, output_file, 10)  # 复制第一页经文页作为模板
     page_to_modify = 10
     title = "以弗所书" 
@@ -964,9 +964,9 @@ if __name__ == "__main__":
 
 
     texts = [
-            [title, chapter, 1, 11, get_bibles.get_bible_verses(index_text, chapter, 1, 11)],
-            [title, chapter, 12, 21, get_bibles.get_bible_verses(index_text, chapter, 12, 21)],
-            [title, chapter, 22, 32, get_bibles.get_bible_verses(index_text, chapter, 22, 32)]  
+            [title, chapter, 1, 14, get_bibles.get_bible_verses(index_text, chapter, 1, 14)],
+            [title, chapter, 15, 21, get_bibles.get_bible_verses(index_text, chapter, 15, 21)],
+            [title, chapter, 22, 32, get_bibles.get_bible_verses(index_text, chapter, 22, 32)]
     ]
 
     add_line = 8  # 每页最多显示7行经文，超过则添加新行
@@ -978,32 +978,32 @@ if __name__ == "__main__":
         bibles = text[4]
 
         replacements = {
-            0: {0: {0: f"{text[0]}", 1: f"{text[1]}:{text[2]}-{text[3]}"},
-                1: {0: str(i), 2: bibles[0] if len(bibles) > 0 else ""},
-                2: {0: str(i + 1), 2: bibles[1] if len(bibles) > 1 else ""},
-                3: {0: str(i + 2), 1: bibles[2] if len(bibles) > 2 else ""},
-                4: {0: str(i + 3), 2: bibles[3] if len(bibles) > 3 else ""},
-                5: {0: str(i + 4), 1: bibles[4] if len(bibles) > 4 else ""},
-                6: {0: str(i + 5), 2: bibles[5] if len(bibles) > 5 else ""},
-                7: {0: str(i + 6), 2: bibles[6] if len(bibles) > 6 else "", 3: "", 4: ""},
-                8: {0: str(i + 7), 2: bibles[7] if len(bibles) > 7 else "", 3: "", 4: ""},
-                9: {0: str(i + 8), 2: bibles[8] if len(bibles) > 8 else "", 3: ""},
-                10: {0: str(i + 9), 2: bibles[9] if len(bibles) > 9 else "", 3: "", 4: "", 5: "", 6: ""},
-                11: {0: str(i + 10), 2: bibles[10] if len(bibles) > 10 else "", 3: "", 4: ""},
-                12: {0: str(i + 11), 2: bibles[11] if len(bibles) > 11 else "", 3: "", 4: "", 5: "", 6: ""},
-                13: {0: str(i + 12), 2: bibles[12] if len(bibles) > 12 else "", 3: "", 4: "", 5: "", 6: ""},
-                14: {0: str(i + 13), 2: bibles[13] if len(bibles) > 13 else ""},
-                15: {0: str(i + 14), 2: bibles[14] if len(bibles) > 14 else ""},
-                }
+            0: {0: {0: f"{text[0]}", 1: f"{text[1]}:{text[2]}-{text[3]}", 2: "", 3: "", 4: "", 5: "", 6: "", 7: ""}},
+            1: {
+                0: {0: f"{str(i)}.", 1: bibles[0] if len(bibles) > 0 else ""},
+                1: {0: f"{str(i + 1)}.", 1: bibles[1] if len(bibles) > 1 else ""},
+                2: {0: f"{str(i + 2)}.", 1: bibles[2] if len(bibles) > 2 else ""},
+                3: {0: f"{str(i + 3)}.", 1: bibles[3] if len(bibles) > 3 else ""},
+                4: {0: f"{str(i + 4)}.", 1: bibles[4] if len(bibles) > 4 else ""},
+                5: {0: f"{str(i + 5)}.", 1: bibles[5] if len(bibles) > 5 else ""},
+                6: {0: f"{str(i + 6)}.", 1: bibles[6] if len(bibles) > 6 else ""},
+                7: {0: f"{str(i + 7)}.", 1: bibles[7] if len(bibles) > 7 else ""},
+                8: {0: f"{str(i + 8)}.", 1: bibles[8] if len(bibles) > 8 else ""},
+                9: {0: f"{str(i + 9)}.", 1: bibles[9] if len(bibles) > 9 else ""},
+                10: {0: f"{str(i + 10)}.", 1: bibles[10] if len(bibles) > 10 else ""},
+                11: {0: f"{str(i + 11)}.", 1: bibles[11] if len(bibles) > 11 else ""},
+                12: {0: f"{str(i + 12)}.", 1: bibles[12] if len(bibles) > 12 else ""},
+                13: {0: f"{str(i + 13)}.", 1: bibles[13] if len(bibles) > 13 else "", 2: ""},
+            }
         }
         '''
         if text[3] - text[2] > add_line:
             for j in range(add_line, text[3] - text[2] + 1):
                 replacements[2][add_line][2] += f" \n{str(i + j)}    " + (bibles[j] if len(bibles) > j else "")
+        '''
         set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize = 36)
         if count < len(texts):
             duplicate_slide(output_file, output_file, page_to_modify)
-        page_to_modify += 1  
-        '''
+        page_to_modify += 1 
          
     #delete_slides(output_file, output_file, [13])  # 删除多余的经文页，保留第一页经文页
