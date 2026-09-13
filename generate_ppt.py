@@ -717,8 +717,8 @@ def set_daidao(page_to_modify, output_file, daidao_text, resize=21):
                             12: "8", 13: daidao_text[7],
                             14: "9", 15: daidao_text[8],
                             16: "10", 17: daidao_text[9],
-                            18: "11", 19: daidao_text[10],
-                            20: "12", 21: daidao_text[11],
+                            18: "", 19: "",
+                            20: "", 21: "",
                             22: "", 23: "",24: "", 25: "", 26: "", 27: "", 28: "", 29: ""
                             },
                     }}
@@ -795,30 +795,27 @@ if __name__ == "__main__":
 
     info = read_pptx(output_file)
 
-    current_date = "30/08/2026"
+    current_date = "13/09/2026"
     daidao_text = [
-        "感谢神在信望爱基督之家（申请成立教会、银行开户到申请分发福音单张）所成就的一切事，我们向神感恩。因为神是信实的，祂必要亲自成就。",
-        "为国莲姐妹在信望爱基督之家作实习传道来代祷，愿神赐给她智慧和聪明，按正意分解神的道，作无愧的工人，得蒙神喜悦。\n",
-        "为9月份第一周受洗的弟兄姊妹（丁建波，卜祥峰，张娟娟、王铠，孙浩然）来祷告，求神坚固的信心，每一天都经历神的恩典。\n",
-        "为慕道友（白建亮，王子键，徐彦彬，金辉，伊佩霖，刘克辉）来祷告，求神的灵来感动他们，好让他们得着上好的福份。\n",
-        "为参与在爱心之家的同工valentina祷告，最近她在约旦服侍，求神与她同在，赐智慧和能力，有神迹伴随，见证神的荣耀！\n",
-        "为教会软弱的支体来代求，求神的爱再次临到他们，重新恢复与神的关系，荣耀归主！\n",
-        "为教会张娟娟姐妹祷告，求神赐给她适合的工作，能够安心生活在法国。\n",
-        "为教会在申请或延期居留的（国莲姐妹，卜祥峰弟兄）祷告，若神许可，在这件事上见证神的荣耀！\n",
-        "为陈忠永弟兄的身体，兴隆弟兄的手指祷告，求神的医治临到他们。\n",
-        "为教会受洗并已回国的两位弟兄,郭虎立身体上需要医治祷告，郭春周的工作祷告，求神带领他们。\n",
-        "为在约旦服事的中国宣教士和他们的家庭来祷告，求神赐给他们荣耀的丰富，使他们凡事富足。\n",
-        "为教会的法语老师和同学们来祷告，通过学习法语课,愿意委身，并且来认识神。荣耀主的名！\n",
-        "为教会从九月份第二周开始每周四下午三点到六点发放福音单张，求神预备同工，加入参与传福音的事工，让更多人能听闻福音。"
+"信望爱基督之家同工开始上街分发福音单张，我们向神感恩，每个世人都有听到福音的权利，每个基督的门徒都有传福音的责任和义务。\n",
+"为周国莲姐妹在信望爱基督之家的实习传道来代祷，愿神赐给她有忠心和爱心，顺服圣灵按正意分解神的道，作无愧的工人，得蒙神喜悦。\n",
+"为慕道友（白建亮，王子健，金辉，丁建波，刘克辉，伊佩霖）祷告,求神的灵来感动他们，好让他们得着上好的福份。\n",
+"为参与在爱心之家的同工valentina 祷告，这个礼拜天从约旦回法国，求神与她同在，保守她平平安安地回来。\n",
+"为教会软弱的支体来代求，求神的爱再次临到他们，恢复与神的关系，荣耀归主！\n",
+"为教会的支体宋立忠，何亦妹，徐彦彬祷告，由于工作，无法和我们一起聚会，愿神与他们同在，赐福他们！\n",
+"为教会在申请或延期居留的（国莲姐妹，卜祥峰弟兄）祷告,若神许可，在这件事情上见证神的荣耀！\n",
+"为陈忠永弟兄的身体，兴隆弟兄的手指祷告，求神的医治临到他们。\n",
+"为在约旦服事的中国宣教士和他们的家庭来祷告，求神赐给他们荣耀的丰富，使他们凡事富足。\n",
+"为教会的法语老师和同学们来祷告，通过学习法语课，愿意委身，并且认识神，荣耀归主！\n",
 ]
 
 
     # 1 时间 + 接待
-    #output_file = set_new_time(output_file, "韩翠英姐妹", current_date, page_to_modify=1)
+    #output_file = set_new_time(output_file, "巩象学弟兄", current_date, page_to_modify=1)
     
     # 代祷事项
     #show_structure_one_page(output_file, 11)
-    #output_file = set_daidao(11, output_file, daidao_text)
+    #output_file = set_daidao(21, output_file, daidao_text)
 
     
     # 领会
@@ -826,8 +823,8 @@ if __name__ == "__main__":
 
     name_linhui="周国莲宣教士"
     titre = "提后书"
-    index = "2：21"
-    xuanzhao_text = "人若自洁，脱离卑贱的事，就必作贵重的器皿，成为圣洁，合乎主用，预备行各样的善事。"
+    index = "1：9"
+    xuanzhao_text = "神救了我们，以圣召召我们，不是按我们的行为，乃是按他的旨意和恩典。这恩典是万古之先在基督耶稣里赐给我们的。"
     xuanzhao = (name_linhui, titre, index, xuanzhao_text)
 
     #show_structure_one_page(output_file, page_to_modify)
@@ -835,19 +832,19 @@ if __name__ == "__main__":
     #output_file = set_xuanzhao(output_file, xuanzhao[0], xuanzhao[1], xuanzhao[2], xuanzhao[3], page_to_modify=2)
 
     # 敬拜
-    jinbao_text = "徐霞姐妹 巩象学弟兄"
+    jinbao_text = "徐霞姐妹 韩翠英姐妹"
     shiban_title = "炼我俞精"
     shiban_text = "徐霞姐妹, 巩象学弟兄"
     #output_file = set_jinbai_shiban(output_file, jinbao_text, shiban_title, shiban_text, if_shiban=False)
 
     # musics 
-    #output_file = add_music(output_file, repository_music, if_shiban=False, page_huiyin=14, add_hui_ying=False)  # 假设音乐幻灯片是第13页
+    #output_file = add_music(output_file, repository_music, if_shiban=False, page_huiyin=20, add_hui_ying=True)  # 假设音乐幻灯片是第13页
 
 
     # 主日证道
-    name_zhengdao = "吳兴隆弟兄"
-    titre = "同心合意，兴旺福音。生命成长，建立教会。"
-    index = "以弗所书4:1-32"
+    name_zhengdao = "吉娜姐妹"
+    titre = "信心蒙恩的女人"
+    index = "约书亚记 1/2章;路得记1章"
     page_zhuri = 9
     #show_structure_one_page(output_file, page_zhuri)
     #output_file = zhirizhengdao(output_file, name_zhengdao, name_linhui, titre, index, page_to_modify=page_zhuri)
@@ -935,15 +932,32 @@ if __name__ == "__main__":
     '''
 
     # 财务报表
+    #swap_slides(output_file, output_file, 19, 20)  # 将第一页财务页移动到第19页
+    delete_slides(output_file, output_file, [16,16,16])  # 删除原来的第19页财务页
     #duplicate_slide(output_file, output_file, 16)  # 复制第一页财务页作为模板
-    page_to_modify = 16
-    month = 7
+    page_to_modify = 19
+    month = 8
     #show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
-    replacements = {3: {0: {4: "", 6: "", 8: "", 9: ""}}, 4: {1: {0: "", 1: "", 2: f"信望爱基督之家{month}月财务报告"}, 2: {0: f"{month - 1}月份余额 5247.02", 1: "", 2: ""}, 
-                                                              3: {0: f"{month}收入", 1: "奉献收入 1085欧元", },
-                                                              4: {0: f"{month}支出 1015.47 欧元", 1: "奉献总收入1085欧元\n爱心助教费用600欧元 爱心扶助 100欧元\n法文班教师 100欧元\n打印机墨水 74.73欧元\n洗礼大毛巾 29.24欧元\n爱宴总费用 111.5欧元", 2: ""},
-                                                              5: {0: f"{month}月份余额", 1: " 5316.55欧元", 2: ""}}}
+    replacements = {
+            0: {0: {0: f"信望爱{month}月份财务\n", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: ""}},
+            1: {
+                0: {0: "", 1: f"{month - 1}月份奉献余额5317.25欧元"},
+                1: {0: "", 1: f"{month}月份奉献收入1020欧元"},
+                2: {0: f"{month}月份支出", 1: ""},
+                3: {0: "", 1: " * 爱宴支出：216.36欧元"},
+                4: {0: "", 1: " * 买受洗浴巾，购物：40.63欧元"},
+                5: {0: "", 1: " * 刻印章，纸60.02欧元"},
+                6: {0: "", 1: " * 支持国莲姐妹奉禄：600欧元"},
+                7: {0: "", 1: " * 学习法语课的费用：125欧元"},
+                8: {0: "", 1: " * 扶持帮助支体费用：100欧元"},
+                9: {0: "", 1: f"{month}月份结余5262.64欧元"},
+                10: {0: "", 1: ""},
+                11: {0: "", 1: ""},
+                12: {0: "", 1: ""},
+                13: {0: "", 1: "", 2: ""},
+            }
+        }
     #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=33, color=RGBColor(0, 0, 0))
 
     #delete_slides(output_file, output_file, list(range(16, 20))+[21, 22])  # 删除多余的财务页，保留第一页财务页
@@ -953,20 +967,19 @@ if __name__ == "__main__":
     
     # 第1页经文：路加福音 8:1-5（5行）
     
-    delete_slides(output_file, output_file, [11])
+    #delete_slides(output_file, output_file, [11])
     #duplicate_slide(output_file, output_file, 10)  # 复制第一页经文页作为模板
-    page_to_modify = 10
-    title = "以弗所书" 
-    chapter = 4
+    page_to_modify = 14
+    title = "路得记" 
+    chapter = 1
     index_text = get_bibles.indexes[title]
 
     #show_structure_one_page(output_file, page_to_modify)
 
 
     texts = [
-            [title, chapter, 1, 14, get_bibles.get_bible_verses(index_text, chapter, 1, 14)],
-            [title, chapter, 15, 21, get_bibles.get_bible_verses(index_text, chapter, 15, 21)],
-            [title, chapter, 22, 32, get_bibles.get_bible_verses(index_text, chapter, 22, 32)]
+            [title, chapter, 1, 11, get_bibles.get_bible_verses(index_text, chapter, 1, 11)],
+            [title, chapter, 12, 22, get_bibles.get_bible_verses(index_text, chapter, 12, 22)],
     ]
 
     add_line = 8  # 每页最多显示7行经文，超过则添加新行
@@ -980,20 +993,20 @@ if __name__ == "__main__":
         replacements = {
             0: {0: {0: f"{text[0]}", 1: f"{text[1]}:{text[2]}-{text[3]}", 2: "", 3: "", 4: "", 5: "", 6: "", 7: ""}},
             1: {
-                0: {0: f"{str(i)}.", 1: bibles[0] if len(bibles) > 0 else ""},
-                1: {0: f"{str(i + 1)}.", 1: bibles[1] if len(bibles) > 1 else ""},
-                2: {0: f"{str(i + 2)}.", 1: bibles[2] if len(bibles) > 2 else ""},
-                3: {0: f"{str(i + 3)}.", 1: bibles[3] if len(bibles) > 3 else ""},
-                4: {0: f"{str(i + 4)}.", 1: bibles[4] if len(bibles) > 4 else ""},
-                5: {0: f"{str(i + 5)}.", 1: bibles[5] if len(bibles) > 5 else ""},
-                6: {0: f"{str(i + 6)}.", 1: bibles[6] if len(bibles) > 6 else ""},
-                7: {0: f"{str(i + 7)}.", 1: bibles[7] if len(bibles) > 7 else ""},
-                8: {0: f"{str(i + 8)}.", 1: bibles[8] if len(bibles) > 8 else ""},
-                9: {0: f"{str(i + 9)}.", 1: bibles[9] if len(bibles) > 9 else ""},
-                10: {0: f"{str(i + 10)}.", 1: bibles[10] if len(bibles) > 10 else ""},
-                11: {0: f"{str(i + 11)}.", 1: bibles[11] if len(bibles) > 11 else ""},
-                12: {0: f"{str(i + 12)}.", 1: bibles[12] if len(bibles) > 12 else ""},
-                13: {0: f"{str(i + 13)}.", 1: bibles[13] if len(bibles) > 13 else "", 2: ""},
+                0: {0: f"{str(i)}", 1: bibles[0] if len(bibles) > 0 else ""},
+                1: {0: f"{str(i + 1)}", 1: bibles[1] if len(bibles) > 1 else ""},
+                2: {0: f"{str(i + 2)}", 1: bibles[2] if len(bibles) > 2 else ""},
+                3: {0: f"{str(i + 3)}", 1: bibles[3] if len(bibles) > 3 else ""},
+                4: {0: f"{str(i + 4)}", 1: bibles[4] if len(bibles) > 4 else ""},
+                5: {0: f"{str(i + 5)}", 1: bibles[5] if len(bibles) > 5 else ""},
+                6: {0: f"{str(i + 6) if len(bibles) > 6 else ''}", 1: bibles[6] if len(bibles) > 6 else ""},
+                7: {0: f"{str(i + 7) if len(bibles) > 7 else ''}", 1: bibles[7] if len(bibles) > 7 else ""},
+                8: {0: f"{str(i + 8) if len(bibles) > 8 else ''}", 1: bibles[8] if len(bibles) > 8 else ""},
+                9: {0: f"{str(i + 9) if len(bibles) > 9 else ''}", 1: bibles[9] if len(bibles) > 9 else ""},
+                10: {0: f"{str(i + 10) if len(bibles) > 10 else ''}", 1: bibles[10] if len(bibles) > 10 else ""},
+                11: {0: f"{str(i + 11) if len(bibles) > 11 else ''}", 1: bibles[11] if len(bibles) > 11 else ""},
+                12: {0: f"{str(i + 12) if len(bibles) > 12 else ''}", 1: bibles[12] if len(bibles) > 12 else ""},
+                13: {0: f"{str(i + 13) if len(bibles) > 13 else ''}", 1: bibles[13] if len(bibles) > 13 else "", 2: ""},
             }
         }
         '''
@@ -1001,9 +1014,8 @@ if __name__ == "__main__":
             for j in range(add_line, text[3] - text[2] + 1):
                 replacements[2][add_line][2] += f" \n{str(i + j)}    " + (bibles[j] if len(bibles) > j else "")
         '''
-        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize = 36)
-        if count < len(texts):
-            duplicate_slide(output_file, output_file, page_to_modify)
+        #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize = 36)
         page_to_modify += 1 
+        
          
     #delete_slides(output_file, output_file, [13])  # 删除多余的经文页，保留第一页经文页
