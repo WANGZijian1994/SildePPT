@@ -746,7 +746,7 @@ if __name__ == "__main__":
     
     # 1 时间
     page_to_modify = 1
-    date = "13/09/2026 \n"
+    date = "20/09/2026 \n"
     heure = "              13h30-14h30\n"
     remplacements = {0: {3: {1: "法语课 Bienvenue !\n"}, 4: {1: date, 2: heure}}, 1: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "",  7: "", 8: ""}}}
     #set_pptx_page_texts(output_file, output_file, page_to_modify, {old_date: date}) 
@@ -759,14 +759,14 @@ if __name__ == "__main__":
 
     book_zh = "诗篇"      # 路加福音
     book_fr = ""
-    chapter_num = 5    # 第1章
-    start = 11          # 第18节
-    end = 11            # 到第18节
+    chapter_num = 143    # 第1章
+    start = 8          # 第18节
+    end = 9           # 到第18节
     title = get_bibles.indexes[book_zh]
 
     #show_structure_one_page(output_file, page_to_modify)
-    text = f"\n诗篇5:11: {start}"+ get_bibles.get_bible_verses(title, chapter_num, start, end)[0] 
-    text = "\n耶和华有怜悯、有恩典、不轻易发怒、且有丰盛的慈爱。"
+    text = f"\n诗篇143:8: {start}"+ get_bibles.get_bible_verses(title, chapter_num, start, end)[0] 
+    text = "\n诗篇143:8: 求你使我清晨得听你慈爱之言，因我倚靠你；求你使我知道当行的路，因我的心仰望你。"
     #text_fr = "\nHeureux qui trouve la sagesse, qui accède à la raison !C'est une bonne affaire, meilleure qu'une affaire d'argent, plus rentable que l'or."
     remplacements = {0: {3: {1: text, 2: ""}, 4: {1: "", 2: ""}}}
     #show_structure_one_page(output_file, page_to_modify)

@@ -30,6 +30,7 @@ indexes = {
     "以弗所书": "EPH",
     "约书亚记": "JOS",
     "路得记": "RUT",
+    "加拉太书": "GAL",
 }
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
