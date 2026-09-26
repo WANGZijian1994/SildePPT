@@ -697,12 +697,12 @@ def set_new_time(output_file, acceuil, date, page_to_modify=1):
     """
     accueil = f"接待 {acceuil}"
     
-    replacements = {0: {4: {0: "", 1: f"                  {date}", 2: " 15h-17h"}}, 1: {0: {8: f"。\n\n                                {accueil}"}}}
+    replacements = {0: {4: {0: "", 1: f"                  {date}", 2: " 15h-17h"}}, 1: {0: {8: f"。\n 同心合意，兴旺福音。生命成长，建立教会\n\n                                {accueil}"}}}
 
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
     return output_file
 
-def set_daidao(page_to_modify, output_file, daidao_text, resize=21):
+def set_daidao(page_to_modify, output_file, daidao_text, resize=20):
     """
     3.为教会的慕道友:金辉、张娟娟、丁建波、信祖生、白建亮、王子健、刘克辉，卜香峰，愿神的灵感动他们，让他们得着宝贵的救恩。\n4.为教会还在等待申请或延期居留的弟兄姐妹们祷告，求神预备，在这件事情上彰显神的荣耀。\n4.为那些还在找工作的弟兄姐妹们祷告。求神预备，并赐给他们合适的工作，能够安心生活在法国。\n5.为陈忠勇弟兄，宋立忠弟兄祷告，求神医治他们的身体，使他们快快的得到康复。\n6.徐霞姐妹家的小旋风belle 飞丢了一周 祈祷主把它引领回到家
     """
@@ -768,7 +768,7 @@ def add_music(output_file, repository_music, page_huiyin, if_shiban=True, add_hu
         delete_slides(output_file, output_file, pages_music)  # 删除原有的音乐页
         
         for i in range(0, len(pages_music)):
-            video_file = f"{repository_music}\\3.mp4"  # 修改为实际视频文件路径
+            video_file = f"{repository_music}\\4.mp4"  # 修改为实际视频文件路径
             insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=(pages_music[i]))
     
     return output_file
@@ -795,17 +795,16 @@ if __name__ == "__main__":
 
     info = read_pptx(output_file)
 
-    current_date = "20/09/2026"
+    current_date = "27/09/2026"
     daidao_text = [
-        "信望爱基督之家同工开始上街分发福音单张的事工，我们向神感恩，每个世人都有听到福音的权利，每个基督的门徒都有传福音的责任和义务。\n",
+        "信望爱基督之家同工开始上街分发福音单张的事工，我们向神感恩，每个世人都有听到福音的权利，每个基督的门徒都有传福音的责任和义务。",
         "为国莲姐妹在信望爱基督之家作实习传道来代祷，愿神赐给她智慧和聪明，按正意分解神的道，作无愧的工人，得蒙神喜悦。\n",
         "为9月份第一周受洗的弟兄姊妹（卜祥峰，张娟娟、王铠，孙浩然,徐彦彬）来祷告，求神坚固信心，每一天都经历神的恩典。\n",
-        "为慕道友（白建亮，王子键，黄天舒，金辉，伊佩霖，刘克辉）来祷告，求神的灵来感动他们，好让他们得着上好的福份。\n",
-        "为在爱心之家的同工，valentina能够平安顺利地回到法国，向神感恩。\n",
-        "为教会软弱的肢体来代求，求神的爱再次交灌他们，使他们重新恢复与神的关系，荣耀归主！\n",
-        "为金薇秋姐妹的身体来祷告，求神医治她的身体得以完全康复。\n",
-        "为教会在申请或延期居留的（国莲姐妹，卜祥峰弟兄）祷告，若神许可，在这件事上见证神的荣耀！\n",
-        "为陈忠勇弟兄的身体，金薇秋姐妹的身体，兴隆弟兄的手指祷告，求神的医治临到，使他们快快康复。\n",
+        "为慕道友（丁建波，白建亮王子键，张洪伟，杨满荣，张宇，金辉，刘克辉）来祷告，求神的灵来感动他们，好让他们得着上好的福份。\n",
+        "为教会软弱的肢体来代求，求神的爱再次浇灌他们，使他们重新恢复与神的关系，荣耀归主！\n",
+        "为Arron,Maria,Anna,这三个孩子疑难杂症来祷告，在人不能，在神凡事都能！甚愿神的权柄，医治的大能临到徐霞姐妹，藉着她的手来医治他们的身体，使三个孩子完全得以康复，荣耀归主！哈利路亚！\n",
+        "为陈忠勇弟兄，金薇秋姐妹,卜祥峰弟兄的身体，兴隆弟兄的手指来祷告，求神医治他们得以完全康复，荣耀归主！\n",
+        "为教会在申请或延期居留的（张宇、卜祥峰弟兄，国莲姐妹）祷告，若神许可，在这件事上见证神的荣耀！\n",
         "为在约旦服事的中国宣教士和他们的家庭来祷告，求神赐给他们荣耀的丰富，使他们凡事富足。\n",
         "为教会的法语老师和同学们来祷告，通过学习法语课,愿意委身，并且来认识神。荣耀主的名！\n",
         "为教会每周二，每周五下午15：30到17：30发放福音单张，求神预备同工，参与传福音的事工，让更多人能听闻福音。\n",
@@ -813,7 +812,14 @@ if __name__ == "__main__":
 
 
     # 1 时间 + 接待
-    #output_file = set_new_time(output_file, "陈忠勇弟兄", current_date, page_to_modify=1)
+    output_file = set_new_time(output_file, "陈忠勇弟兄", current_date, page_to_modify=1)
+    #show_structure_one_page(output_file, 1)
+
+    delete_slides(output_file, output_file, [20])  # 删除原有的接待页
+    for i in range(10, 19):
+        delete_slides(output_file, output_file, [10])
+
+
     
     # 代祷事项
     #show_structure_one_page(output_file, 11)
@@ -823,10 +829,10 @@ if __name__ == "__main__":
     # 领会
     page_to_modify = 2
 
-    name_linhui="周国莲宣教士"
-    titre = "希伯来书"
-    index = "4：14"
-    xuanzhao_text = "我们既然有一位已经升入高天尊荣的大祭司，就是神的儿子耶稣，便当持定所承认的道。"
+    name_linhui="吉娜姐妹"
+    titre = "罗马书"
+    index = "15：13"
+    xuanzhao_text = "但愿使人有盼望的神，因信将诸般的喜乐、平安充满你们的心，使你们借着圣灵的能力大有盼望。"
     xuanzhao = (name_linhui, titre, index, xuanzhao_text)
 
     #show_structure_one_page(output_file, page_to_modify)
@@ -840,13 +846,13 @@ if __name__ == "__main__":
     #output_file = set_jinbai_shiban(output_file, jinbao_text, shiban_title, shiban_text, if_shiban=False)
 
     # musics 
-    #output_file = add_music(output_file, repository_music, if_shiban=False, page_huiyin=20, add_hui_ying=False)  # 假设音乐幻灯片是第13页
+    #output_file = add_music(output_file, repository_music, if_shiban=False, page_huiyin=19, add_hui_ying=True)  # 假设音乐幻灯片是第13页
 
 
     # 主日证道
-    name_zhengdao = "吳兴隆弟兄"
-    titre = "因信称义的福音"
-    index = "加拉太书2章"
+    name_zhengdao = "周国莲宣教士"
+    titre = "你去照样行吧"
+    index = "路加福音10：25-37"
     page_zhuri = 9
     #show_structure_one_page(output_file, page_zhuri)
     #output_file = zhirizhengdao(output_file, name_zhengdao, name_linhui, titre, index, page_to_modify=page_zhuri)
@@ -1020,4 +1026,4 @@ if __name__ == "__main__":
         page_to_modify += 1 
         
          
-    delete_slides(output_file, output_file, [12 for i in range(9)])  # 删除多余的经文页，保留第一页经文页
+    #delete_slides(output_file, output_file, [12 for i in range(9)])  # 删除多余的经文页，保留第一页经文页
