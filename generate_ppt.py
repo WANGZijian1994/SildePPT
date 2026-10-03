@@ -702,7 +702,7 @@ def set_new_time(output_file, acceuil, date, page_to_modify=1):
     set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements)
     return output_file
 
-def set_daidao(page_to_modify, output_file, daidao_text, resize=20):
+def set_daidao(page_to_modify, output_file, daidao_text, resize=19):
     """
     3.为教会的慕道友:金辉、张娟娟、丁建波、信祖生、白建亮、王子健、刘克辉，卜香峰，愿神的灵感动他们，让他们得着宝贵的救恩。\n4.为教会还在等待申请或延期居留的弟兄姐妹们祷告，求神预备，在这件事情上彰显神的荣耀。\n4.为那些还在找工作的弟兄姐妹们祷告。求神预备，并赐给他们合适的工作，能够安心生活在法国。\n5.为陈忠勇弟兄，宋立忠弟兄祷告，求神医治他们的身体，使他们快快的得到康复。\n6.徐霞姐妹家的小旋风belle 飞丢了一周 祈祷主把它引领回到家
     """
@@ -768,7 +768,7 @@ def add_music(output_file, repository_music, page_huiyin, if_shiban=True, add_hu
         delete_slides(output_file, output_file, pages_music)  # 删除原有的音乐页
         
         for i in range(0, len(pages_music)):
-            video_file = f"{repository_music}\\4.mp4"  # 修改为实际视频文件路径
+            video_file = f"{repository_music}\\6.mp4"  # 修改为实际视频文件路径
             insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=(pages_music[i]))
     
     return output_file
@@ -795,15 +795,16 @@ if __name__ == "__main__":
 
     info = read_pptx(output_file)
 
-    current_date = "27/09/2026"
+    current_date = "04/10/2026"
     daidao_text = [
         "信望爱基督之家同工开始上街分发福音单张的事工，我们向神感恩，每个世人都有听到福音的权利，每个基督的门徒都有传福音的责任和义务。",
+        "恳请为爱心之家10月23-25号在巴黎基督国度教会首次举办的［宣教使命差遣］大会迫切祷告，愿神亲自带领每位参与的弟兄姊妹同在，被圣灵来充满，让他们更清楚明白基督徒所蒙的恩召，宣教的使命。\n",
         "为国莲姐妹在信望爱基督之家作实习传道来代祷，愿神赐给她智慧和聪明，按正意分解神的道，作无愧的工人，得蒙神喜悦。\n",
         "为9月份第一周受洗的弟兄姊妹（卜祥峰，张娟娟、王铠，孙浩然,徐彦彬）来祷告，求神坚固信心，每一天都经历神的恩典。\n",
         "为慕道友（丁建波，白建亮王子键，张洪伟，杨满荣，张宇，金辉，刘克辉）来祷告，求神的灵来感动他们，好让他们得着上好的福份。\n",
         "为教会软弱的肢体来代求，求神的爱再次浇灌他们，使他们重新恢复与神的关系，荣耀归主！\n",
         "为Arron,Maria,Anna,这三个孩子疑难杂症来祷告，在人不能，在神凡事都能！甚愿神的权柄，医治的大能临到徐霞姐妹，藉着她的手来医治他们的身体，使三个孩子完全得以康复，荣耀归主！哈利路亚！\n",
-        "为陈忠勇弟兄，金薇秋姐妹,卜祥峰弟兄的身体，兴隆弟兄的手指来祷告，求神医治他们得以完全康复，荣耀归主！\n",
+        "为刚动手术出院的陈忠勇弟兄代祷。求神的医治再次临到，使他身体快快地康复，荣耀归主！为金秋薇，卜祥峰的身体代祷，求神大能的医治临到他们，使他们身体健壮，灵里兴盛. \n",
         "为教会在申请或延期居留的（张宇、卜祥峰弟兄，国莲姐妹）祷告，若神许可，在这件事上见证神的荣耀！\n",
         "为在约旦服事的中国宣教士和他们的家庭来祷告，求神赐给他们荣耀的丰富，使他们凡事富足。\n",
         "为教会的法语老师和同学们来祷告，通过学习法语课,愿意委身，并且来认识神。荣耀主的名！\n",
@@ -812,27 +813,27 @@ if __name__ == "__main__":
 
 
     # 1 时间 + 接待
-    output_file = set_new_time(output_file, "陈忠勇弟兄", current_date, page_to_modify=1)
+    #output_file = set_new_time(output_file, "陈忠勇弟兄", current_date, page_to_modify=1)
     #show_structure_one_page(output_file, 1)
 
+    '''
     delete_slides(output_file, output_file, [20])  # 删除原有的接待页
     for i in range(10, 19):
         delete_slides(output_file, output_file, [10])
-
+    '''
 
     
     # 代祷事项
-    #show_structure_one_page(output_file, 11)
     #output_file = set_daidao(21, output_file, daidao_text)
 
     
     # 领会
     page_to_modify = 2
 
-    name_linhui="吉娜姐妹"
-    titre = "罗马书"
-    index = "15：13"
-    xuanzhao_text = "但愿使人有盼望的神，因信将诸般的喜乐、平安充满你们的心，使你们借着圣灵的能力大有盼望。"
+    name_linhui="周国莲宣教士"
+    titre = "约翰福音"
+    index = "15：5"
+    xuanzhao_text = "我是葡萄树，你们是枝子；常在我里面的，我也常在他里面，这人就多结果子；因为离了我,你们就不能作什么。"
     xuanzhao = (name_linhui, titre, index, xuanzhao_text)
 
     #show_structure_one_page(output_file, page_to_modify)
@@ -850,9 +851,9 @@ if __name__ == "__main__":
 
 
     # 主日证道
-    name_zhengdao = "周国莲宣教士"
-    titre = "你去照样行吧"
-    index = "路加福音10：25-37"
+    name_zhengdao = "吳兴隆弟兄"
+    titre = "重生得救的真理"
+    index = "加拉太书5章"
     page_zhuri = 9
     #show_structure_one_page(output_file, page_zhuri)
     #output_file = zhirizhengdao(output_file, name_zhengdao, name_linhui, titre, index, page_to_modify=page_zhuri)
@@ -861,24 +862,30 @@ if __name__ == "__main__":
     # 圣餐
     #delete_slides(output_file, output_file, [10])  # 删除原有的圣餐页
     #duplicate_slide(output_file, output_file, 14)  # 复制圣餐页作为模板
-    page_to_modify = 15
+    page_to_modify = 13
     #show_structure_one_page(output_file, page_to_modify)
 
     replacements = {
-        3: {0: {0: "", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "", 9: "                            圣餐"}},
-        4: {
-            0: {0: "", 1: "", 2: ""},
-            1: {0: "" , 2: ""},
-            2: {0: "" , 2: ""},
-            3: {0: "", 1: "耶稣说：“我就是生命的粮。到我这里来的，必定不饿；信我的，也必永远不渴。”", 2: ""},
-            4: {0: "", 1: "", 2: ""},
-            5: {0: "", 1: "", 2: ""},
-            6: {0: "", 1: "", 2: ""},
-            7: {0: "", 1: "", 2: ""},
-            8: {0: "", 1: "", 2: ""}
+        0: {0: {0: f"", 1: f"", 2: "", 3: "", 4: "", 5: "", 6: "", 7: ""}},
+        1: {
+            0: {0: "", 1: ""},
+            1: {0: "", 1: "                                圣餐"},
+            2: {0: "", 1: ""},
+            3: {0: "", 1: ""},
+            4: {0: "", 1: "耶稣说：“我就是生命的粮。到我这里来的，必定不饿；信我的，也必永远不渴。”"},
+            5: {0: "", 1: ""},
+            6: {0: "", 1: ""},
+            7: {0: "", 1: ""},
+            8: {0: "", 1: ""},
+            9: {0: "", 1: ""},
+            10: {0: "", 1: ""},
+            11: {0: "", 1: ""},
+            12: {0: "", 1: ""},
+            13: {0: "", 1: "", 2: ""},
         }
     }
-    #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=50, color=RGBColor(0, 0, 0))
+
+    set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, size=True, resize=50, color=RGBColor(0, 0, 0))
 
     #insert_fullscreen_video_slide(output_file, output_file, f"{repository_music}\\6.mp4", insert_position=16)
 
@@ -922,20 +929,15 @@ if __name__ == "__main__":
 
     # comptable
     '''
-四月份财务报表
-上月余额 5177.16
-本月奉献收入 1025
-
-爱心扶助 100（陈弟兄）
-教会厕所修理费 205.75
-爱宴费用 165.85
-宣教资助 300 （国莲）
-爱心资助 300（徐霞）
-法文教学费用 100
-外来证道费用 70
-本月余额 4961.06
-
-5177.16 + 1025 - 4961.06 = 1241.1
+八月份奉献余额5195.24欧元
+九月份奉献总收入：1000欧元
+九月份爱宴支出：279.66欧元
+教会水笼头更换 42.32 欧元
+银行卡支付：协会费用15 欧元
+支持国莲姐妹奉禄：600欧元学习
+法语老师教课费用：100欧元
+扶持帮助支体费用：100欧元
+九月份总余额 5058.26 欧元
 
     '''
 
@@ -943,23 +945,23 @@ if __name__ == "__main__":
     #swap_slides(output_file, output_file, 19, 20)  # 将第一页财务页移动到第19页
     #delete_slides(output_file, output_file, [16,16,16])  # 删除原来的第19页财务页
     #duplicate_slide(output_file, output_file, 16)  # 复制第一页财务页作为模板
-    page_to_modify = 19
-    month = 8
+    page_to_modify = 20
+    month = 9
     #show_structure_one_page(output_file, page_to_modify)
     #duplicate_slide(output_file, output_file, page_to_modify - 1)
     replacements = {
             0: {0: {0: f"信望爱{month}月份财务\n", 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: ""}},
             1: {
-                0: {0: "", 1: f"{month - 1}月份奉献余额5317.25欧元"},
-                1: {0: "", 1: f"{month}月份奉献收入1020欧元"},
+                0: {0: "", 1: f"{month - 1}月份奉献余额5195.24欧元"},
+                1: {0: "", 1: f"{month}月份奉献收入1000欧元"},
                 2: {0: f"{month}月份支出", 1: ""},
-                3: {0: "", 1: " * 爱宴支出：216.36欧元"},
-                4: {0: "", 1: " * 买受洗浴巾，购物：40.63欧元"},
-                5: {0: "", 1: " * 刻印章，纸60.02欧元"},
+                3: {0: "", 1: " * 爱宴支出：279.66欧元"},
+                4: {0: "", 1: " * 水笼头更换：42.32欧元"},
+                5: {0: "", 1: " * 银行卡支付：协会费用: 15欧元"},
                 6: {0: "", 1: " * 支持国莲姐妹奉禄：600欧元"},
-                7: {0: "", 1: " * 学习法语课的费用：125欧元"},
+                7: {0: "", 1: " * 学习法语课的费用：100欧元"},
                 8: {0: "", 1: " * 扶持帮助支体费用：100欧元"},
-                9: {0: "", 1: f"{month}月份结余5262.64欧元"},
+                9: {0: "", 1: f"{month}月份结余5058.26欧元"},
                 10: {0: "", 1: ""},
                 11: {0: "", 1: ""},
                 12: {0: "", 1: ""},
@@ -979,15 +981,16 @@ if __name__ == "__main__":
     #duplicate_slide(output_file, output_file, 10)  # 复制第一页经文页作为模板
     page_to_modify = 10
     title = "加拉太书" 
-    chapter = 2
+    chapter = 5
     index_text = get_bibles.indexes[title]
 
     #show_structure_one_page(output_file, page_to_modify)
 
 
     texts = [
-            [title, chapter, 1, 11, get_bibles.get_bible_verses(index_text, chapter, 1, 11)],
-            [title, chapter, 12, 21, get_bibles.get_bible_verses(index_text, chapter, 12, 21)],
+            [title, chapter, 1, 13, get_bibles.get_bible_verses(index_text, chapter, 1, 13)],
+            [title, chapter, 14, 26, get_bibles.get_bible_verses(index_text, chapter, 14, 26)],
+
     ]
 
     add_line = 8  # 每页最多显示7行经文，超过则添加新行
@@ -1026,4 +1029,4 @@ if __name__ == "__main__":
         page_to_modify += 1 
         
          
-    #delete_slides(output_file, output_file, [12 for i in range(9)])  # 删除多余的经文页，保留第一页经文页
+    delete_slides(output_file, output_file, [12 for i in range(1)])  # 删除多余的经文页，保留第一页经文页
