@@ -31,6 +31,9 @@ indexes = {
     "约书亚记": "JOS",
     "路得记": "RUT",
     "加拉太书": "GAL",
+    "历代志上": "1CH",
+    "历代志下": "2CH",
+    "创世纪": "GEN"
 }
 
 # https://bible-api.com/%E8%B7%AF%E5%8A%A0%E7%A6%8F%E9%9F%B3+1:27?translation=cuv
