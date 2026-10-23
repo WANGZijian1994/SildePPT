@@ -768,7 +768,7 @@ def add_music(output_file, repository_music, page_huiyin, if_shiban=True, add_hu
         delete_slides(output_file, output_file, pages_music)  # 删除原有的音乐页
         
         for i in range(0, len(pages_music)):
-            video_file = f"{repository_music}\\6.mp4"  # 修改为实际视频文件路径
+            video_file = f"{repository_music}\\4.mp4"  # 修改为实际视频文件路径
             insert_fullscreen_video_slide(output_file, output_file, video_file, insert_position=(pages_music[i]))
     
     return output_file
@@ -795,25 +795,25 @@ if __name__ == "__main__":
 
     info = read_pptx(output_file)
 
-    current_date = "18/10/2026"
+    current_date = "25/10/2026"
     daidao_text = [
-    "信望爱基督之家同工开始上街分发福音单张的事工，我们向神感恩，每个世人都有听到福音的权利，每个基督的门徒都有传福音的责任和义务。\n",
+    "信望爱基督之家同工开始上街分发福音单张的事工，每周二，五下午15：30-17：30希望有时间的弟兄姐妹一起参与，每个世人都有听到福音的权利，每个基督的门徒都有传福音的责任和义务。\n",
     "为本月23-25号，爱心之家将在基督国度爱心教会举办第一次的使命差遣宣教大会来祷告，愿神赐下恩典和怜悯，与参与的弟兄姐妹同在，愿圣灵的火充满整个会场，愿圣灵的恩膏充满每个讲员，愿神的爱，宣教的使命来换醒每一个弟兄姐妹，荣耀归主！\n",
     "为国莲姐妹在信望爱基督之家作实习传道来代祷，愿神赐给她智慧和聪明，按正意分解神的道，作无愧的工人，得蒙神喜悦。\n",
     "为9月份第一周受洗的弟兄姊妹（卜祥峰，张娟娟、王铠，孙浩然,徐彦彬）来祷告，求神坚固信心，每一天都经历神的恩典。\n",
-    "为慕道友（丁建波，白建亮王子键，张洪伟，杨满荣，胡小芳，张宇，金辉，刘克辉）来祷告，求神的灵来感动他们，好让他们得着上好的福份。\n",
+    "为下周受洗的五位弟兄姐妹（丁建波，胡小芳，李立伟，张宇，刘克辉）祷告，求神坚固他们的信心，保守在神的爱中。\n",
+    "为教会的慕道友（王子健，白建亮，丁辉，张洪伟，杨满荣）祷告，求神的灵来感动他们，好让他们得着上好的福份。\n",
     "为教会软弱的肢体来代求，求神的爱再次浇灌他们，使他们重新恢复与神的关系，荣耀归主！\n",
     "为Arron,Maria,Anna,这三个孩子疑难杂症来祷告，在人不能，在神凡事都能！甚愿神的权柄，医治的大能临到徐霞姐妹，藉着她的手来医治他们的身体，使三个孩子完全得以康复，荣耀归主！为陈忠勇弟兄的身体，求神来医治，使他康复,荣耀归主！\n",
     "为兴隆弟兄回国与家人团聚，求神与他同在，赐下恩典，让他的父母也能认识独一真神，荣耀归主！\n",
     "为教会在申请或延期居留的（张宇、卜祥峰弟兄，国莲姐妹）祷告，若神许可，在这件事上见证神的荣耀！\n",
     "为在约旦服事的中国宣教士和他们的家庭来祷告，求神赐给他们荣耀的丰富，使他们凡事富足。\n",
     "为教会的法语老师和同学们来祷告，通过学习法语课,愿意委身，并且来认识神。荣耀主的名！\n",
-    "为教会每周二，每周五下午15：30到17：30发放福音单张，求神预备同工，参与传福音的事工，让更多人能听闻福音。\n",
     ]
 
 
     # 1 时间 + 接待
-    #output_file = set_new_time(output_file, "张娟娟姐妹", current_date, page_to_modify=1)
+    #output_file = set_new_time(output_file, "卜祥峰弟兄, 张娟娟姐妹", current_date, page_to_modify=1)
     #show_structure_one_page(output_file, 1)
 
     '''
@@ -830,10 +830,10 @@ if __name__ == "__main__":
     # 领会
     page_to_modify = 2
 
-    name_linhui="周国莲宣教士"
-    titre = "雅各书"
-    index = "5：16"
-    xuanzhao_text = "所以你们要彼此认罪，互相代求，使你们可以得医治。义人祈祷所发的力量是大有功效的。"
+    name_linhui="徐霞姐妹"
+    titre = "诗篇"
+    index = "143:8"
+    xuanzhao_text = "求你使我清晨得听你慈爱之言，因我倚靠你；求你使我知道当行的路，因我的心仰望你。"
     xuanzhao = (name_linhui, titre, index, xuanzhao_text)
 
     #show_structure_one_page(output_file, page_to_modify)
@@ -847,13 +847,13 @@ if __name__ == "__main__":
     #output_file = set_jinbai_shiban(output_file, jinbao_text, shiban_title, shiban_text, if_shiban=False)
 
     # musics 
-    #output_file = add_music(output_file, repository_music, if_shiban=False, page_huiyin=19, add_hui_ying=False)  # 假设音乐幻灯片是第13页
+    #output_file = add_music(output_file, repository_music, if_shiban=False, page_huiyin=13, add_hui_ying=True)  # 假设音乐幻灯片是第13页
 
 
     # 主日证道
-    name_zhengdao = "吉娜姐妹"
-    titre = "雅比斯比他众弟兄更尊贵"
-    index = "\n历代志上4:9/10\n约翰福音6/7节\n马太福音6/10节"
+    name_zhengdao = "周国莲宣教士"
+    titre = "好机会，别错过"
+    index = "\n马太福音22：1-14"
     page_zhuri = 9
     #show_structure_one_page(output_file, page_zhuri)
     #output_file = zhirizhengdao(output_file, name_zhengdao, name_linhui, titre, index, page_to_modify=page_zhuri)
@@ -988,8 +988,8 @@ if __name__ == "__main__":
 
 
     texts = [
-            [title, chapter, 9, 10, get_bibles.get_bible_verses(get_bibles.indexes[title], chapter, 9, 10)],
-           [title, chapter, 14, 26, get_bibles.get_bible_verses(get_bibles.indexes["约翰福音"], 6, 6, 7)],
+           [title, chapter, 9, 10, get_bibles.get_bible_verses(get_bibles.indexes[title], chapter, 9, 10)],
+           [title, chapter, 14, 26, get_bibles.get_bible_verses(get_bibles.indexes[title], chapter, 14, 26  )],
 
     ]
 
@@ -1025,8 +1025,8 @@ if __name__ == "__main__":
             for j in range(add_line, text[3] - text[2] + 1):
                 replacements[2][add_line][2] += f" \n{str(i + j)}    " + (bibles[j] if len(bibles) > j else "")
         '''
-        set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize = 36)
+        #set_pptx_page_texts_by_slides_shapes_index(output_file, output_file, page_to_modify, replacements, resize = 36)
         page_to_modify += 1 
         
          
-    #delete_slides(output_file, output_file, [14])  # 删除多余的经文页，保留第一页经文页
+    delete_slides(output_file, output_file, [11])  # 删除多余的经文页，保留第一页经文页
